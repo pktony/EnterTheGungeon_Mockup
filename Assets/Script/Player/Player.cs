@@ -2,10 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PlayerMove
+public class Player : MonoBehaviour
 {
-    IDLE = 0,
-    WALK,
-    RUN,
-    DODGE
 }
