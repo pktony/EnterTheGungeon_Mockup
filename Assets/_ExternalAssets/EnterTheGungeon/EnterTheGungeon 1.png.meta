@@ -1,0 +1,4958 @@
+fileFormatVersion: 2
+guid: c472767f4ddc71840822c3520a1217e1
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 25
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Idle_Up_3
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 872
+        width: 20
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 630d1a95acbc65d43b9d6ff550763753
+      internalID: 2107303918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_UpRight_3
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 841
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3b0e230df65a8e4aa40b0eb533cf65c
+      internalID: -67875943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk_Down_5
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 792
+        width: 20
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fd0d9004bd30d84aa0586c236ba53bb
+      internalID: -612158273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Down_0
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 935
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 395a0030d6f1897468543a1f2b17c9a0
+      internalID: 1996872694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Down_1
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 935
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e51c6e0972b7c224483d72710d1b5322
+      internalID: -1174992635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OneWeapon_Idle_Down_0
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 935
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f8b30c6c32faec49b1eae733ab9caec
+      internalID: -847042774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_12
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 935
+        width: 44
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca47385623b9899479d6b6390c243773
+      internalID: 952359789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_13
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 935
+        width: 22
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05fc105687b0a3f49af448a9bb7c04c4
+      internalID: 812013910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_14
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 935
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58bfd3cefdb16894a9f42c560271f619
+      internalID: 1985907404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_15
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 955
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 478652df802cd8141a5cc88213e67058
+      internalID: 2054378760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_RIght_0
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 905
+        width: 21
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 768795d74bfd58243850cbcb0a883002
+      internalID: -395562144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_RIght_1
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 905
+        width: 21
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 620cafbd76636a848b422c091e735fed
+      internalID: -602835448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OneWeapon_Idle_Right_0
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 905
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96bac9cd02910b548a08cf8b30eb0ebc
+      internalID: -1932890362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OneWeapon_Idle_Right_3
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 905
+        width: 20
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f390997607562ed4fb97b15e28b82f00
+      internalID: 718197114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_21
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 905
+        width: 44
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c53237ad6239d2b4bb0c2bf817b0e50b
+      internalID: -1226016364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_22
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 905
+        width: 41
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3af3a3691ade72e4fa186c307af7f92a
+      internalID: 887362218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_23
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 927
+        width: 39
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1661e5b5db0a5e24c96e2c3292ee5823
+      internalID: -2096964427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Up_0
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 873
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c8d7065838cd1c44b46e1695c5ab6dc
+      internalID: 1398270718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Up_1
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 873
+        width: 21
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93584ae7843a65944a824bd5838a7239
+      internalID: -1944775631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Up_2
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 873
+        width: 20
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33f332385aece0f45aa93e97870cafc0
+      internalID: -1930415845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OneWeapon_Idle_Up_0
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 873
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3ac13343749fe84d849066036ca4d16
+      internalID: 775451141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_28
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 872
+        width: 44
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fd32c62526cc524a97b7e6d6b3e437c
+      internalID: 2110844966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_29
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 873
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30c50aac3a01229489bdb457752ae1df
+      internalID: -171785749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_30
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 873
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 753045b4e5662fa4b90b4c15e5c1bd35
+      internalID: -236539780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_UpRight_0
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 842
+        width: 21
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e97b1e30513095c46a69186b823307ba
+      internalID: -148890315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_UpRight_1
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 842
+        width: 21
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4afebfd18ff39c41bff29b4d1cef40a
+      internalID: -1090560122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OneWeapon_Idle_UoRight_0
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 842
+        width: 23
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 879471c3dbca6fc43ad928a699479fcc
+      internalID: 589189571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OneWeapon_Idle_UoRight_3
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 842
+        width: 20
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3d7d365cc87e174e9478036f21e198c
+      internalID: -798203415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_35
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 841
+        width: 44
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04dca3d326e46aa4ebf3a23f16eada8d
+      internalID: 1771302229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_36
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 842
+        width: 41
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d12f58f6b43eb514f87cca584a10891f
+      internalID: -1025619483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk_Down_0
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 798
+        width: 20
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ee5e4ec60b1e544581d8ffd16dcd300
+      internalID: 633543502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk_Down_3
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 799
+        width: 21
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94e35899b5e79264aac7b97710de1a66
+      internalID: -2102630131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk_Down_4
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 795
+        width: 20
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1084b11c0bf9a714c9a2b624b2679c81
+      internalID: -662457366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_50
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 795
+        width: 40
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e4e24d7ef3d2d8439ffa0c556e6cf6d
+      internalID: -381604375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_51
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 794
+        width: 62
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55620834c21e2724fa0f306eca7570f6
+      internalID: -287649070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_52
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 794
+        width: 20
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5e397f85415cc44bb8da110b1667df0
+      internalID: -203710834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_53
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 799
+        width: 21
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e206fbf630476d446ae3abfdf298f495
+      internalID: 928015780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_54
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 794
+        width: 41
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03674a398d542da4281784db369668f9
+      internalID: 750703329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_55
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 794
+        width: 61
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6bfeb5413a22444da2c57d78a1df08d
+      internalID: -1818696966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk_Right_0
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 759
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca763eb0b4c63644ebbcb783cac3c35b
+      internalID: -1222093027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk_Right_1
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 763
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b80fa63ac665e146b7aa0e613ff98be
+      internalID: -338937376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk_Right_2
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 761
+        width: 21
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 551faa167ed99e144965a46ff940dff7
+      internalID: 1236064189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk_Right_3
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 759
+        width: 20
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94faf2f762523d743b5fcf4f93ffac0f
+      internalID: -1646596659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk_Right_4
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 762
+        width: 20
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c453280fdf5b6bc4da307b136491f1e1
+      internalID: 1361167046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_62
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 759
+        width: 45
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 705d4947fd63c8d41a524b96283d61bb
+      internalID: -266610029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_63
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 759
+        width: 81
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11bc9494c849c6f44bea67faa4d442c8
+      internalID: -1431908257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_64
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 759
+        width: 44
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3347f2690978edf44992ef6ca08aef23
+      internalID: 329172233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_65
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 759
+        width: 39
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 994338676c096e14b93cf685cc69ab61
+      internalID: -149547968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_66
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 759
+        width: 41
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b4276abceeb03d44a9651972e59503f
+      internalID: -1100121027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_67
+      rect:
+        serializedVersion: 2
+        x: 549
+        y: 780
+        width: 86
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 640130c67f425aa49b6f09c7c2c914a5
+      internalID: -450596800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk_Up_0
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 730
+        width: 21
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 847f39e843ecc2044a9fc9da4aa41f0e
+      internalID: 1138565388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk_Up_1
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 726
+        width: 21
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7b2532f8f888054b86ea4d1b151a29d
+      internalID: 910090101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk_Up_2
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 724
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ceee9ace7aa9c314891264aebaf57409
+      internalID: -1546356752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk_Up_4
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 725
+        width: 20
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d31ff8e5e93ec3408b0325ebcebc7e6
+      internalID: 2136361580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_72
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 726
+        width: 41
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c40d72eef0126e4db917d71bc377e10
+      internalID: 1907815316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_73
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 724
+        width: 82
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 487d481f20f276a41935338e84e88da4
+      internalID: 1304302123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_74
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 730
+        width: 21
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a5de2fc8e18ec246bb0cd9364762244
+      internalID: 1056801886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_75
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 724
+        width: 41
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a94ba08c879c6d48a1c9755dffc5ff4
+      internalID: -687528687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_76
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 724
+        width: 61
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 735ee76263ddd924ab3b6ce9af3af08d
+      internalID: 2029527933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_77
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 749
+        width: 86
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 420acb6bab3e3fb479decfd769d4e5eb
+      internalID: 379716891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk_UpRight_1
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 693
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7853a86464da0824e8174906366bf5f6
+      internalID: -273602328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk_UpRight_2
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 690
+        width: 22
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 297fd34651b34a7448c34c52feb6ee3b
+      internalID: 26203492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk_UpRight_3
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 689
+        width: 20
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48e911020d68b0445aa1cd1a1bb312ff
+      internalID: -982472500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_81
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 690
+        width: 45
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01d090fc31f64714488e8ebd065450a0
+      internalID: 660117863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_82
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 689
+        width: 84
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16705f89ce3ef054fbeedffb3f9848d0
+      internalID: -1695168007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_83
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 693
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2849af2b054b3a94ab6f4908fd3be98a
+      internalID: -1455768761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_84
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 689
+        width: 80
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97a3ed64b38fc3146b7af7736d2ff583
+      internalID: 293965606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_85
+      rect:
+        serializedVersion: 2
+        x: 549
+        y: 715
+        width: 86
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8323a5a8544f2e4aa530f183ff450da
+      internalID: 1327255477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk_UpRight_0
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 690
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99a8d5f0e4e6d9e4bb4d9a254a62002d
+      internalID: -23494784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_87
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 690
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aaaa277c6ec7d2e409e8fa0147bf7853
+      internalID: 1874591456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_88
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 683
+        width: 86
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9239078383d4f54a88ae9e7c4321bac
+      internalID: -1839517548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_Down_0
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 647
+        width: 18
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40522f9a6e940774f9638d5ba809fdd4
+      internalID: -1015542853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_Down_5
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 639
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1bb411516332b8498f452245f86442c
+      internalID: -1344293889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_Down_7
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 643
+        width: 17
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2847b0053ff950c4bb8424b037b3cf19
+      internalID: -337803803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_100
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 646
+        width: 45
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd88fbea154e0c34c8bf4ddd4ebd06c1
+      internalID: -623060848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_101
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 645
+        width: 46
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8eb8720ef80a802459745ab413ff11df
+      internalID: 1282708487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_102
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 647
+        width: 26
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa599b6099c34dd48b69306a2967ee36
+      internalID: 149450505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_103
+      rect:
+        serializedVersion: 2
+        x: 549
+        y: 639
+        width: 22
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6bd1748886ea5543af4c80b948d2a62
+      internalID: 1579198248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_104
+      rect:
+        serializedVersion: 2
+        x: 571
+        y: 637
+        width: 64
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c513bc2629e2f94fae842f2051f0dc8
+      internalID: 2013050517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_Right_0
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 609
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5d370dba8b81244594c466f48195581
+      internalID: -312540258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_Right_2
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 613
+        width: 25
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f68be1f1c2084946b1abf165853d677
+      internalID: -402186102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_Right_5
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 603
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d518cfcbf788784492ed1ef6f5855c9
+      internalID: -367433721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_Right_8
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 603
+        width: 18
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17394bcc65b1c3b4d86aa9558d059aa2
+      internalID: 930455330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_109
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 615
+        width: 45
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63340fd5f172da442b44634a52cbb12d
+      internalID: -1686515146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_110
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 615
+        width: 46
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bc4e3c67d9775646b5b5b96930f0076
+      internalID: 1210092922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_111
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 619
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1aaef4cacf129646bd031f2307e246a
+      internalID: 477360737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_Up_0
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 576
+        width: 18
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1317ba2cf8a7e8428bf7d6dcd3996b1
+      internalID: -1979751621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_Up_5
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 568
+        width: 17
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39501e5e51fc5644fa2224a6acc24822
+      internalID: 1306149275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_117
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 587
+        width: 44
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51a21df38c14b09419f6182cb0e2781b
+      internalID: 1207600527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_118
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 587
+        width: 46
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35f8ecd8cc2757d4e9b3ce4b664b5bde
+      internalID: 325191499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_119
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 587
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11948f048881c3e458fc00a8524bb95e
+      internalID: 1458720481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_120
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 583
+        width: 109
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c8e6b356afe2a944a414e384a08601d
+      internalID: 327339895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_121
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 558
+        width: 44
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ddcd054af421f64e9bccc3e4034626c
+      internalID: 1416411107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_122
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 558
+        width: 46
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff6b96101251e5546bd4bf5276d4cfe2
+      internalID: 168415883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_UpRight_0
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 539
+        width: 22
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 998a4935c988ed84e828c4720801d8b8
+      internalID: -1231564657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_UpRight_1
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 544
+        width: 21
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd9e4ef8336fcec4188fbb3adaf8e6d7
+      internalID: 486704192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_UpRight_02
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 545
+        width: 22
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef9a11aada49f3e47b235e88b33b1ccc
+      internalID: -188627037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_UpRight_3
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 539
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d71fe5c709df3b047bb43f2a107365f8
+      internalID: 1970747291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_UpRight_4
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 533
+        width: 19
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: faa9fbf7a57ecf84d85a48664a36a7a8
+      internalID: 1722772844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_UpRight_6
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 533
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b828e4d267dbef94888f5e7d62075bce
+      internalID: 666667631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_131
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 538
+        width: 111
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dd92d6a9c23af14696fc0e97e8f77d2
+      internalID: 282712532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_132
+      rect:
+        serializedVersion: 2
+        x: 588
+        y: 538
+        width: 62
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67499061369a7b4488389004e5117879
+      internalID: 83778531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_137
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 488
+        width: 21
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9728aa44f6689f34c96d209652f43d12
+      internalID: -101545629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_138
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 489
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2518bc60c2cf9594b91a184ce8982d1a
+      internalID: 1320291295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_139
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 489
+        width: 44
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a5e8c17ef37a5043b1c36aa4f8a9b2b
+      internalID: 1180750323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_140
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 489
+        width: 44
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27a8cbf42466b6548b069b3c2876aa59
+      internalID: 24288658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_141
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 494
+        width: 20
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73d957f46b6857846b3075e8a718cbf8
+      internalID: -47642407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_142
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 493
+        width: 143
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e51ccb0d142049544822d0bafca6b71e
+      internalID: -733788644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_143
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 457
+        width: 64
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b5f86d0ed94f8e4d83b10c04b21772b
+      internalID: 610643773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_144
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 457
+        width: 22
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95fec201a28661a4cb034d11e4a74449
+      internalID: -1070317027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_145
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 457
+        width: 20
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bda1af730d3caf4439d5a9cea8653305
+      internalID: 1412063066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_146
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 457
+        width: 20
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4eaa0776b54b1640bc4f8445886c163
+      internalID: 861473583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_147
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 457
+        width: 23
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 541e26d38c50e7f438d0d6b2469e6d99
+      internalID: 1724368346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_148
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 457
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b013ed126d665448ac040fe03284ad4
+      internalID: -611535138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_149
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 457
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b36a7c82bd514164f97ec7525b10b7d8
+      internalID: 685908602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_150
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 457
+        width: 19
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79a1332de9e3cba4a84dd98bb69031ac
+      internalID: -1814233068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_151
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 457
+        width: 23
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21afe37b203ae21418d917f797c94cdd
+      internalID: -790311604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_152
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 457
+        width: 20
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76e65550f0e2ecf41b55c4ed63483dd8
+      internalID: -289002969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_155
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 426
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92641cc0f39de7a4a9ae5c621def44d9
+      internalID: -1635271415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_156
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 426
+        width: 20
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1369bb15c60d1f94d8c0ad887a60f6bd
+      internalID: -808077385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_157
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 425
+        width: 43
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4f5e2cc81b52a94982b2515f6ea6acf
+      internalID: -332733444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_158
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 426
+        width: 44
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3aa834691536fb443917514294712b8b
+      internalID: -481954976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_159
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 449
+        width: 84
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6179b87957da7fc4093c5d6ce0b097b9
+      internalID: 1178065405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_160
+      rect:
+        serializedVersion: 2
+        x: 561
+        y: 448
+        width: 102
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd3c5d7fb69a79b498df67058f9f00c6
+      internalID: 1848681407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_165
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 399
+        width: 42
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb8b9c96bbfa606489d7e3dc49dbab8e
+      internalID: 10019432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_166
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 399
+        width: 64
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 544fb25a7d4015246910a999ef3b9a32
+      internalID: -1056309930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_167
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 377
+        width: 63
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fcc736236aa3da48951fb5a4188024b
+      internalID: -1989221480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_168
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 378
+        width: 64
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee3de06e79e236b4e9e8d45e8f012708
+      internalID: -1339553009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_171
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 371
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c291cc68c9e51af419638573c1a224dc
+      internalID: 2018658657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_172
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 371
+        width: 59
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 696ed6f60d553cb4f893037765b8a540
+      internalID: 802874099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_173
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 371
+        width: 20
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8876635ae509c44c93045fc83f29963
+      internalID: 215106248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_174
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 368
+        width: 41
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e495f04a637eb18408cf471f3338eecd
+      internalID: -1004618381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_175
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 368
+        width: 86
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49d80c2a983baa84092adb426e57d663
+      internalID: 380310531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_176
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 379
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a3f823b20a229b4db66a54e34aa4eeb
+      internalID: -894651536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_177
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 380
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36f9ba7a7cf0f4e488ebc77c49cd58d8
+      internalID: 1680795324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_182
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 354
+        width: 88
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 610ae9adbe3365c418cbc0a49182601d
+      internalID: 128764329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_183
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 327
+        width: 46
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a3f552db5ba95241b10151f271b7726
+      internalID: 519727985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_184
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 325
+        width: 72
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78dc4b3ae058fae4e8f7e7d1897cbce5
+      internalID: -26669109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_185
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 325
+        width: 67
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39065d139b3e07640a2f4ee2d09be490
+      internalID: 2017582675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_186
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 323
+        width: 131
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac47ccde8cfe05148aa8d186a13eb126
+      internalID: -56931656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_194
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 312
+        width: 111
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68557dcb5273cc04f817e17499339aee
+      internalID: 705379065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_195
+      rect:
+        serializedVersion: 2
+        x: 588
+        y: 312
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bd57bf2b51dd494b86f4bc77db3a9b1
+      internalID: 1439851550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_196
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 283
+        width: 21
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c327ef008a710734e94cc162ffb8bc14
+      internalID: -921612099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_197
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 283
+        width: 58
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb9a9889b576c344d83234d320cbfdfe
+      internalID: 94901383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_198
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 278
+        width: 44
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7984f4b827150474386949f8c5d93eed
+      internalID: 2078152594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_202
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 259
+        width: 49
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b06838007a4d034bbb945caaa625c4f
+      internalID: 235603157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_203
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 262
+        width: 23
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f7cbc3a6577dac4798ac52e49eeb741
+      internalID: -546853656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_206
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 267
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7c0eb447c80a624cae5b9be00fd9d99
+      internalID: -1813003975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_207
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 259
+        width: 23
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 372776d578b2c42438cbb60780f763aa
+      internalID: -948865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_208
+      rect:
+        serializedVersion: 2
+        x: 521
+        y: 259
+        width: 25
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ad63029f447b4848b7eee8eb4b5d047
+      internalID: 786637223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_209
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 259
+        width: 38
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8731f2a44f484e44c8768c68f0101d3f
+      internalID: 356668351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_210
+      rect:
+        serializedVersion: 2
+        x: 584
+        y: 259
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f015848720016e48a49dd9a95e4d861
+      internalID: 621093543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_211
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 259
+        width: 40
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 322b2782745424747b8d53543c83faae
+      internalID: 2006636552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_212
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 259
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf10ac95c4ee67c4e83a52aa77cbbdd7
+      internalID: 1854715378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_217
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 226
+        width: 104
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86d242957b0cdca4684c761b1d9dddf2
+      internalID: 1228671264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_218
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 227
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e04a1b59a004bde48ae2a92b64310da2
+      internalID: 1716176530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_219
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 173
+        width: 169
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e85dcff7382384244aa8af5dae9325a3
+      internalID: -1223822213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_221
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 184
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6cd96ada72cebf749b683dc4a4dc3122
+      internalID: 1666360438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_222
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 182
+        width: 68
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70cfafd5190d33d438d165a5efdb4236
+      internalID: -412508109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_223
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 182
+        width: 61
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a12f6e0b9bb6374487712c4a2dc5a21
+      internalID: -1737292907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_224
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 182
+        width: 21
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 126f8372a658e6b48b79bda18011289b
+      internalID: -1084478257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_225
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 143
+        width: 47
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57c1941dd12b73540a1da251b6403b65
+      internalID: -1217340345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_226
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 149
+        width: 23
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64453956c5f7a244da547d335759f867
+      internalID: -689592658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_227
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 146
+        width: 21
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a033e8f493c9e94caf43d6acf254ae4
+      internalID: -293300972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_228
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 145
+        width: 22
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af11e3ea1065cc94f9f6e5be25b38ffd
+      internalID: -1881726150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_229
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 143
+        width: 26
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d93f602ab2853d848baf687df185e6bb
+      internalID: -1416625803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_230
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 144
+        width: 24
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 660a8b5003559d046b9361c489828f45
+      internalID: 15841000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_231
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 141
+        width: 58
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 568bc3cb3833f324cb22b408df2a5ef1
+      internalID: -925814605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_232
+      rect:
+        serializedVersion: 2
+        x: 507
+        y: 140
+        width: 30
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64868ffa2e9944d459c9ee057698528c
+      internalID: 436857906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_233
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 141
+        width: 29
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f146ab327242ca43a20b60ae1e97e77
+      internalID: -542424770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_235
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 98
+        width: 27
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c850369db2f4a7649acc512aff390d74
+      internalID: 1965773701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_236
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 98
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dce3556a4af66c349bc51ebd496a24fe
+      internalID: -899980540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_237
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 94
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3f3b2cd3d72da747851f888b505e939
+      internalID: -684496731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_238
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 91
+        width: 71
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1eb4a3467759954b9772ed04866ec9b
+      internalID: -789579402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Down_2
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 935
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5cd35e3022e5e94b85fdb11009511e9
+      internalID: 1035371052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Down_3
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 935
+        width: 22
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26dedc17555795549aa722d143d1c498
+      internalID: -1827531146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_RIght_2
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 904
+        width: 21
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 129a19a829eb7764eb005c9d118113b1
+      internalID: -1985195848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_RIght_3
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 904
+        width: 20
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c2620dceb481c64a8ac131d1accc4a2
+      internalID: 715546633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_UpRight_2
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 841
+        width: 20
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96bd02643e2557141bb1fb3d98257b6a
+      internalID: -1864210742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk_Down_1
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 795
+        width: 19
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f4b2c45449825443b6d899aa16330ca
+      internalID: -1365558678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk_Down_2
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 793
+        width: 21
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 731cf93010e27694ca186784192ff250
+      internalID: -1490018553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk_Right_5
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 759
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d67a614536bb95468d5afeca7f1f123
+      internalID: -438676586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk_Up_3
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 729
+        width: 20
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5321749c1d0b5ad46b2d55971f800f93
+      internalID: 581837871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk_Up_5
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 724
+        width: 21
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1c46191ae880f04caf71a3999c77a44
+      internalID: 1845392876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk_UpRight_4
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 692
+        width: 21
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f11e5a4635e28d4db11b36d953ad321
+      internalID: 266965732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk_UpRight_5
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 691
+        width: 20
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32374f7ff88a5d745957305690b60d0a
+      internalID: 575271952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_Down_1
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 649
+        width: 18
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 957b59a3b45b441409c10cb438eef3ae
+      internalID: -144737107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_Down_2
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 645
+        width: 19
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c6e424150b61fa40b215bd86d2814bc
+      internalID: -1693435931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_Down_3
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 640
+        width: 18
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efbc4156d2153f54e92b1f9582e89acd
+      internalID: 192379061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_Down_4
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 639
+        width: 17
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d0cac9e07b9eee45b32729d088e7a39
+      internalID: -1701516744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_Down_6
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 641
+        width: 22
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b86c85dfcb871c243b7a2e22bbf3aa5d
+      internalID: -2100158737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_Down_8
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 642
+        width: 18
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e230c400361745d409634f8d06eed754
+      internalID: 1059315405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_Right_1
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 613
+        width: 27
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b6164a2bde8d0147b3a09d8fd21b59a
+      internalID: 1403162510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_Right_3
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 608
+        width: 23
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cdbc881adcabda4fb8b0734cbf076ec
+      internalID: 1959902863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_Right_4
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 603
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56e9ff759cde46943b171446ce9fafbe
+      internalID: 1427746771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_Right_6
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 603
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8f83c90741bfe34b8367a6ce3a1fa92
+      internalID: -1299853063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_Right_7
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 603
+        width: 20
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b777d02d024f1b4d99144e256784319
+      internalID: -302186060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_Up_1
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 580
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2aeb470fd21ac145bdebb1e7c146e7d
+      internalID: -784705758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_Up_2
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 580
+        width: 19
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7b97050365fb104aa00810a5a1fcb69
+      internalID: 386622096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_Up_3
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 572
+        width: 17
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca1deadad547468439583299a6e565dc
+      internalID: -284082420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_Up_4
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 568
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e90eda3896e1cc43888e7afa598c3ff
+      internalID: 1157406147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_Up_6
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 568
+        width: 17
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3757db9222c9563489dfe14378481c2d
+      internalID: -551256366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_Up_7
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 572
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 599c9715d4f312d4192324011bdf307f
+      internalID: -1070799832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_Up_8
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 575
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d50ba31eed8f01040ac70ab24884ec22
+      internalID: 161497819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_UpRight_5
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 533
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c7e73b8ed964fe448332c642ced3968
+      internalID: -161706128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_UpRight_7
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 533
+        width: 19
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38474d317000f354b8ac09b5b7280b27
+      internalID: -491484460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dodge_UpRight_8
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 533
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 283f0973b87743f44a043e5d184ad8b7
+      internalID: 1874438052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OneWeapon_Idle_Down_1
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 936
+        width: 21
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a0a0602efaaf934f85437a6b1cc35b6
+      internalID: -1291613705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OneWeapon_Idle_Down_2
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 936
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73355684a8be1e44a8b24c6aa7b77412
+      internalID: 1086187233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OneWeapon_Idle_Down_3
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 936
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 169a797c1dc8575479f0f997c54597b1
+      internalID: 1179538051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OneWeapon_Idle_Right_1
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 904
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2dbb96373c3315844801de6d0af57041
+      internalID: 1352747325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OneWeapon_Idle_Right_2
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 903
+        width: 20
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45a2c994c49ad2d4fbacb05c0d38e098
+      internalID: -1517206597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OneWeapon_Idle_Up_1
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 873
+        width: 22
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 929526b251b81674691b509f3e99d400
+      internalID: 423142397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OneWeapon_Idle_Up_2
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 873
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fdf590e6a6bba846a21b986edc69bf9
+      internalID: -1909626106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OneWeapon_Idle_Up_3
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 873
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c984488cf73076348a1e710c16939b1b
+      internalID: -394858958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterTheGungeon 1_0
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 842
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c273f83836a1de40819d613a0e8ce3e
+      internalID: -713075418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OneWeapon_Idle_UoRight_2
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 841
+        width: 20
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8af27e4b781169c47a2302e4d3ffaf6f
+      internalID: -421157975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      OneWeapon_Idle_Down_3: 1179538051
+      EnterTheGungeon 1_110: 1210092922
+      OneWeapon_Idle_Right_2: -1517206597
+      EnterTheGungeon 1_100: -623060848
+      EnterTheGungeon 1_67: -450596800
+      EnterTheGungeon 1_177: 1680795324
+      EnterTheGungeon 1_54: 750703329
+      EnterTheGungeon 1_188: -1584130698
+      EnterTheGungeon 1_93: 628768187
+      EnterTheGungeon 1_161: 843877255
+      EnterTheGungeon 1_164: -1501845999
+      EnterTheGungeon 1_225: -1217340345
+      EnterTheGungeon 1_131: 282712532
+      EnterTheGungeon 1_111: 477360737
+      EnterTheGungeon 1_176: -894651536
+      EnterTheGungeon 1_171: 2018658657
+      EnterTheGungeon 1_119: 1458720481
+      EnterTheGungeon 1_152: -289002969
+      EnterTheGungeon 1_136: -1412143167
+      EnterTheGungeon 1_52: -203710834
+      EnterTheGungeon 1_180: 1400111078
+      EnterTheGungeon 1_37: 1833834891
+      EnterTheGungeon 1_112: -377966384
+      EnterTheGungeon 1_144: -1070317027
+      Dodge_Up_6: -551256366
+      EnterTheGungeon 1_192: 78867473
+      Walk_Right_4: 1361167046
+      EnterTheGungeon 1_83: -1455768761
+      EnterTheGungeon 1_216: 1647511460
+      EnterTheGungeon 1_96: 1905359017
+      EnterTheGungeon 1_22: 887362218
+      EnterTheGungeon 1_220: -686777149
+      Idle_UpRight_3: -67875943
+      EnterTheGungeon 1_109: -1686515146
+      Walk_Down_2: -1490018553
+      Dodge_Down_0: -1015542853
+      EnterTheGungeon 1_205: -2005408988
+      EnterTheGungeon 1_207: -948865
+      EnterTheGungeon 1_104: 2013050517
+      EnterTheGungeon 1_139: 1180750323
+      EnterTheGungeon 1_235: 1965773701
+      Dodge_UpRight_5: -161706128
+      Dodge_Right_1: 1403162510
+      EnterTheGungeon 1_194: 705379065
+      EnterTheGungeon 1_120: 327339895
+      EnterTheGungeon 1_42: -227292985
+      Idle_Up_2: -1930415845
+      Dodge_UpRight_1: 486704192
+      EnterTheGungeon 1_206: -1813003975
+      Walk_UpRight_4: 266965732
+      EnterTheGungeon 1_90: 1549184074
+      Idle_Down_3: -1827531146
+      EnterTheGungeon 1_9: 2065762422
+      EnterTheGungeon 1_35: 1771302229
+      Walk_Down_0: 633543502
+      EnterTheGungeon 1_211: 2006636552
+      OneWeapon_Idle_UoRight_2: -421157975
+      Dodge_Down_5: -1344293889
+      EnterTheGungeon 1_63: -1431908257
+      EnterTheGungeon 1_145: 1412063066
+      EnterTheGungeon 1_200: 899301420
+      Dodge_Down_7: -337803803
+      Dodge_Up_5: 1306149275
+      EnterTheGungeon 1_203: -546853656
+      EnterTheGungeon 1_53: 928015780
+      Idle_RIght_0: -395562144
+      EnterTheGungeon 1_89: 2108082549
+      EnterTheGungeon 1_173: 215106248
+      EnterTheGungeon 1_148: -611535138
+      EnterTheGungeon 1_175: 380310531
+      EnterTheGungeon 1_133: 2072087141
+      EnterTheGungeon 1_13: 812013910
+      EnterTheGungeon 1_30: -236539780
+      EnterTheGungeon 1_168: -1339553009
+      EnterTheGungeon 1_117: 1207600527
+      EnterTheGungeon 1_201: 260582659
+      EnterTheGungeon 1_82: -1695168007
+      EnterTheGungeon 1_88: -1839517548
+      EnterTheGungeon 1_213: 540286032
+      Walk_UpRight_1: 26203492
+      EnterTheGungeon 1_158: -481954976
+      Idle_UpRight_0: -148890315
+      EnterTheGungeon 1_21: -1226016364
+      EnterTheGungeon 1_51: -287649070
+      Idle_RIght_2: -1985195848
+      EnterTheGungeon 1_172: 802874099
+      EnterTheGungeon 1_28: 2110844966
+      Idle_Up_0: 1398270718
+      EnterTheGungeon 1_118: 325191499
+      EnterTheGungeon 1_215: 378232894
+      EnterTheGungeon 1_87: 1874591456
+      EnterTheGungeon 1_142: -733788644
+      EnterTheGungeon 1_217: 1228671264
+      Idle_UpRight_2: -1864210742
+      EnterTheGungeon 1_73: 1304302123
+      EnterTheGungeon 1_189: -1724661908
+      EnterTheGungeon 1_238: -789579402
+      EnterTheGungeon 1_81: 660117863
+      EnterTheGungeon 1_165: 10019432
+      Walk_UpRight_3: 266965732
+      EnterTheGungeon 1_233: -542424770
+      EnterTheGungeon 1_222: -412508109
+      EnterTheGungeon 1_39: 1852078952
+      EnterTheGungeon 1_204: 1600164607
+      EnterTheGungeon 1_66: -1100121027
+      EnterTheGungeon 1_170: -1270527735
+      EnterTheGungeon 1_186: -56931656
+      EnterTheGungeon 1_132: 83778531
+      EnterTheGungeon 1_159: 1178065405
+      Walk_UpRight_2: -982472500
+      EnterTheGungeon 1_210: 621093543
+      EnterTheGungeon 1_232: 436857906
+      Dodge_Up_0: -1979751621
+      EnterTheGungeon 1_65: -149547968
+      EnterTheGungeon 1_209: 356668351
+      EnterTheGungeon 1_40: 1447018548
+      EnterTheGungeon 1_123: 1093578925
+      Walk_Up_5: 1845392876
+      EnterTheGungeon 1_193: -2134275411
+      Dodge_Up_8: 1894685781
+      EnterTheGungeon 1_74: 1056801886
+      EnterTheGungeon 1_221: 1666360438
+      EnterTheGungeon 1_147: 1724368346
+      EnterTheGungeon 1_228: -1881726150
+      Walk_Up_4: 2136361580
+      EnterTheGungeon 1_231: -925814605
+      EnterTheGungeon 1_219: -1223822213
+      EnterTheGungeon 1_143: 610643773
+      EnterTheGungeon 1_184: -26669109
+      OneWeapon_Idle_Up_3: -394858958
+      Walk_Right_1: -338937376
+      Walk_Up_2: -1546356752
+      EnterTheGungeon 1_226: -689592658
+      Dodge_Up_7: -1070799832
+      Dodge_Up_2: 386622096
+      Dodge_UpRight_8: 1874438052
+      EnterTheGungeon 1_169: -2138754586
+      EnterTheGungeon 1_162: -1907031907
+      Dodge_Right_3: 1959902863
+      Walk_Right_0: -1222093027
+      EnterTheGungeon 1_62: -266610029
+      Dodge_UpRight_6: 666667631
+      EnterTheGungeon 1_12: 952359789
+      EnterTheGungeon 1_7: 1651226258
+      Walk_Down_3: -2102630131
+      Walk_Down_4: -662457366
+      EnterTheGungeon 1_166: -1056309930
+      EnterTheGungeon 1_182: 128764329
+      Idle_UpRight_1: -1090560122
+      EnterTheGungeon 1_236: -899980540
+      EnterTheGungeon 1_15: 2054378760
+      EnterTheGungeon 1_137: -101545629
+      EnterTheGungeon 1_16: 37351299
+      EnterTheGungeon 1_84: 293965606
+      EnterTheGungeon 1_23: -2096964427
+      EnterTheGungeon 1_56: 2136128331
+      OneWeapon_Idle_Up_0: 775451141
+      EnterTheGungeon 1_36: -1025619483
+      EnterTheGungeon 1_179: -561312337
+      EnterTheGungeon 1_202: 235603157
+      EnterTheGungeon 1_230: 15841000
+      Dodge_Down_8: -1798636071
+      EnterTheGungeon 1_197: 94901383
+      EnterTheGungeon 1_208: 786637223
+      Dodge_Right_8: 930455330
+      EnterTheGungeon 1_183: 519727985
+      Walk_Up_0: 1138565388
+      EnterTheGungeon 1_190: -229418786
+      Dodge_Up_4: 1157406147
+      EnterTheGungeon 1_214: -2008010778
+      Dodge_Down_2: -1693435931
+      Dodge_Right_4: 1427746771
+      Dodge_Right_5: -367433721
+      Walk_Down_1: -1365558678
+      EnterTheGungeon 1_92: -671316552
+      EnterTheGungeon 1_146: 861473583
+      OneWeapon_Idle_Right_0: -1932890362
+      Dodge_Right_2: -402186102
+      EnterTheGungeon 1_140: 24288658
+      Idle_Up_3: 2107303918
+      EnterTheGungeon 1_75: -687528687
+      Idle_Down_0: 1996872694
+      EnterTheGungeon 1_103: 1579198248
+      OneWeapon_Idle_Down_1: -1291613705
+      EnterTheGungeon 1_122: 168415883
+      OneWeapon_Idle_UoRight_3: -798203415
+      EnterTheGungeon 1_0: -713075418
+      EnterTheGungeon 1_85: 1327255477
+      Walk_Up_3: 581837871
+      EnterTheGungeon 1_234: -1672938689
+      EnterTheGungeon 1_94: -350999308
+      Dodge_Up_1: -784705758
+      EnterTheGungeon 1_76: 2029527933
+      EnterTheGungeon 1_181: 1884308174
+      Dodge_Right_0: -312540258
+      EnterTheGungeon 1_113: -1392557845
+      EnterTheGungeon 1_95: 1302627640
+      EnterTheGungeon 1_195: 1439851550
+      OneWeapon_Idle_UoRight_0: 589189571
+      EnterTheGungeon 1_163: 1369116814
+      Dodge_Right_6: -1299853063
+      EnterTheGungeon 1_167: -1989221480
+      EnterTheGungeon 1_157: -332733444
+      EnterTheGungeon 1_121: 1416411107
+      EnterTheGungeon 1_199: -905026916
+      Walk_Right_5: -438676586
+      OneWeapon_Idle_Up_2: -1909626106
+      EnterTheGungeon 1_187: -95241199
+      Walk_Down_5: -612158273
+      Idle_Down_1: -1174992635
+      EnterTheGungeon 1_29: -171785749
+      Dodge_Right_7: -302186060
+      EnterTheGungeon 1_154: 98127561
+      Walk_Right_2: 1236064189
+      Dodge_Down_1: -144737107
+      EnterTheGungeon 1_72: 1907815316
+      EnterTheGungeon 1_138: 1320291295
+      EnterTheGungeon 1_45: -985192359
+      OneWeapon_Idle_Down_0: -847042774
+      Dodge_Down_3: 192379061
+      EnterTheGungeon 1_91: 471800018
+      Walk_Right_3: -1646596659
+      EnterTheGungeon 1_227: -293300972
+      Dodge_UpRight_4: 1722772844
+      EnterTheGungeon 1_155: -1635271415
+      EnterTheGungeon 1_153: -1499837626
+      Idle_Up_1: -1944775631
+      Idle_Down_2: 1035371052
+      EnterTheGungeon 1_114: -125428107
+      EnterTheGungeon 1_150: -1814233068
+      EnterTheGungeon 1_77: 379716891
+      EnterTheGungeon 1_196: -921612099
+      Idle_RIght_1: -602835448
+      Walk_UpRight_0: -273602328
+      Dodge_UpRight_02: -188627037
+      EnterTheGungeon 1_64: 329172233
+      EnterTheGungeon 1_156: -808077385
+      Dodge_UpRight_7: -491484460
+      EnterTheGungeon 1_178: 1653220320
+      EnterTheGungeon 1_46: 95019337
+      EnterTheGungeon 1_44: -1250395125
+      EnterTheGungeon 1_43: -58517686
+      EnterTheGungeon 1_134: -25413239
+      EnterTheGungeon 1_50: -381604375
+      EnterTheGungeon 1_102: 149450505
+      Dodge_Up_3: -284082420
+      OneWeapon_Idle_Down_2: 1086187233
+      EnterTheGungeon 1_101: 1282708487
+      EnterTheGungeon 1_191: 40635858
+      EnterTheGungeon 1_212: 1854715378
+      Walk_UpRight_5: 575271952
+      EnterTheGungeon 1_41: 849262745
+      EnterTheGungeon 1_198: 2078152594
+      EnterTheGungeon 1_218: 1716176530
+      EnterTheGungeon 1_223: -1737292907
+      EnterTheGungeon 1_55: -1818696966
+      EnterTheGungeon 1_8: -547275646
+      EnterTheGungeon 1_229: -1416625803
+      Idle_RIght_3: 715546633
+      Walk_Up_1: 910090101
+      Dodge_Down_6: -1000266818
+      Dodge_UpRight_3: 1970747291
+      EnterTheGungeon 1_38: -33564009
+      EnterTheGungeon 1_124: 951259758
+      EnterTheGungeon 1_149: 685908602
+      EnterTheGungeon 1_237: -684496731
+      OneWeapon_Idle_Right_3: 718197114
+      EnterTheGungeon 1_151: -790311604
+      EnterTheGungeon 1_135: -302190014
+      Dodge_Down_4: -187622991
+      EnterTheGungeon 1_141: -47642407
+      EnterTheGungeon 1_160: 1848681407
+      EnterTheGungeon 1_224: -1084478257
+      Dodge_UpRight_0: -1231564657
+      OneWeapon_Idle_Up_1: 423142397
+      EnterTheGungeon 1_14: 1985907404
+      EnterTheGungeon 1_185: 2017582675
+      OneWeapon_Idle_Right_1: 1352747325
+      EnterTheGungeon 1_174: -1004618381
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

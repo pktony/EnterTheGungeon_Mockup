@@ -1,34 +1,7 @@
 fileFormatVersion: 2
-guid: abb480a6baaf485c81c17a7f3c4fdc42
+guid: 3a055dfde6cd4074aa1544e61c0fd27a
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 7545167549170950928
-    second: Basic_gun_0
-  - first:
-      213: 4055650843882978422
-    second: Basic_gun_1
-  - first:
-      213: -287267363741180786
-    second: Basic_gun_2
-  - first:
-      213: -4382705950101120863
-    second: Basic_gun_0
-  - first:
-      213: 5703871273273093250
-    second: Basic_gun_1
-  - first:
-      213: 7554704277430155787
-    second: Basic_gun_2
-  - first:
-      213: -6628414004274166170
-    second: gun_0
-  - first:
-      213: -3058517067305430257
-    second: gun_1
-  - first:
-      213: -9025246451835624311
-    second: gun_2
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -72,11 +45,11 @@ TextureImporter:
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 7
-  spritePivot: {x: 0.5, y: 0}
-  spritePixelsToUnits: 130
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 0
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -93,48 +66,36 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
-    crunchedCompression: 1
+    crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
-    crunchedCompression: 1
+    crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 4096
+    buildTarget: Server
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
-    crunchedCompression: 1
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 4096
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 1
+    crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
@@ -143,64 +104,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: gun_0
+      name: Bullet_UI
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 448
-        height: 432
-      alignment: 9
-      pivot: {x: 0.5, y: 0.4}
+        x: 122
+        y: 287
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 666830bf4942304a0800000000000000
-      internalID: -6628414004274166170
+      spriteID: c3313093c672a6c4995eff8e0a6b77bd
+      internalID: 314263301
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: gun_1
+      name: PC Computer - Enter the Gungeon - Items Static_0
       rect:
         serializedVersion: 2
-        x: 448
-        y: 0
-        width: 448
-        height: 432
-      alignment: 9
-      pivot: {x: 0.5, y: 0.45}
+        x: 251
+        y: 348
+        width: 14
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f035ac79ee6fd85d0800000000000000
-      internalID: -3058517067305430257
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: gun_2
-      rect:
-        serializedVersion: 2
-        x: 896
-        y: 0
-        width: 448
-        height: 432
-      alignment: 9
-      pivot: {x: 0.5, y: 0.45}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 984abfb7b22efb280800000000000000
-      internalID: -9025246451835624311
+      spriteID: f6958bfd2e486e14887bc97c68e2e0af
+      internalID: 1698860551
       vertices: []
       indices: 
       edges: []
@@ -216,9 +156,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      gun_0: -6628414004274166170
-      gun_1: -3058517067305430257
-      gun_2: -9025246451835624311
+      PC Computer - Enter the Gungeon - Items Static_0: 1698860551
+      Bullet_UI: 314263301
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
