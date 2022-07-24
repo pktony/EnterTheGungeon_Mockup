@@ -335,7 +335,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 130
+  spritePixelsToUnits: 128
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
@@ -390,6 +390,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
@@ -2448,12 +2460,12 @@ TextureImporter:
       desert_18: 7239763507613098971
       desert_05: 2567941382167779380
       desert_17: -4706415463413810417
+      desert_93: -8247935984701386642
       desert_25: -9108313243975394644
       desert_71: -3200042912569798477
       desert_23: 6764951060055437124
       desert_06: 8399797157480521262
       desert_55: 5970056270686937492
-      desert_93: -8247935984701386642
       desert_83: -4512607606108049138
       desert_58: 3945742610200374897
       desert_75: 102207017504534023
@@ -2469,8 +2481,8 @@ TextureImporter:
       desert_45: -3126556626230236997
       desert_42: 7952620093082733047
       desert_35: -5298877888225236985
-      desert_30: -6017134472381283854
       desert_03: 4284674182158804922
+      desert_30: -6017134472381283854
       desert_01: -7974602523870333332
       desert_04: 6787164276979903833
       desert_48: -2473120237353433645

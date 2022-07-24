@@ -5,18 +5,31 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerBullet : MonoBehaviour
 {
-    [SerializeField] private float bulletSpeed = 5.0f;
     Rigidbody2D rigid = null;
 
-    private void Awake()
+    // ############################ Bullet Stats ############################
+    [SerializeField] protected float bulletSpeed = 5.0f;
+    [SerializeField] private uint bulletDamage = 1;
+
+    protected virtual void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
 
-        rigid.isKinematic = false;
+        rigid.isKinematic = true;
     }
 
     private void OnEnable()
     {
-        
+        EnableBullet();
+    }
+
+    protected virtual void EnableBullet()
+    {
+        rigid.velocity = GameManager.Inst.Control.FireDirection * bulletSpeed;
+    }
+
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    {
+        BulletManager.Bullet_Inst.ReturnPlayerBullet(this.gameObject);
     }
 }
