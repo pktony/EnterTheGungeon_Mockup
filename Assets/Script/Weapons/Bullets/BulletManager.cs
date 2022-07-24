@@ -5,26 +5,31 @@ using UnityEngine;
 public class BulletManager : MonoBehaviour
 {
     // ##################### Singleton #########################
-    private static BulletManager instance = null;
-    public static BulletManager Inst { get; }
+    private static BulletManager bullet_instance = null;
+    public static BulletManager Bullet_Inst { get => bullet_instance; }
 
     //##################### Bullet Queue #######################
     private Queue<GameObject> playerBullets;
+    private Queue<GameObject> enemyBullets;
     public GameObject playerBullet;
+    public GameObject enemyBullet;
 
-    private uint BulletPoolNumber = 30;
+    private uint PlayerBulletPoolNumber = 30;
+    private uint EnemyBulletPoolNumber = 100;
+
+    // #################### Player Bullet #########################
 
     private void Awake()
     {
-        if (instance == null)
+        if (bullet_instance == null)
         {
-            instance = this;
-            instance.Initialize();
+            bullet_instance = this;
+            bullet_instance.Initialize();
             DontDestroyOnLoad(this.gameObject);
         }
         else
         {
-            if (instance != this)
+            if (bullet_instance != this)
             {
                 Destroy(this.gameObject);
             }
@@ -33,24 +38,36 @@ public class BulletManager : MonoBehaviour
 
     void Initialize()
     {
-
+        InitializePlayerBullets();
+        InitializeEnemyBullets();
     }
 
-    private void Start()
+    private void InitializePlayerBullets()
     {
         playerBullets = new Queue<GameObject>();
 
         GameObject obj;
-        for (int i = 0; i < BulletPoolNumber; i++)
+        for (int i = 0; i < PlayerBulletPoolNumber; i++)
         {
             obj = Instantiate(playerBullet, this.transform);
             obj.SetActive(false);
             playerBullets.Enqueue(obj);
         }
     }
+    private void InitializeEnemyBullets()
+    {
+        enemyBullets = new Queue<GameObject>();
 
+        GameObject obj;
+        for (int i = 0; i < EnemyBulletPoolNumber; i++)
+        {
+            obj = Instantiate(enemyBullet, this.transform);
+            obj.SetActive(false);
+            enemyBullets.Enqueue(obj);
+        }
+    }
 
-    public GameObject GetPooledBullet()
+    public GameObject GetPlayerBullet()
     {
         if (playerBullets.Count > 0)
         {
@@ -61,9 +78,26 @@ public class BulletManager : MonoBehaviour
         return null;
     }
 
-    public void ReturnBullet(GameObject uselessBullet)
+    public void ReturnPlayerBullet(GameObject uselessBullet)
     {
         uselessBullet.SetActive(false);
         playerBullets.Enqueue(uselessBullet);
+    }
+
+    public GameObject GetEnemyBullet()
+    {
+        if (enemyBullets.Count > 0)
+        {
+            GameObject obj = enemyBullets.Dequeue();
+            obj.SetActive(true);
+            return obj;
+        }
+        return null;
+    }
+
+    public void ReturnEnemyBullet(GameObject uselessBullet)
+    {
+        uselessBullet.SetActive(false);
+        enemyBullets.Enqueue(uselessBullet);
     }
 }

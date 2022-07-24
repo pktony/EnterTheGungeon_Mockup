@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class Weapons : MonoBehaviour
 {
-    public Transform FirePosition = null;
+    //WeaponType weapon = WeaponType.PISTOL;
 
-    public void Fire()
-    {
-        GameObject bullet = BulletManager.Inst.GetPooledBullet();
-        bullet.transform.position = FirePosition.position;
-    }
+
 }

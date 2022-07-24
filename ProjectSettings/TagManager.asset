@@ -3,19 +3,21 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Bullet
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
+  - Bullets
+  - EnemyBullets
+  - Enemy
   - 
-  - 
-  - 
-  - 
-  - 
+  - Invincible
   - 
   - 
   - 
@@ -41,6 +43,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Player
+  - name: Enemy
     uniqueID: 294582783
     locked: 0
