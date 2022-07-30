@@ -9,9 +9,8 @@ public class PlayerBullet : MonoBehaviour
 
     // ############################ Bullet Stats ############################
     [SerializeField] protected float bulletSpeed = 5.0f;
-    [SerializeField] private uint bulletDamage = 1;
 
-    protected virtual void Awake()
+    void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
 
@@ -23,13 +22,13 @@ public class PlayerBullet : MonoBehaviour
         EnableBullet();
     }
 
-    protected virtual void EnableBullet()
+    void EnableBullet()
     {
         rigid.velocity = GameManager.Inst.Control.FireDirection * bulletSpeed;
     }
 
-    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        BulletManager.Bullet_Inst.ReturnPlayerBullet(this.gameObject);
+        BulletManager.Inst.ReturnBullet(BulletManager.PooledBullets[BulletManager.Inst.PlayerBulletID], this.gameObject);
     }
 }

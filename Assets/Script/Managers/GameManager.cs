@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     void Initialize()
     {
         player = FindObjectOfType<Player>();
-        control = FindObjectOfType<PlayerControl>();
+        control = player.GetComponent<PlayerControl>();
         weaponData = GetComponent<WeaponDataManager>();
     }
 }

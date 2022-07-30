@@ -5,31 +5,37 @@ using UnityEngine;
 public class BulletManager : MonoBehaviour
 {
     // ##################### Singleton #########################
-    private static BulletManager bullet_instance = null;
-    public static BulletManager Bullet_Inst { get => bullet_instance; }
+    private static BulletManager instance = null;
+    public static BulletManager Inst { get => instance; }
 
-    //##################### Bullet Queue #######################
-    private Queue<GameObject> playerBullets;
-    private Queue<GameObject> enemyBullets;
-    public GameObject playerBullet;
-    public GameObject enemyBullet;
+    // #################### Dictionary #########################
+    private static Dictionary<uint, Stack<GameObject>> pooledBullets;
+    public static Dictionary<uint, Stack<GameObject>> PooledBullets => pooledBullets;
 
-    private uint PlayerBulletPoolNumber = 30;
-    private uint EnemyBulletPoolNumber = 100;
+    //##################### Bullet Stack #######################
+    [SerializeField] private BulletData[] poolingBullet;
+        // [0] : player Bullet
+        // [1] : Enemy Bullet
 
-    // #################### Player Bullet #########################
+    private Stack<GameObject> player_Bullet;
+    private Stack<GameObject> enemy_Bullet;
+
+    private uint playerBulletID;
+    private uint enemyBulletID;
+    public uint PlayerBulletID => playerBulletID;
+    public uint EnemyBulletID => enemyBulletID;
 
     private void Awake()
     {
-        if (bullet_instance == null)
+        if (instance == null)
         {
-            bullet_instance = this;
-            bullet_instance.Initialize();
+            instance = this;
+            instance.Initialize();
             DontDestroyOnLoad(this.gameObject);
         }
         else
         {
-            if (bullet_instance != this)
+            if (instance != this)
             {
                 Destroy(this.gameObject);
             }
@@ -38,66 +44,71 @@ public class BulletManager : MonoBehaviour
 
     void Initialize()
     {
-        InitializePlayerBullets();
-        InitializeEnemyBullets();
-    }
+        pooledBullets = new();
+        player_Bullet = new();
+        enemy_Bullet = new();
 
-    private void InitializePlayerBullets()
-    {
-        playerBullets = new Queue<GameObject>();
+        playerBulletID = poolingBullet[0].bulletId;
+        enemyBulletID = poolingBullet[1].bulletId;
 
-        GameObject obj;
-        for (int i = 0; i < PlayerBulletPoolNumber; i++)
+        pooledBullets.Add(poolingBullet[0].bulletId, player_Bullet);
+        pooledBullets.Add(poolingBullet[1].bulletId, enemy_Bullet);
+
+        for (int i = 0; i < poolingBullet.Length; i++)
         {
-            obj = Instantiate(playerBullet, this.transform);
-            obj.SetActive(false);
-            playerBullets.Enqueue(obj);
-        }
-    }
-    private void InitializeEnemyBullets()
-    {
-        enemyBullets = new Queue<GameObject>();
-
-        GameObject obj;
-        for (int i = 0; i < EnemyBulletPoolNumber; i++)
-        {
-            obj = Instantiate(enemyBullet, this.transform);
-            obj.SetActive(false);
-            enemyBullets.Enqueue(obj);
+            for (int j = 0; j < poolingBullet[i].bulletSize; j++)
+            {
+                GameObject obj = Instantiate(poolingBullet[i].prefab, this.transform);
+                pooledBullets[poolingBullet[i].bulletId].Push(obj);
+                obj.SetActive(false);
+            }
         }
     }
 
-    public GameObject GetPlayerBullet()
+    //private void InitializeEnemyBullets()
+    //{
+    //    enemyBullets = new Queue<GameObject>();
+
+    //    GameObject obj;
+    //    for (int i = 0; i < EnemyBulletPoolNumber; i++)
+    //    {
+    //        obj = Instantiate(enemyBullet, this.transform);
+    //        obj.SetActive(false);
+    //        enemyBullets.Enqueue(obj);
+    //    }
+    //}
+
+    public GameObject GetPooledBullet(Stack<GameObject> poolingObject)
     {
-        if (playerBullets.Count > 0)
+        if (poolingObject.Count > 0)
         {
-            GameObject obj = playerBullets.Dequeue();
+            GameObject obj = poolingObject.Pop();
             obj.SetActive(true);
             return obj;
         }
         return null;
     }
 
-    public void ReturnPlayerBullet(GameObject uselessBullet)
+    public void ReturnBullet(Stack<GameObject> returningStack , GameObject uselessBullet)
     {
+        returningStack.Push(uselessBullet);
         uselessBullet.SetActive(false);
-        playerBullets.Enqueue(uselessBullet);
     }
 
-    public GameObject GetEnemyBullet()
-    {
-        if (enemyBullets.Count > 0)
-        {
-            GameObject obj = enemyBullets.Dequeue();
-            obj.SetActive(true);
-            return obj;
-        }
-        return null;
-    }
+    //public GameObject GetEnemyBullet()
+    //{
+    //    if (enemyBullets.Count > 0)
+    //    {
+    //        GameObject obj = enemyBullets.Dequeue();
+    //        obj.SetActive(true);
+    //        return obj;
+    //    }
+    //    return null;
+    //}
 
-    public void ReturnEnemyBullet(GameObject uselessBullet)
-    {
-        uselessBullet.SetActive(false);
-        enemyBullets.Enqueue(uselessBullet);
-    }
+    //public void ReturnEnemyBullet(GameObject uselessBullet)
+    //{
+    //    uselessBullet.SetActive(false);
+    //    enemyBullets.Enqueue(uselessBullet);
+    //}
 }

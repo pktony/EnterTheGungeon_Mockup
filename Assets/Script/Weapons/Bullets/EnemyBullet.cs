@@ -9,7 +9,7 @@ public class EnemyBullet : MonoBehaviour, IBattle
 
     // ############################ Bullet Stats ############################
     [SerializeField] private float bulletSpeed = 5.0f;
-    [SerializeField] private uint bulletDamage = 1;
+    [SerializeField] private int bulletDamage = 1;
 
     void Awake()
     {
@@ -24,7 +24,7 @@ public class EnemyBullet : MonoBehaviour, IBattle
 
     public void Attack(IBattle target)
     {
-        target.TakeDamage(1);
+        target.TakeDamage(bulletDamage);
     }
 
     public void TakeDamage(int _) {} //intentionally Blank
@@ -34,9 +34,9 @@ public class EnemyBullet : MonoBehaviour, IBattle
         rigid.velocity = bulletSpeed * transform.right;
     }
 
-      void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        BulletManager.Bullet_Inst.ReturnEnemyBullet(this.gameObject);
+        BulletManager.Inst.ReturnBullet(BulletManager.PooledBullets[BulletManager.Inst.EnemyBulletID], this.gameObject);
         if (collision.CompareTag("Player"))
         {
             Attack(player);
