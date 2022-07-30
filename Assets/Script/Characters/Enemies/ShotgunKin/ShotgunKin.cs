@@ -191,7 +191,7 @@ public class ShotgunKin : MonoBehaviour, IHealth, IBattle
     {
         for (int i = 0; i < bulletNumber; i++)
         {
-            GameObject bullet = BulletManager.Bullet_Inst.GetEnemyBullet();
+            GameObject bullet = BulletManager.Inst.GetPooledBullet(BulletManager.PooledBullets[BulletManager.Inst.EnemyBulletID]);
             bullet.transform.position = weapon.transform.position;
             bullet.transform.rotation = firePosition[i].rotation;
         }

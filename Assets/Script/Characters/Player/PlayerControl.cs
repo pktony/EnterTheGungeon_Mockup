@@ -7,7 +7,7 @@ public class PlayerControl : MonoBehaviour
 {
     PlayerInput input = null;
     Animator anim = null;
-    Weapons weaponSlot = null;
+    Weapons weapon = null;
     Player player = null;
 
     PlayerMove moveMode = PlayerMove.IDLE;
@@ -21,7 +21,7 @@ public class PlayerControl : MonoBehaviour
 
     //################ Weapon ##############################
     private SpriteRenderer weaponSprite = null;
-    private uint weaponNum = 0;
+    [SerializeField] private Vector2 weaponRight;
 
     //################ Fire ##############################
     Vector2 fireDirection = Vector2.zero;
@@ -38,7 +38,8 @@ public class PlayerControl : MonoBehaviour
     {
         input = new();
         anim = GetComponent<Animator>();
-        weaponSlot = FindObjectOfType<Weapons>();
+        weapon = FindObjectOfType<Weapons>();
+        weaponSlot = weapon.transform.GetChild(0);
         weaponSprite = weaponSlot.GetComponentInChildren<SpriteRenderer>();
 
         player = GetComponent<Player>();
@@ -99,16 +100,23 @@ public class PlayerControl : MonoBehaviour
 
     void RotateWeapon()
     {
-        weaponSlot.transform.right = lookDir;
+        weapon.transform.right = lookDir;
 
         if (lookDir.x < 0)
-        {
+        {// Left
             weaponSprite.flipY = true;
+            MirrorWeaponPosition(-weaponRight);
         }
         else
-        {
+        {// Right
             weaponSprite.flipY = false;
+            MirrorWeaponPosition(weaponRight);
         }
+    }
+
+    void MirrorWeaponPosition(Vector3 pos)
+    {
+        weapon.transform.localPosition = pos;
     }
 
     void OnLookInput(InputAction.CallbackContext context)

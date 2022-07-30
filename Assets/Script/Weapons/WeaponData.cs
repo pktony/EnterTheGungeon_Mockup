@@ -9,5 +9,10 @@ public class WeaponData : ScriptableObject
     public string weaponName = "Weapon 1";
     public Sprite weaponIcon;
     public GameObject weaponPrefab;
-    public int bulletNum;
+
+    public Sprite BulletIcon;
+    public int maxBulletNum;
+    public int maxBulletMagazine;
+    public int bulletPerFire = 1;
+    public float reloadingTime = 1.0f;
 }

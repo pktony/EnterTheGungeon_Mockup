@@ -21,6 +21,12 @@ public enum EnemyState
 
 public enum WeaponType
 {
-    HAND = 0,
-    PISTOL
+    PISTOL = 0,
+    RIFLE
+}
+
+public enum BulletID
+{
+    PLAYER = 0,
+    ENEMY = 1
 }
