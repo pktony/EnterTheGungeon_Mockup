@@ -10,8 +10,16 @@ public class WeaponSlot
     
 
     //########################## Properties #############################
-    WeaponData WeaponSlotData { get => weaponData; set { weaponData = value; } }
+    public WeaponData WeaponSlotData { get => weaponData; 
+        set
+        { 
+            weaponData = value;
+            onSlotWeaponChange?.Invoke();
+        }
+    }
 
+    //########################## Deligates ##############################
+    public System.Action onSlotWeaponChange;
 
     //########################## Methods ################################
     public void AssignWeapon(WeaponData weaponData)

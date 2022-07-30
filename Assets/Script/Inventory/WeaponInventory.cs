@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class WeaponInventory
 {
+    // ############################ Variables ##########################
     WeaponSlot[] weaponSlots = null;
 
-    // ############################ Variables ##########################
-
-
     // ############################ Constants ##########################
-    const int WEAPON_SLOT_SIZE = 3;
+    public const int WEAPON_SLOT_SIZE = 2;
 
     //############################# Properties #########################
     public WeaponSlot this[int index] { get => weaponSlots[index]; }
+
+    public int slotCount => weaponSlots.Length;
 
     //############################# Methods ############################
     public WeaponInventory(int size = WEAPON_SLOT_SIZE)
@@ -76,10 +76,8 @@ public class WeaponInventory
         return result;
     }
 
-
-
     //######################### Method(Backend) ###########################
-    WeaponSlot FindEmptySlot()
+    private WeaponSlot FindEmptySlot()
     {
         WeaponSlot result = null;
         foreach (WeaponSlot slot in weaponSlots)
@@ -93,5 +91,16 @@ public class WeaponInventory
         return result;
     }
 
-    bool IsValidIndex(uint index) { return index < weaponSlots.Length; }
+    private bool IsValidIndex(uint index) { return index < weaponSlots.Length; }
+
+
+
+    // ----------Print Inventory for Test
+    public void PrintInventory()
+    {
+        for (int i = 0; i < slotCount; i++)
+        {
+            Debug.Log($"{weaponSlots[i].WeaponSlotData.name}");
+        }
+    }
 }

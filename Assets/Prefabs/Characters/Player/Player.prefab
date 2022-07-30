@@ -147,7 +147,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 1086187233, guid: c472767f4ddc71840822c3520a1217e1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.84, y: 1.04}
@@ -169,6 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
+  weaponRight: {x: 0, y: 0}
 --- !u!114 &686575114549618935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,12 +183,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FirePosition: {fileID: 686575114462236998}
-  hasWeapon: 1
   invincibleTime: 2
   blinkTimer: 1
   dodgeSpeed: 5
   canDodge: 1
   dodgeDir: {x: 0, y: 0}
+  hasWeapon: 1
 --- !u!50 &4059083652775486019
 Rigidbody2D:
   serializedVersion: 4
@@ -237,7 +238,7 @@ GameObject:
   - component: {fileID: 686575115179657613}
   - component: {fileID: 686575115179657615}
   - component: {fileID: 237225116}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -290,7 +291,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1503
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -329,17 +330,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 686575113788326438}
     m_Modifications:
+    - target: {fileID: 758027799979648915, guid: 2896c8fea8c126b4fa0b990e36f918e1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.224
+      objectReference: {fileID: 0}
+    - target: {fileID: 758027799979648915, guid: 2896c8fea8c126b4fa0b990e36f918e1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.024
+      objectReference: {fileID: 0}
     - target: {fileID: 758027800135795324, guid: 2896c8fea8c126b4fa0b990e36f918e1, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 758027800135795324, guid: 2896c8fea8c126b4fa0b990e36f918e1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.63
+      value: 0.5999999
       objectReference: {fileID: 0}
     - target: {fileID: 758027800135795324, guid: 2896c8fea8c126b4fa0b990e36f918e1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 758027800135795324, guid: 2896c8fea8c126b4fa0b990e36f918e1, type: 3}
       propertyPath: m_LocalPosition.z

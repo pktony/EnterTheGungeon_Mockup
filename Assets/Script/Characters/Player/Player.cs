@@ -7,10 +7,9 @@ public class Player : MonoBehaviour, IHealth, IBattle
     // ########################### Components ##############################
     SpriteRenderer render;
 
-    // ################################ Variables ###########################3
+    // ################################ Variables ##########################
     public Transform FirePosition = null;
-    public bool hasWeapon = true;
-    
+    WeaponInventory_UI inven_UI;
 
     // -- HP
     private int healtPoint = 6;
@@ -28,6 +27,17 @@ public class Player : MonoBehaviour, IHealth, IBattle
     public bool canDodge = true;
     public Vector2 dodgeDir = Vector2.zero;
 
+    // -- Weapon
+    public bool hasWeapon = true;
+    bool isReloading = false;
+    WeaponData currentWeapon;
+    WeaponData[] weaponInven;
+    int bulletInMagazine;
+    int bulletsRemaining = 5;
+    float reloadTimer = 0f;
+
+    public int BulletinMag => bulletInMagazine;
+
 
     // ############################## Properties ###############################
     public int HP
@@ -39,11 +49,23 @@ public class Player : MonoBehaviour, IHealth, IBattle
         }
     }
     public int MaxHP => maxHealthPoint;
+    public WeaponData CurrentWeapon => currentWeapon;
+    public int BulletsRemaining
+    {
+        get => bulletsRemaining;
+        set
+        {
+            bulletsRemaining = value;
+            // ShowRemainingBullets 델리게이트 만들기
+        }
+    }
 
     // ################################ Deligates #############################
-    public System.Action OnShoot;
-    public System.Action onTakeDamage { get; set;}
+    //public System.Action OnShoot;
+    public System.Action onTakeDamage {get; set;}
     public System.Action onHPUp { get; set; }
+
+    public System.Action onFireReload;
 
     // ################################ IBattle #################################
     public void TakeDamage(int damage)
@@ -62,6 +84,8 @@ public class Player : MonoBehaviour, IHealth, IBattle
     {
         render = GetComponent<SpriteRenderer>();
         blinkTime = new WaitForSeconds(invincibleTime);
+
+        inven_UI = FindObjectOfType<WeaponInventory_UI>();
     }
 
     private void Update()
@@ -71,16 +95,63 @@ public class Player : MonoBehaviour, IHealth, IBattle
             blinkTimer += Time.deltaTime;
             render.color = new Color(1, 1, 1, 1 - Mathf.Cos(blinkTimer * 0.2f * Mathf.Rad2Deg));
         }
+
+        if (isReloading)
+        {
+            reloadTimer += Time.deltaTime;
+            if (reloadTimer > currentWeapon.reloadingTime)
+            {
+                if (BulletsRemaining > currentWeapon.maxBulletMagazine)
+                {
+                    bulletInMagazine = currentWeapon.maxBulletMagazine;
+                    BulletsRemaining -= currentWeapon.maxBulletMagazine;
+                }
+                else
+                {
+                    bulletInMagazine = BulletsRemaining;
+                    BulletsRemaining = 0;
+                }
+                onFireReload?.Invoke();
+                reloadTimer = 0f;
+                isReloading = false;
+            }
+        }
     }
 
 
     // ############################## Methods ####################################
+    public void InitializeCurrentWeapon()
+    {
+        currentWeapon = inven_UI.SlotUIs[0].Weapon_Slot.WeaponSlotData;
+        BulletsRemaining = currentWeapon.maxBulletNum;
+        bulletInMagazine = CurrentWeapon.maxBulletMagazine;
+    }
+
     public void Fire()
     {
-        GameObject bullet = BulletManager.Bullet_Inst.GetPlayerBullet();
-        bullet.transform.position = FirePosition.position;
-        bullet.transform.rotation = FirePosition.rotation;
-        OnShoot?.Invoke();
+        if (bulletInMagazine > 0)
+        {
+            GameObject bullet = BulletManager.Inst.GetPooledBullet(BulletManager.PooledBullets[BulletManager.Inst.PlayerBulletID]);
+            bullet.transform.position = FirePosition.position;
+            bullet.transform.rotation = FirePosition.rotation;
+            BulletsRemaining -= currentWeapon.bulletPerFire;
+            bulletInMagazine -= currentWeapon.bulletPerFire;
+            onFireReload?.Invoke();
+        }
+        else
+        {
+            Reload();
+        }
+    }
+
+    void Reload()
+    {
+        if (!isReloading)
+        {
+            Debug.Log("Reloading");
+            reloadTimer = 0f;
+            isReloading = true;
+        }
     }
 
     public void Dodge()
@@ -109,5 +180,10 @@ public class Player : MonoBehaviour, IHealth, IBattle
         this.gameObject.layer = LayerMask.NameToLayer("Player");
         isHit = false;
         render.color = new Color(1, 1, 1, 1);
+    }
+
+    void NextWeapon(int index)
+    {
+        currentWeapon = inven_UI.SlotUIs[index].Weapon_Slot.WeaponSlotData;
     }
 }
