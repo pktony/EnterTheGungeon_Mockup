@@ -21,11 +21,6 @@ public class WeaponInventory_UI : MonoBehaviour
     //################# Bullet UI ##########################
     TextMeshProUGUI bulletText;
 
-
-    private void Awake()
-    {
-    }
-
     public void InitializeInventory(WeaponInventory newInven)
     {
         weaponInven = newInven;
@@ -52,6 +47,7 @@ public class WeaponInventory_UI : MonoBehaviour
             }
         }
         RefreshAllSlots();
+        GameManager.Inst.Player.InitializeCurrentWeapon(0);
 
         bulletUI = FindObjectOfType<Bullet_UI>();
         bulletUI.RefreshBullet_UI();

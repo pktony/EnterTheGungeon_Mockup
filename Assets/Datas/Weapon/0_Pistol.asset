@@ -17,7 +17,7 @@ MonoBehaviour:
   weaponIcon: {fileID: -557819255, guid: 690bbebc1f73100449a32dc4000c7b7c, type: 3}
   weaponPrefab: {fileID: 758027800135795326, guid: 2896c8fea8c126b4fa0b990e36f918e1, type: 3}
   BulletIcon: {fileID: 21300000, guid: a31a3853c3634904cb7f13095c79e8db, type: 3}
-  maxBulletNum: 100
+  maxBulletNum: -1
   maxBulletMagazine: 5
   bulletPerFire: 1
   reloadingTime: 1

@@ -39,8 +39,7 @@ public class PlayerControl : MonoBehaviour
         input = new();
         anim = GetComponent<Animator>();
         weapon = FindObjectOfType<Weapons>();
-        weaponSlot = weapon.transform.GetChild(0);
-        weaponSprite = weaponSlot.GetComponentInChildren<SpriteRenderer>();
+        weaponSprite = weapon.GetComponentInChildren<SpriteRenderer>();
 
         player = GetComponent<Player>();
         //weapon_Anim = weapon.GetComponent<Animator>();
@@ -54,7 +53,7 @@ public class PlayerControl : MonoBehaviour
         input.Player.Look.performed += OnLookInput;
         input.Player.Move.performed += OnMoveInput;
         input.Player.Dodge.performed += OnDodgeInput;
-
+        input.Player.Reload.performed += OnReloadInput;
         input.Player.ChangeWeapons.performed += OnChangeWeapon;
         input.Player.Shoot.performed += OnShoot;
     }
@@ -64,6 +63,7 @@ public class PlayerControl : MonoBehaviour
         input.Player.Look.performed -= OnLookInput;
         input.Player.Move.performed -= OnMoveInput;
         input.Player.Dodge.performed -= OnDodgeInput;
+        input.Player.Reload.performed -= OnReloadInput;
         input.Player.Disable();
     }
 
@@ -142,39 +142,37 @@ public class PlayerControl : MonoBehaviour
     {
         anim.SetTrigger("OnDodge");
 
-        switch (moveMode)
-        {
-            case PlayerMove.IDLE:
-                player.dodgeDir = lookDir;
-                break;
-            case PlayerMove.WALK:
-                player.dodgeDir = inputDir;
-                break;
-            default:
-                break;
+        if(moveMode == PlayerMove.WALK)
+        { // Dodge only when moving
+            player.dodgeDir = inputDir;
+            moveMode = PlayerMove.DODGE;
         }
-        
-        moveMode = PlayerMove.DODGE;
     }
 
     void OnChangeWeapon(InputAction.CallbackContext number)
     {
         float scroll = number.ReadValue<float>();
-        
+
         if (scroll < 0)
-        {
-            //previous weapon
+        {// Previous weapon
+            player.CurrentWeaponIndex--;
         }
         else
-        {
-            //next weapon
+        {// Next weapon
+            player.CurrentWeaponIndex++;
         }
     }
 
+    void OnReloadInput(InputAction.CallbackContext _)
+    {
+        if (!player.IsReloading)
+        {
+            player.Reload();
+        }
+    }
     void OnShoot(InputAction.CallbackContext _)
     {
-        fireDirection = lookDir.normalized;
+        fireDirection = (lookDir + Random.insideUnitCircle * 0.1f).normalized;
         player.Fire();
     }
-
 }

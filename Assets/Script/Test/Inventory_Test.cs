@@ -16,8 +16,7 @@ public class Inventory_Test : MonoBehaviour
         inven.AddItem(WeaponType.PISTOL);
         inven.AddItem(WeaponType.RIFLE);
         inven_UI.InitializeInventory(inven);
-        GameManager.Inst.Player.InitializeCurrentWeapon();
 
-        inven.PrintInventory();
+        //inven.PrintInventory();
     }
 }

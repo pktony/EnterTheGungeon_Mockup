@@ -23,6 +23,7 @@ public class Bullet_UI : MonoBehaviour
 
         bulletImg = GetComponentsInChildren<Image>();
         bulletText = GetComponentInChildren<TextMeshProUGUI>();
+
     }
 
     private void Start()
@@ -44,19 +45,26 @@ public class Bullet_UI : MonoBehaviour
 
     public void RefreshBullet_UI()
     {
-        WeaponData weapon = GameManager.Inst.Player.CurrentWeapon;
-        int bulletRemain = GameManager.Inst.Player.BulletinMag;
-
-        for (int i = 0; i < bulletRemain ; i++)
+        weapon = GameManager.Inst.Player.CurrentWeapon;
+        int bulletInMag = GameManager.Inst.Player.BulletinMag;
+        
+        for (int i = 0; i < bulletInMag ; i++)
         {
             bulletImg[i].color = Color.white;
         }
 
-        for (int i = bulletRemain; i < bulletImg.Length; i++)
+        for (int i = bulletInMag; i < bulletImg.Length; i++)
         {
             bulletImg[i].color = Color.clear;
         }
 
-        bulletText.text = $"{bulletRemain} / {GameManager.Inst.Player.BulletsRemaining}";
+        if (weapon.id > 0)
+        {
+            bulletText.text = $"{GameManager.Inst.Player.BulletsRemaining} / {weapon.maxBulletNum}";
+        }
+        else
+        {
+            bulletText.text = $"¡Ä";
+        }
     }
 }

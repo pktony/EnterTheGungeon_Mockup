@@ -5,12 +5,12 @@ using UnityEditor;
 using System;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class ShotgunKin : MonoBehaviour, IHealth, IBattle
+public class ShotgunKin : MonoBehaviour, IHealth
 {
     Animator anim = null;
     SpriteRenderer weaponSprite = null;
     ShotgunKin_Weapon weapon = null;
-    public Transform[] firePosition = null;
+    Transform[] firePosition = null;
 
 
     //############################## VARIABLES #############################
@@ -29,6 +29,8 @@ public class ShotgunKin : MonoBehaviour, IHealth, IBattle
 
     // -------------- Stats
     [Header("Basic Stats")]
+    [SerializeField] private int healthPoint = 3;
+    [SerializeField] private int maxHealthPoint = 3;
     [SerializeField] private float moveSpeed = 3.0f;
     [SerializeField] private float attackInterval = 1.0f;
     private float attackTimer = 0.0f;
@@ -40,22 +42,11 @@ public class ShotgunKin : MonoBehaviour, IHealth, IBattle
     // -------------- 
 
     // ############################### PROPERTIES #########################
-    public int HP { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+    public int HP { get => healthPoint; set { healthPoint = value; } }
 
-    public int MaxHP => throw new System.NotImplementedException();
+    public int MaxHP => maxHealthPoint;
 
     public Vector2 TrackDirection { get => trackDirection; }
-
-    // ############################### IBattle ###########################
-    public void Attack(IBattle target)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void TakeDamage(int damage)
-    {
-        throw new NotImplementedException();
-    }
 
     // ############################### IHealth ###########################
     public Action onTakeDamage { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
@@ -213,6 +204,18 @@ public class ShotgunKin : MonoBehaviour, IHealth, IBattle
             weaponSprite.flipY = false;
         }
     }
+
+    // ---------------- Hit
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("PlayerBullets"))
+        {
+            HP -= 1;
+            anim.SetTrigger("onHit");
+        }
+    }
+
+
     // ---------------- Status Change
     void ChangeStatus(EnemyState newState)
     {
@@ -245,7 +248,7 @@ public class ShotgunKin : MonoBehaviour, IHealth, IBattle
             case EnemyState.DEAD:
                 break;
             case EnemyState.ATTACK:
-                attackTimer = attackInterval;
+                attackTimer = attackInterval - 0.5f;
                 break;
             default:
                 break;
