@@ -8,7 +8,7 @@ public class PlayerBullet : MonoBehaviour
     Rigidbody2D rigid = null;
 
     // ############################ Bullet Stats ############################
-    [SerializeField] protected float bulletSpeed = 5.0f;
+    [SerializeField] private float bulletSpeed = 5.0f;
 
     void Awake()
     {
