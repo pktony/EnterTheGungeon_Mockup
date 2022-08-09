@@ -12,6 +12,7 @@ public class EnemyBullet : MonoBehaviour
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
+        rigid.velocity = Vector2.zero;
     }
 
     private void OnEnable()
@@ -19,15 +20,18 @@ public class EnemyBullet : MonoBehaviour
         EnableBullet();
     }
 
-    public void TakeDamage(int _) {} //intentionally Blank
-
     void EnableBullet()
     {
         rigid.velocity = bulletSpeed * transform.right;
     }
 
+    //public void InstantDestroy()
+    //{
+    //    BulletManager.Inst.ReturnBullet(BulletManager.PooledBullets[(int)BulletID.ENEMY], this.gameObject);
+    //}
+
     void OnTriggerEnter2D(Collider2D collision)
-    {
-        BulletManager.Inst.ReturnBullet(BulletManager.PooledBullets[BulletManager.Inst.EnemyBulletID], this.gameObject);
+    {// Layer Setting : Enemy - EnemyBullet
+        BulletManager.Inst.ReturnBullet(BulletManager.PooledBullets[(int)BulletID.ENEMY], this.gameObject);
     }
 }

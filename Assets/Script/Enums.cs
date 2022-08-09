@@ -25,8 +25,27 @@ public enum WeaponType
     RIFLE
 }
 
+public enum ItemID
+{
+    Shell = 0,
+    BlankShell,
+    Key,
+    AmmoBox
+}
+
 public enum BulletID
 {
     PLAYER = 0,
     ENEMY = 1
+}
+
+public enum EnemyID
+{
+    SHOTGUNKIN = 0,
+    BULLETKIN
+}
+
+public enum FxID
+{
+    BULLETEXPLOSION = 0
 }

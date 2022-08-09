@@ -8,7 +8,8 @@ public class UIManager : MonoBehaviour
     private static UIManager instance;
     public static UIManager Inst => instance;
 
-
+    WeaponInventory_UI invenUI;
+    public WeaponInventory_UI InvenUI => invenUI;
 
     private void Awake()
     {
@@ -16,7 +17,6 @@ public class UIManager : MonoBehaviour
         {
             instance = this;
             instance.Initialize();
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -30,6 +30,6 @@ public class UIManager : MonoBehaviour
 
     private void Initialize()
     {
-        throw new NotImplementedException();
+        invenUI = FindObjectOfType<WeaponInventory_UI>();
     }
 }

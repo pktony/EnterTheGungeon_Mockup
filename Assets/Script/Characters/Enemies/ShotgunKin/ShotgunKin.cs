@@ -7,10 +7,10 @@ using System;
 [RequireComponent(typeof(Rigidbody2D))]
 public class ShotgunKin : MonoBehaviour, IHealth
 {
-    Animator anim = null;
-    SpriteRenderer weaponSprite = null;
-    ShotgunKin_Weapon weapon = null;
-    Transform[] firePosition = null;
+    protected Animator anim = null;
+    protected SpriteRenderer weaponSprite = null;
+    protected EnemyWeapon weapon = null;
+    protected Transform[] firePosition = null;
 
 
     //############################## VARIABLES #############################
@@ -42,7 +42,16 @@ public class ShotgunKin : MonoBehaviour, IHealth
     // -------------- 
 
     // ############################### PROPERTIES #########################
-    public int HP { get => healthPoint; set { healthPoint = value; } }
+    public int HP { get => healthPoint;
+        set
+        {
+            healthPoint = value;
+            if (healthPoint < 1)
+            {
+                ChangeStatus(EnemyState.DEAD);
+            }
+        } 
+    }
 
     public int MaxHP => maxHealthPoint;
 
@@ -50,12 +59,11 @@ public class ShotgunKin : MonoBehaviour, IHealth
 
     // ############################### IHealth ###########################
     public Action onTakeDamage { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public Action onHPUp { get; set; } //intentionally Blank 
 
-    private void Awake()
+    void Awake()
     {
         anim = GetComponent<Animator>();
-        weapon = GetComponentInChildren<ShotgunKin_Weapon>();
+        weapon = GetComponentInChildren<EnemyWeapon>();
         weaponSprite = weapon.GetComponentInChildren<SpriteRenderer>();
 
         firePosition = new Transform[bulletNumber];
@@ -63,11 +71,29 @@ public class ShotgunKin : MonoBehaviour, IHealth
         for (int i = 0; i < bulletNumber; i++)
         {
             firePosition[i] = weapon.transform.GetChild(0).GetChild(i);
-            firePosition[i].rotation = Quaternion.Euler(0, 0, (fireAngle * 0.5f) - ((fireAngle / (bulletNumber - 1)) * i));
+            uint bulletNum = bulletNumber;
+            if (bulletNumber - 1 < 1)
+            {
+                bulletNum = 2;
+            }
+            firePosition[i].rotation = Quaternion.Euler(0, 0, (fireAngle * 0.5f) - ((fireAngle / (bulletNum)) * i));
         }
     }
 
+    private void OnEnable()
+    {
+        weaponSprite.color = Color.white;
+    }
+
     void FixedUpdate()
+    {
+        if (status == EnemyState.TRACK)
+        {
+            TrackUpdate();
+        }
+    }
+
+    private void Update()
     {
         CheckStatus();
     }
@@ -82,10 +108,9 @@ public class ShotgunKin : MonoBehaviour, IHealth
                 IdleUpdate();
                 break;
             case EnemyState.PATROL:
-                PatrolUpdate();
                 break;
             case EnemyState.TRACK:
-                TrackUpdate();
+                // FixedUpdate
                 break;
             case EnemyState.DEAD:
                 break;
@@ -97,8 +122,7 @@ public class ShotgunKin : MonoBehaviour, IHealth
         }
     }
 
-
-    // --------------------- Status 
+    // --------------------- Updates
     bool Search()
     {
         bool result = false;
@@ -121,16 +145,11 @@ public class ShotgunKin : MonoBehaviour, IHealth
         }
     }
 
-    void PatrolUpdate()
-    {
-
-    }
-
     void TrackUpdate()
     {
         if(!Search())
         {
-            status = EnemyState.IDLE;
+            ChangeStatus(EnemyState.IDLE);
             return;
         }
         else
@@ -154,7 +173,7 @@ public class ShotgunKin : MonoBehaviour, IHealth
     {
         if (InAttackRange())
         {
-            attackTimer += Time.fixedDeltaTime;
+            attackTimer += Time.deltaTime;
             trackDirection = target.transform.position - transform.position;
             RotateWeapon();
 
@@ -167,7 +186,7 @@ public class ShotgunKin : MonoBehaviour, IHealth
         }
         else
         {
-            detectTimer += Time.fixedDeltaTime;
+            detectTimer += Time.deltaTime;
             if (detectTimer > detectCoolTime)
             {
                 ChangeStatus(EnemyState.TRACK);
@@ -178,13 +197,14 @@ public class ShotgunKin : MonoBehaviour, IHealth
         }
     }
 
-    void Shoot()
+    protected virtual void Shoot()
     {
         for (int i = 0; i < bulletNumber; i++)
         {
             GameObject bullet = BulletManager.Inst.GetPooledBullet(BulletManager.PooledBullets[BulletManager.Inst.EnemyBulletID]);
             bullet.transform.position = weapon.transform.position;
             bullet.transform.rotation = firePosition[i].rotation;
+            bullet.SetActive(true);
         }
     }
 
@@ -213,6 +233,17 @@ public class ShotgunKin : MonoBehaviour, IHealth
             HP -= 1;
             anim.SetTrigger("onHit");
         }
+    }
+
+    // ----------------- Die
+    protected virtual IEnumerator Die()
+    {
+        anim.SetTrigger("onDie");
+        float randDie = UnityEngine.Random.value;
+        anim.SetFloat("RandDie", randDie);
+        weaponSprite.color = Color.clear;
+        yield return new WaitForSeconds(3.0f);
+        EnemyManager.Inst.ReturnEnemy(EnemyManager.Inst.PooledEnemy[(int)EnemyID.SHOTGUNKIN], this.gameObject);
     }
 
 
@@ -245,10 +276,12 @@ public class ShotgunKin : MonoBehaviour, IHealth
                 break;
             case EnemyState.TRACK:
                 break;
-            case EnemyState.DEAD:
-                break;
             case EnemyState.ATTACK:
                 attackTimer = attackInterval - 0.5f;
+                break;
+            case EnemyState.DEAD:
+
+                StartCoroutine(Die());
                 break;
             default:
                 break;

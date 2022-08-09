@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class WeaponInventory_UI : MonoBehaviour
@@ -8,12 +9,12 @@ public class WeaponInventory_UI : MonoBehaviour
     // ################### VARIABLES #######################
     // weapon 정보
     WeaponInventory weaponInven;
+    public WeaponInventory WeaponInven => weaponInven;
 
     public GameObject SlotPrefab;
     WeaponSlot_UI[] slotUIs;
 
     Bullet_UI bulletUI;
-
     //################### Properties #######################
     public WeaponSlot_UI[] SlotUIs { get => slotUIs; }
     public Bullet_UI BulletUI { get => bulletUI; }
@@ -27,9 +28,8 @@ public class WeaponInventory_UI : MonoBehaviour
 
         slotUIs = new WeaponSlot_UI[weaponInven.slotCount];
 
-        // weapon 개수에 따른 초기화
-        if (WeaponInventory.WEAPON_SLOT_SIZE != newInven.slotCount)
-        {
+        if (WeaponInventory.DEFAULT_WEAPON_SLOT_SIZE != newInven.slotCount)
+        {// Weapon initialization
             for (int i = 0; i < weaponInven.slotCount; i++)
             {
                 GameObject obj = Instantiate(SlotPrefab, this.transform);
@@ -44,13 +44,17 @@ public class WeaponInventory_UI : MonoBehaviour
             for (int i = 0; i < weaponInven.slotCount; i++)
             {
                 slotUIs[i].Initialize(weaponInven[i]);
+                slotUIs[i].Weapon_Slot.onSlotWeaponChange += ShowCurrentWeapon;
             }
         }
         RefreshAllSlots();
         GameManager.Inst.Player.InitializeCurrentWeapon(0);
+        GameManager.Inst.Player.onWeaponChange = ShowCurrentWeapon;
 
         bulletUI = FindObjectOfType<Bullet_UI>();
         bulletUI.RefreshBullet_UI();
+
+        ShowCurrentWeapon();
     }
 
     void RefreshAllSlots()
@@ -59,5 +63,17 @@ public class WeaponInventory_UI : MonoBehaviour
         {
             slotUI.Refresh_Image();
         }
+    }
+
+    public void ShowCurrentWeapon()
+    {
+        foreach (WeaponSlot_UI slotUI in SlotUIs)
+        {
+            slotUI.SlotImg.color = Color.clear;
+            slotUI.WeaponImg.color = Color.clear;
+        }
+        slotUIs[GameManager.Inst.Player.CurrentWeaponIndex].SlotImg.color = Color.white;
+        slotUIs[GameManager.Inst.Player.CurrentWeaponIndex].WeaponImg.color = Color.white;
+        slotUIs[GameManager.Inst.Player.CurrentWeaponIndex].Rect.anchoredPosition = new Vector2(-50f, 20f);
     }
 }

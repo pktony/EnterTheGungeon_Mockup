@@ -7,6 +7,10 @@ TagManager:
   - Enemy
   - PlayerBullets
   - EnemyBullets
+  - AutoItems
+  - Key
+  - Ammo
+  - BlankShell
   layers:
   - Default
   - TransparentFX
@@ -17,11 +21,11 @@ TagManager:
   - PlayerBullets
   - EnemyBullets
   - Enemy
-  - 
+  - Items
+  - AutoItems
   - Invincible
-  - 
-  - 
-  - 
+  - Weapons
+  - DroppedWeapons
   - 
   - 
   - 
@@ -43,6 +47,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Items
+    uniqueID: 1561999095
     locked: 0
   - name: Enemy
     uniqueID: 294582783

@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
 
     private WeaponDataManager weaponData;
     public WeaponDataManager Weapon_Data { get => weaponData; }
+
+    private ItemDataManager itemDataManager;
+    public ItemDataManager ItemDataManager => itemDataManager;
     private void Awake()
     {
         if (instance == null)
@@ -37,5 +40,6 @@ public class GameManager : MonoBehaviour
         player = FindObjectOfType<Player>();
         control = player.GetComponent<PlayerControl>();
         weaponData = GetComponent<WeaponDataManager>();
+        itemDataManager = GetComponent<ItemDataManager>();
     }
 }
