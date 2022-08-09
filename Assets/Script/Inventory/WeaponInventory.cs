@@ -8,15 +8,16 @@ public class WeaponInventory
     WeaponSlot[] weaponSlots = null;
 
     // ############################ Constants ##########################
-    public const int WEAPON_SLOT_SIZE = 2;
+    public const int DEFAULT_WEAPON_SLOT_SIZE = 2;
 
     //############################# Properties #########################
     public WeaponSlot this[int index] { get => weaponSlots[index]; }
 
     public int slotCount => weaponSlots.Length;
+    public WeaponSlot[] Slots => weaponSlots;
 
     //############################# Methods ############################
-    public WeaponInventory(int size = WEAPON_SLOT_SIZE)
+    public WeaponInventory(uint size = DEFAULT_WEAPON_SLOT_SIZE)
     {
         weaponSlots = new WeaponSlot[size];
         for (int i = 0; i < size; i++)
@@ -30,7 +31,6 @@ public class WeaponInventory
     /// </summary>
     /// <param name="id"></param>
     /// <returns>True : Can add,  False : Inventory Full</returns>
-    
     public bool AddItem(WeaponData data)
     {
         bool result = false;
@@ -59,7 +59,7 @@ public class WeaponInventory
     }
 
     // ------- Remove
-    bool RemoveItem(uint slotIndex)
+    public bool RemoveItem(uint slotIndex)
     {
         bool result = false;
 
@@ -76,8 +76,9 @@ public class WeaponInventory
         return result;
     }
 
+
     //######################### Method(Backend) ###########################
-    private WeaponSlot FindEmptySlot()
+    public WeaponSlot FindEmptySlot()
     {
         WeaponSlot result = null;
         foreach (WeaponSlot slot in weaponSlots)
@@ -92,15 +93,4 @@ public class WeaponInventory
     }
 
     private bool IsValidIndex(uint index) { return index < weaponSlots.Length; }
-
-
-
-    // ----------Print Inventory for Test
-    public void PrintInventory()
-    {
-        for (int i = 0; i < slotCount; i++)
-        {
-            Debug.Log($"{weaponSlots[i].WeaponSlotData.name}");
-        }
-    }
 }

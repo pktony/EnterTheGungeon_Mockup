@@ -5,5 +5,4 @@ public interface IHealth
     public int MaxHP { get; }
 
     public System.Action onTakeDamage { get; set; }
-    public System.Action onHPUp { get;set; }
 }

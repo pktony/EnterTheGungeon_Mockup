@@ -60,7 +60,7 @@ public class Bullet_UI : MonoBehaviour
 
         if (weapon.id > 0)
         {
-            bulletText.text = $"{GameManager.Inst.Player.BulletsRemaining} / {weapon.maxBulletNum}";
+            bulletText.text = $"{GameManager.Inst.Player.CurrentWeapon.remainingBullet} / {weapon.maxBulletNum}";
         }
         else
         {
