@@ -12,9 +12,10 @@ public class Player : MonoBehaviour, IHealth
     WeaponInventory_UI inven_UI;
     WeaponInventory inven;
     ItemInventory inven_item;
+    Reload_UI reloadUI;
 
     // -- HP
-    private int healtPoint = 6;
+    private int healthPoint = 6;
     private int maxHealthPoint = 12;
 
     // -- Hit
@@ -33,9 +34,9 @@ public class Player : MonoBehaviour, IHealth
     [HideInInspector] public bool hasWeapon = true;
     private bool isReloading = false;
     private WeaponData currentWeapon;
-    private Weapons weaponPocket;
+    private WeaponPocket weaponPocket;
     private int currentWeaponIndex = 0;
-    private uint slotNumber = 5;
+    private uint weaponSlotNumber = 5;
     private SpriteRenderer weaponSprite;
     private WaitForSeconds autoShootTime;
 
@@ -44,15 +45,23 @@ public class Player : MonoBehaviour, IHealth
 
     // ############################## Properties ###############################
     public WeaponInventory Inven => inven;
+    public WeaponInventory_UI W_InvenUI => inven_UI;
     public ItemInventory Inven_Item => inven_item;
     
     public int HP
     {
-        get => healtPoint;
+        get => healthPoint;
         set
         {
-            healtPoint = Mathf.Clamp(value, 0, maxHealthPoint);
-            onTakeDamage?.Invoke();     //  Heart_UI.cs 
+            healthPoint = Mathf.Clamp(value, 0, maxHealthPoint);
+            if (value < healthPoint)
+            {
+                 OnTakeDamage?.Invoke();     //  Heart_UI.cs
+            }
+            else
+            {
+                OnHPUp?.Invoke();
+            }
         }
     }
     public int MaxHP => maxHealthPoint;
@@ -90,13 +99,16 @@ public class Player : MonoBehaviour, IHealth
     }
 
     public bool IsReloading => isReloading;
+    public WeaponPocket Weaponpocket => weaponPocket;
 
     // ################################ Deligates #############################
-    public System.Action onTakeDamage {get; set;}
-    public System.Action onHPUp { get; set; }
+    public System.Action OnTakeDamage {get; set;}
+    public System.Action OnHPUp { get; set; }
 
     public System.Action onFireReload;
+    public delegate IEnumerator onReloadStart();
     public System.Action onWeaponChange;
+
 
     private void Awake()
     {
@@ -105,16 +117,19 @@ public class Player : MonoBehaviour, IHealth
 
         inven_UI = FindObjectOfType<WeaponInventory_UI>();
 
-        weaponPocket = GetComponentInChildren<Weapons>();
+        weaponPocket = GetComponentInChildren<WeaponPocket>();
         firePosition = weaponPocket.transform.GetChild(0).GetChild(0);
         weaponSprite = weaponPocket.GetComponentInChildren<SpriteRenderer>();
 
-        inven = new WeaponInventory(slotNumber);
+        reloadUI = transform.GetChild(1).GetComponentInChildren<Reload_UI>();
+
+        inven = new WeaponInventory(weaponSlotNumber);
         inven.AddItem(WeaponType.PISTOL);
         inven.AddItem(WeaponType.RIFLE);
         inven_UI.InitializeInventory(inven);
 
         inven_item = new ItemInventory();
+        inven.AddItem((uint)ItemID.BlankShell);
         inven_item.InitializeItemInventory();
     }
 
@@ -128,27 +143,7 @@ public class Player : MonoBehaviour, IHealth
 
         if (isReloading)
         {
-            reloadTimer += Time.deltaTime;
-            if (reloadTimer > currentWeapon.reloadingTime)
-            {
-                if (currentWeapon.remainingBullet > currentWeapon.maxBulletMagazine)
-                { // Enough bullets
-                    bulletInMagazine = currentWeapon.maxBulletMagazine;
-                    currentWeapon.remainingBullet -= bulletInMagazine ;
-                }
-                else
-                { // Last magazine
-                    if (currentWeapon.maxBulletNum < 0)
-                    {// infinite bullets [MaxBulletNum = -1]
-                        currentWeapon.remainingBullet = currentWeapon.maxBulletMagazine;
-                    }
-                    bulletInMagazine = currentWeapon.remainingBullet;
-                    currentWeapon.remainingBullet = 0;
-                }
-                onFireReload?.Invoke();     // Refresh Bullet UIs (Bullet_UI.cs)
-                reloadTimer = 0f;
-                isReloading = false;
-            }
+           
         }
     }
 
@@ -188,9 +183,46 @@ public class Player : MonoBehaviour, IHealth
     {
         if (!isReloading)
         {
-            Debug.Log("Reloading");
+            StartCoroutine(ReloadAmmo());
+        }
+    }
+
+    IEnumerator ReloadAmmo()
+    {
+        reloadTimer = 0f;
+        isReloading = true;
+        onReloadStart startReload = reloadUI.ReloadUI;
+        StartCoroutine(startReload());
+
+        while (isReloading)
+        { 
+            reloadTimer += Time.deltaTime;
+            yield return null;
+            ReplenishAmmo();
+        }
+    }
+
+    void ReplenishAmmo()
+    {
+        if (reloadTimer > currentWeapon.reloadingTime)
+        {
+            if (currentWeapon.remainingBullet > currentWeapon.maxBulletMagazine)
+            { // Enough bullets
+                bulletInMagazine = currentWeapon.maxBulletMagazine;
+                currentWeapon.remainingBullet -= bulletInMagazine;
+            }
+            else
+            { // Last magazine
+                if (currentWeapon.maxBulletNum < 0)
+                {// infinite bullets [MaxBulletNum = -1]
+                    currentWeapon.remainingBullet = currentWeapon.maxBulletMagazine;
+                }
+                bulletInMagazine = currentWeapon.remainingBullet;
+                currentWeapon.remainingBullet = 0;
+            }
+            onFireReload?.Invoke();     // Refresh Bullet UIs (Bullet_UI.cs)
             reloadTimer = 0f;
-            isReloading = true;
+            isReloading = false;
         }
     }
 
@@ -219,6 +251,7 @@ public class Player : MonoBehaviour, IHealth
         isHit = false;
         render.color = new Color(1, 1, 1, 1);
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
