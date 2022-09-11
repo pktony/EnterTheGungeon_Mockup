@@ -9,14 +9,14 @@ public class FXManager : MonoBehaviour
     public static FXManager Inst => instance;
 
     Dictionary<int, Stack<GameObject>> pooledFx;
-    public Dictionary<int, Stack<GameObject>> PooledFx;
+    public Dictionary<int, Stack<GameObject>> PooledFx => pooledFx;
 
     [SerializeField] FXData[] poolingFx;
     public FXData[] PoolingFx => poolingFx;
 
 
     Stack<GameObject> bulletExplosion;
-    public Stack<GameObject> BulletExplosion;
+    Stack<GameObject> blankFX;
 
     private void Awake()
     {
@@ -38,14 +38,19 @@ public class FXManager : MonoBehaviour
     {
         pooledFx = new();
         bulletExplosion = new();
+        blankFX = new();
 
         pooledFx.Add((int)FxID.BULLETEXPLOSION, bulletExplosion);
+        pooledFx.Add((int)FxID.BLANKFX, blankFX);
 
-        for (int i = 0; i < poolingFx[(int)FxID.BULLETEXPLOSION].poolSize; i++)
+        for (int i = 0; i < poolingFx.Length; i++)
         {
-            GameObject obj = Instantiate(poolingFx[(int)FxID.BULLETEXPLOSION].prefab, this.transform);
-            pooledFx[(int)FxID.BULLETEXPLOSION].Push(obj);
-            obj.SetActive(false);   
+            for (int j = 0; j < poolingFx[i].poolSize; j++)
+            {
+                GameObject obj = Instantiate(poolingFx[i].prefab, this.transform);
+                pooledFx[i].Push(obj);
+                obj.SetActive(false);
+            }
         }
     }
 
