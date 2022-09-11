@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -2384,21 +2384,21 @@ TextureImporter:
       BulletKin_Walk_U_4: -458339805
       BulletKin_DieA_4: -373584453
       BulletKin_Die_3: -543480902
-      BulletKin_Idle_U_5: -1442953642
-      BulletKin_Idle_D_1: 754122732
+      BulletKin_Walk_U_3: 559096525
       Enemy_BulletKin_Transparent_80: 1987188937
+      BulletKin_DieB_4: -92851990
+      BulletKin_Hit_4: -1158456265
       Enemy_BulletKin_Transparent_133: 1429446521
-      BulletKin_Hit_11: -77995857
       Enemy_BulletKin_Transparent_54: 1889148174
       BulletKin_Walk_U_0: -557181837
-      Enemy_BulletKin_Transparent_131: 1790766640
+      BulletKin_Hit_11: -77995857
       BulletKin_DieB_2: 1117624202
       Enemy_BulletKin_Transparent_139: -909530065
-      BulletKin_Walk_U_3: 559096525
+      BulletKin_Idle_U_5: -1442953642
       Enemy_BulletKin_Transparent_129: 609353084
       Enemy_BulletKin_Transparent_141: 1178831013
-      BulletKin_Hit_4: -1158456265
-      BulletKin_DieB_4: -92851990
+      BulletKin_Idle_D_1: 754122732
+      Enemy_BulletKin_Transparent_131: 1790766640
       Enemy_BulletKin_Transparent_96: 1179655285
       BulletKin_Hit_12: 1423924413
       Enemy_BulletKin_Transparent_36: -442043922
