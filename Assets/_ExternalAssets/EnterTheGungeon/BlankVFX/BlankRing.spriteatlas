@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BlankRing
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: eaff52a23ec33b04e9dea737eafa7098, type: 3}
+    - {fileID: 2800000, guid: d6bc51980de13a6458fca7881f2c9e10, type: 3}
+    - {fileID: 2800000, guid: 25b4bce918169504f93fb1a0d77c638f, type: 3}
+    - {fileID: 2800000, guid: 85de215fc97a28e43aed51714d981226, type: 3}
+    - {fileID: 2800000, guid: 4b9e8addf8eb5b64dbaf2991214ce11a, type: 3}
+    - {fileID: 2800000, guid: ac53cec1c52a2d441a442b850bfe0e51, type: 3}
+    - {fileID: 2800000, guid: 44ded05ce0971d14bbcaad5611f140ae, type: 3}
+    - {fileID: 2800000, guid: 0848cf0a47872274f8605c72d345b29a, type: 3}
+    - {fileID: 2800000, guid: b1bf0f326b4cea9409eb131f9b7a2653, type: 3}
+    - {fileID: 2800000, guid: c79d9b5fe7a235e458590b78f010913d, type: 3}
+    - {fileID: 2800000, guid: 65e057d037901b745b400db2d2593e12, type: 3}
+    - {fileID: 2800000, guid: 9010d0cb283a69e4397fe235db2e2c93, type: 3}
+    - {fileID: 2800000, guid: c6fabef59a7a2ac41941f895c93471e0, type: 3}
+    - {fileID: 2800000, guid: f12c64af841cf134a939f4fb06f7fcad, type: 3}
+    - {fileID: 2800000, guid: 8c9e611407d14af4289590ef4198d72e, type: 3}
+    - {fileID: 2800000, guid: 8e913cae5b879b040a77c59a14ee0ec4, type: 3}
+    - {fileID: 2800000, guid: 3312d106d145dba4ea31a8aec946b13a, type: 3}
+    - {fileID: 2800000, guid: b59b9623b82202b4883d0315e83767bc, type: 3}
+    - {fileID: 2800000, guid: 4448de3b21d420b4098288826df66f51, type: 3}
+    - {fileID: 2800000, guid: 25dead8d6a6419443be3485103b67716, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 65e057d037901b745b400db2d2593e12, type: 3}
+  - {fileID: 21300000, guid: ac53cec1c52a2d441a442b850bfe0e51, type: 3}
+  - {fileID: 21300000, guid: b1bf0f326b4cea9409eb131f9b7a2653, type: 3}
+  - {fileID: 21300000, guid: eaff52a23ec33b04e9dea737eafa7098, type: 3}
+  - {fileID: 21300000, guid: b59b9623b82202b4883d0315e83767bc, type: 3}
+  - {fileID: 21300000, guid: 8c9e611407d14af4289590ef4198d72e, type: 3}
+  - {fileID: 21300000, guid: c6fabef59a7a2ac41941f895c93471e0, type: 3}
+  - {fileID: 21300000, guid: 3312d106d145dba4ea31a8aec946b13a, type: 3}
+  - {fileID: 21300000, guid: d6bc51980de13a6458fca7881f2c9e10, type: 3}
+  - {fileID: 21300000, guid: 25b4bce918169504f93fb1a0d77c638f, type: 3}
+  - {fileID: 21300000, guid: 0848cf0a47872274f8605c72d345b29a, type: 3}
+  - {fileID: 21300000, guid: 4448de3b21d420b4098288826df66f51, type: 3}
+  - {fileID: 21300000, guid: 9010d0cb283a69e4397fe235db2e2c93, type: 3}
+  - {fileID: 21300000, guid: 44ded05ce0971d14bbcaad5611f140ae, type: 3}
+  - {fileID: 21300000, guid: 25dead8d6a6419443be3485103b67716, type: 3}
+  - {fileID: 21300000, guid: 4b9e8addf8eb5b64dbaf2991214ce11a, type: 3}
+  - {fileID: 21300000, guid: 8e913cae5b879b040a77c59a14ee0ec4, type: 3}
+  - {fileID: 21300000, guid: 85de215fc97a28e43aed51714d981226, type: 3}
+  - {fileID: 21300000, guid: c79d9b5fe7a235e458590b78f010913d, type: 3}
+  - {fileID: 21300000, guid: f12c64af841cf134a939f4fb06f7fcad, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - blank_ring_011
+  - blank_ring_006
+  - blank_ring_009
+  - blank_ring_001
+  - blank_ring_018
+  - blank_ring_015
+  - blank_ring_013
+  - blank_ring_017
+  - blank_ring_002
+  - blank_ring_003
+  - blank_ring_008
+  - blank_ring_019
+  - blank_ring_012
+  - blank_ring_007
+  - blank_ring_020
+  - blank_ring_005
+  - blank_ring_016
+  - blank_ring_004
+  - blank_ring_010
+  - blank_ring_014
+  m_RenderDataMap: {}
+  m_Tag: BlankRing
+  m_IsVariant: 0
