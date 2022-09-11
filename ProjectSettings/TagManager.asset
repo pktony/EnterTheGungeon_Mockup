@@ -7,10 +7,14 @@ TagManager:
   - Enemy
   - PlayerBullets
   - EnemyBullets
-  - AutoItems
   - Key
   - Ammo
   - BlankShell
+  - Weapons
+  - Heart
+  - BronzeShell
+  - SilverShell
+  - GoldShell
   layers:
   - Default
   - TransparentFX
@@ -25,7 +29,7 @@ TagManager:
   - AutoItems
   - Invincible
   - Weapons
-  - DroppedWeapons
+  - 
   - 
   - 
   - 
@@ -53,4 +57,7 @@ TagManager:
     locked: 0
   - name: Enemy
     uniqueID: 294582783
+    locked: 0
+  - name: Player
+    uniqueID: 2401880057
     locked: 0
