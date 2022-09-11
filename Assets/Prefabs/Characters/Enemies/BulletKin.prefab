@@ -59,6 +59,7 @@ GameObject:
   - component: {fileID: 6292573118109071687}
   - component: {fileID: 6292573118109071686}
   - component: {fileID: 2043764534264609429}
+  - component: {fileID: 37570890}
   m_Layer: 8
   m_Name: BulletKin
   m_TagString: Untagged
@@ -121,7 +122,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 294582783
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -910669258, guid: 70291afaa91d6d64caa76cba18fb2744, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -162,19 +163,19 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6292573118109071709}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_GravityScale: 0
+  m_Material: {fileID: 6200000, guid: 2ede5f88fb1be024aaa1f42e3646aa9e, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &6292573118109071686
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -210,8 +211,32 @@ MonoBehaviour:
   maxHealthPoint: 3
   moveSpeed: 3
   attackInterval: 1
-  bulletNumber: 1
-  fireAngle: 0
+--- !u!61 &37570890
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6292573118109071709}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.64, y: 1.12}
+    newSize: {x: 0.13, y: 0.3}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.64, y: 1.12}
+  m_EdgeRadius: 0
 --- !u!1001 &5484417974161102665
 PrefabInstance:
   m_ObjectHideFlags: 0

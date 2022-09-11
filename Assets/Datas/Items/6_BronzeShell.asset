@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 221c7c9906d834948ae6ef895218e360, type: 3}
-  m_Name: 1_SilverShell
+  m_Name: 6_BronzeShell
   m_EditorClassIdentifier: 
-  itemID: 1
-  itemName: Silver Shell
-  prefab: {fileID: 6512081706670123871, guid: 4ceb9ff6282d8004d8ab4b5db850200d, type: 3}
-  value: 5
+  itemID: 6
+  itemName: Bronze Shell
+  prefab: {fileID: 8333000533474474336, guid: 739b4a357abee7143bfbf7dcf14af0a4, type: 3}
+  value: 1
+  poolingSize: 50

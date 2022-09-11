@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 758027799979648915}
-  m_Layer: 13
+  m_Layer: 9
   m_Name: BulletPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,9 +44,9 @@ GameObject:
   - component: {fileID: 6784468209893184062}
   - component: {fileID: -7726852765240601814}
   - component: {fileID: 4838299303136246796}
-  m_Layer: 13
+  m_Layer: 9
   m_Name: 1_Patriot
-  m_TagString: Untagged
+  m_TagString: Weapons
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
