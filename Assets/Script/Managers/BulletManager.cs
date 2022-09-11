@@ -17,8 +17,11 @@ public class BulletManager : MonoBehaviour
         // [0] : player Bullet
         // [1] : Enemy Bullet
 
-    private Stack<GameObject> player_Bullet;
-    private Stack<GameObject> enemy_Bullet;
+    private Stack<GameObject> player_Bullet = new();
+    private Stack<GameObject> enemy_Bullet = new();
+    private Stack<GameObject> bossBullet_Circle = new();
+    private Stack<GameObject> bossBullet_Spear = new();
+
 
     private uint playerBulletID;
     private uint enemyBulletID;
@@ -45,21 +48,18 @@ public class BulletManager : MonoBehaviour
     void Initialize()
     {
         pooledBullets = new();
-        player_Bullet = new();
-        enemy_Bullet = new();
 
-        playerBulletID = poolingBullet[0].bulletId;
-        enemyBulletID = poolingBullet[1].bulletId;
-
-        pooledBullets.Add(poolingBullet[playerBulletID].bulletId, player_Bullet);
-        pooledBullets.Add(poolingBullet[enemyBulletID].bulletId, enemy_Bullet);
+        pooledBullets.Add(poolingBullet[(int)BulletID.PLAYER].bulletId, player_Bullet);
+        pooledBullets.Add(poolingBullet[(int)BulletID.ENEMY].bulletId, enemy_Bullet);
+        pooledBullets.Add(poolingBullet[(int)BulletID.CIRCLE].bulletId, enemy_Bullet);
+        pooledBullets.Add(poolingBullet[(int)BulletID.SPEAR].bulletId, enemy_Bullet);
 
         for (int i = 0; i < poolingBullet.Length; i++)
         {
             for (int j = 0; j < poolingBullet[i].bulletSize; j++)
             {
                 GameObject obj = Instantiate(poolingBullet[i].prefab, this.transform);
-                pooledBullets[poolingBullet[i].bulletId].Push(obj);
+                pooledBullets[(uint)i].Push(obj);
                 obj.SetActive(false);
             }
         }
