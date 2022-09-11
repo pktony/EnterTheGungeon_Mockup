@@ -16,7 +16,8 @@ public class Heart_UI : MonoBehaviour
     private void Awake()
     {
         player = GameManager.Inst.Player.GetComponent<IHealth>();
-        player.onTakeDamage += OnTakeDamage;
+        player.OnTakeDamage += OnTakeDamage;
+        player.OnHPUp += IncreaseHeart;
     }
 
     private void Start()
@@ -51,7 +52,7 @@ public class Heart_UI : MonoBehaviour
             heartImg[heartImg.Length - 1 - i].color = Color.clear;
         }
 
-        if (!isEvenNumber())
+        if (!IsEvenNumber())
         {
             heartImg[player.HP].sprite = heart_Blank;
             heartImg[player.HP].color = Color.white;
@@ -66,7 +67,7 @@ public class Heart_UI : MonoBehaviour
             heartImg[heartImg.Length - 1 - i].sprite = heart_Blank;
         }
 
-        if (!isEvenNumber())
+        if (!IsEvenNumber())
         {
             heartImg[player.HP].sprite = heart_Blank;
             heartImg[player.HP].color = Color.white;
@@ -74,5 +75,24 @@ public class Heart_UI : MonoBehaviour
         }
     }
 
-    bool isEvenNumber() { return player.HP % 2 == 0; }
+    void IncreaseHeart()
+    {
+        for (int i = 0; i < heartImg.Length - player.HP; i++)
+        { //뒤에서부터 HP까지 Blank Image
+            heartImg[heartImg.Length - 1 - i].sprite = heart_Blank;
+        }
+
+        if (IsEvenNumber())
+        {
+            heartImg[player.HP].sprite = heart_Red;
+            heartImg[player.HP].color = Color.white;
+        }
+        else
+        {
+            heartImg[player.HP].sprite = heart_Red;
+            heartImg[player.HP].transform.SetAsFirstSibling();
+        }
+    }
+
+    bool IsEvenNumber() { return player.HP % 2 == 0; }
 }

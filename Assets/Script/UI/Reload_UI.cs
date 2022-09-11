@@ -28,14 +28,15 @@ public class Reload_UI : MonoBehaviour
         speed = baseWidth / GameManager.Inst.Player.CurrentWeapon.reloadingTime;
     }
 
-    private void Update()
+    public IEnumerator ReloadUI()
     {
-        if (GameManager.Inst.Player.IsReloading)
+        while (GameManager.Inst.Player.IsReloading)
         {
             group.alpha = 1f;
             speed = baseWidth / GameManager.Inst.Player.CurrentWeapon.reloadingTime;
-            bar.position += speed * transform.right * Time.deltaTime;
-            if (bar.localPosition.x > 0.75f)
+            bar.position += speed * Time.deltaTime * transform.right;
+            yield return null;
+            if (bar.localPosition.x > 0.74f)
             {
                 group.alpha = 0f;
                 bar.localPosition = new Vector2(-0.75f, 1f);

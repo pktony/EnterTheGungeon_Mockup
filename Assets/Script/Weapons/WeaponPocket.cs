@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapons : MonoBehaviour
+public class WeaponPocket : MonoBehaviour
 {
     //WeaponType weapon = WeaponType.PISTOL;
 
