@@ -30,5 +30,4 @@ public class WeaponSlot
     public void ClearWeapon() { WeaponSlotData = null; }
 
     public bool IsEmpty() { return weaponData == null; }
-
 }

@@ -4,24 +4,30 @@ using UnityEngine;
 using System;
 using UnityEditor;
 
-public class BulletKin : ShotgunKin, IHealth
+public class BulletKin : Enemy, IHealth
 {
-    protected override void Shoot()
+    protected override void Awake()
     {
-         GameObject bullet = BulletManager.Inst.GetPooledBullet(BulletManager.PooledBullets[BulletManager.Inst.EnemyBulletID]);
-         bullet.transform.position = weapon.transform.position;
-         bullet.transform.rotation = firePosition[0].rotation;
-         bullet.SetActive(true);
+        base.Awake();
+
+        firePosition = new Transform[1];
+        firePosition[0] = weapon.transform.GetChild(0).GetChild(0);
     }
 
     // ----------------- Die
     protected override IEnumerator Die()
     {
+        //rigid.AddForce(-trackDirection * 100f, ForceMode2D.Impulse);
         anim.SetTrigger("onDie");
         float randDie = UnityEngine.Random.value;
         anim.SetFloat("RandDie", randDie);
         weaponSprite.color = Color.clear;
         yield return new WaitForSeconds(3.0f);
+
+        uint rand = (uint)UnityEngine.Random.Range(4, 6); // 4: Gold, 5 : silver, 6 : Bronze
+        GameObject shell = ItemManager.Inst.GetPooledItem(ItemManager.PooledItems[rand]);
+        shell.transform.position = this.transform.position;
+        shell.gameObject.SetActive(true);
         EnemyManager.Inst.ReturnEnemy(EnemyManager.Inst.PooledEnemy[(int)EnemyID.BULLETKIN], this.gameObject);
     }
 }
