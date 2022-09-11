@@ -4,11 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 public class PlayerControl : MonoBehaviour
 {
     PlayerInput input = null;
     Animator anim = null;
-    Weapons weapon = null;
+    WeaponPocket weaponPocket;
     Player player = null;
 
     [SerializeField] PlayerMove moveMode = PlayerMove.IDLE;
@@ -55,12 +59,10 @@ public class PlayerControl : MonoBehaviour
     {
         input = new();
         anim = GetComponent<Animator>();
-        weapon = FindObjectOfType<Weapons>();
-        weaponSprite = weapon.GetComponentInChildren<SpriteRenderer>();
 
         player = GetComponent<Player>();
-        
-        //weapon_Anim = weapon.GetComponent<Animator>();
+        weaponPocket = player.Weaponpocket;
+        weaponSprite = weaponPocket.GetComponentInChildren<SpriteRenderer>();
 
         anim.SetBool("hasWeapon", player.hasWeapon);
     }
@@ -128,7 +130,7 @@ public class PlayerControl : MonoBehaviour
 
     void RotateWeapon()
     {
-        weapon.transform.right = lookDir;
+        weaponPocket.transform.right = lookDir;
 
         if (lookDir.x < 0)
         {// Left
@@ -144,7 +146,7 @@ public class PlayerControl : MonoBehaviour
 
     void MirrorWeaponPosition(Vector3 pos)
     {
-        weapon.transform.localPosition = pos;
+        weaponPocket.transform.localPosition = pos;
     }
 
     void OnLookInput(InputAction.CallbackContext context)
@@ -232,57 +234,90 @@ public class PlayerControl : MonoBehaviour
 
     private void OnBlankUse(InputAction.CallbackContext _)
     {
-        GameObject[] bullets = GameObject.FindGameObjectsWithTag("EnemyBullets");
-        foreach (GameObject bullet in bullets)
+        if (player.Inven_Item.Slots[(int)ItemID.BlankShell].StackCount > 0)
         {
-            BulletManager.Inst.ReturnBullet(BulletManager.PooledBullets[(int)BulletID.ENEMY], bullet);
+            GameObject[] bullets = GameObject.FindGameObjectsWithTag("EnemyBullets");
+
+            player.Inven_Item.Slots[(int)ItemID.BlankShell].StackCount--;
+            StartCoroutine(BlankFX());
+
+            foreach (GameObject bullet in bullets)
+            {
+                BulletManager.Inst.ReturnBullet(BulletManager.PooledBullets[(int)BulletID.ENEMY], bullet);
+            }
         }
+    }
+
+    private IEnumerator BlankFX()
+    {
+        GameObject fx = FXManager.Inst.GetFX(FXManager.Inst.PooledFx[(int)FxID.BLANKFX]);
+        fx.transform.position = this.transform.position;
+        fx.SetActive(true);
+        float animTime = fx.GetComponent<Animator>().GetCurrentAnimatorClipInfo(0).Length - 0.2f;
+        float timer = 0f;
+        while (timer < animTime)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        FXManager.Inst.ReturnFX(FXManager.Inst.PooledFx[(int)FxID.BLANKFX], fx);
     }
 
     private void OnInteraction(InputAction.CallbackContext _)
     {
-        Collider2D obj = Physics2D.OverlapCircle(transform.position, interactRange, LayerMask.GetMask("DroppedWeapons"));
-        if (obj != null)
-        {
-            int sameCount = 0;
-            Weapon newWeapon = obj.GetComponent<Weapon>();
-            for (int i = 0; i < player.Inven.slotCount; i++)
-            {// Check if Weapon == in slot weapons
-                if (player.Inven.Slots[i].WeaponSlotData == newWeapon.weaponData)
-                {
-                    sameCount++;
-                }
-            }
+        Collider2D items = Physics2D.OverlapCircle(transform.position, interactRange, LayerMask.GetMask("Items"));
 
-            if (sameCount < 1)
-            {
-                player.Inven.AddItem(newWeapon.weaponData);
-                Destroy(obj);
-                int index = player.CurrentWeaponIndex;
-                player.CurrentWeaponIndex++;
-                if (index == player.CurrentWeaponIndex)
+        if (items != null)
+        {
+            if (items.CompareTag("Weapons"))
+            { // 들고있는 무기와 떨어진 무기 구분을 위해.  플레이어가 들고있는 무기는 Player태그로 변경
+                int sameCount = 0;
+                Weapon newWeapon = items.GetComponent<Weapon>();
+                for (int i = 0; i < player.Inven.slotCount; i++)
+                {// Check if Weapon == in slot weapons
+                    if (player.Inven.Slots[i].WeaponSlotData == newWeapon.weaponData)
+                    {
+                        sameCount++;
+                    }
+                }
+
+                if (sameCount < 1)
                 {
-                    player.CurrentWeaponIndex--;
+                    player.Inven.AddItem(newWeapon.weaponData);
+                    newWeapon.gameObject.tag = "Player";
+                    Destroy(items);
+                    int index = player.CurrentWeaponIndex;
+                    player.CurrentWeaponIndex++;
+                    if (index == player.CurrentWeaponIndex)
+                    {
+                        player.CurrentWeaponIndex--;
+                    }
+                }
+                else
+                {
+                    Debug.Log("이 무기는 이미 가지고 있음");
                 }
             }
-        }
-        else
-        {
-            Collider2D items = Physics2D.OverlapCircle(transform.position, interactRange, LayerMask.GetMask("Items"));
-            if (items != null)
+            else if (items.CompareTag("BlankShell"))
             {
-                if (items.CompareTag("BlankShell"))
-                {
-                    player.Inven_Item.Slots[(int)ItemID.BlankShell].IncreaseItem();
-                }
-                else if (items.CompareTag("Ammo"))
-                {
-                    player.Inven_Item.Slots[(int)ItemID.AmmoBox].IncreaseItem();
-                }
-                else if (items.CompareTag("Key"))
-                {
-                    player.Inven_Item.Slots[(int)ItemID.Key].IncreaseItem();
-                }
+                player.Inven_Item.Slots[(int)ItemID.BlankShell].IncreaseItem();
+                ItemManager.Inst.ReturnItem(ItemManager.PooledItems[(int)ItemID.BlankShell], items.gameObject);
+            }
+            else if (items.CompareTag("Ammo"))
+            {
+                player.CurrentWeapon.remainingBullet = player.CurrentWeapon.maxBulletNum;
+                player.W_InvenUI.BulletUI.RefreshBullet_UI();
+                ItemManager.Inst.ReturnItem(ItemManager.PooledItems[(int)ItemID.AmmoBox], items.gameObject);
+            }
+            else if (items.CompareTag("Key"))
+            {
+                player.Inven_Item.Slots[(int)ItemID.Key].IncreaseItem();
+                ItemManager.Inst.ReturnItem(ItemManager.PooledItems[(int)ItemID.Key], items.gameObject);
+            }
+            else if (items.CompareTag("Heart"))
+            {
+                player.HP++;
+                ItemManager.Inst.ReturnItem(ItemManager.PooledItems[(int)ItemID.Heart], items.gameObject);
             }
         }
     }
@@ -303,6 +338,7 @@ public class PlayerControl : MonoBehaviour
             GameObject obj = Instantiate(player.CurrentWeapon.weaponPrefab);
             obj.transform.position = transform.position + new Vector3(0.5f, 0 , 0);
             player.Inven.RemoveItem((uint)player.CurrentWeaponIndex);
+            obj.gameObject.tag = "Weapons";
             if (player.CurrentWeaponIndex == 0)
             {
                 player.CurrentWeaponIndex++;
@@ -312,5 +348,10 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        Handles.DrawWireDisc(transform.position, transform.forward, interactRange);
+    }
+#endif
 }

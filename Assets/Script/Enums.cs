@@ -27,16 +27,21 @@ public enum WeaponType
 
 public enum ItemID
 {
-    Shell = 0,
-    BlankShell,
+    BlankShell = 0,
+    AmmoBox,
     Key,
-    AmmoBox
+    Heart,
+    GoldShell,
+    SilverShell,
+    BronzeShell
 }
 
 public enum BulletID
 {
     PLAYER = 0,
-    ENEMY = 1
+    ENEMY = 1,
+    CIRCLE,
+    SPEAR
 }
 
 public enum EnemyID
@@ -47,5 +52,6 @@ public enum EnemyID
 
 public enum FxID
 {
-    BULLETEXPLOSION = 0
+    BULLETEXPLOSION = 0,
+    BLANKFX
 }

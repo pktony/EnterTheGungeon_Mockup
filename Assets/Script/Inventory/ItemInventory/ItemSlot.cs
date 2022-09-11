@@ -8,18 +8,24 @@ public class ItemSlot
 
     uint stackCount = 0;
 
+    public System.Action onItemLoot;
+
+    public uint StackCount
+    {
+        get => stackCount;
+        set
+        {
+            stackCount = value;
+            onItemLoot?.Invoke();  //item Inven RefreshUIs
+        }
+    }
+
     public void AssignItem(ItemData newdata)
     {
         data = newdata;
     }
 
-    public uint IncreaseItem()
-    {
-        return stackCount++; 
-    }
-
-    public uint DecreaseItem(uint number)
-    {
-        return stackCount -= number;
-    }
+    public uint IncreaseItem(uint num = 1) => StackCount += num;
+    
+    public uint DecreaseItem(uint number) => StackCount -= number;
 }

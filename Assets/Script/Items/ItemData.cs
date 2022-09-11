@@ -10,4 +10,6 @@ public class ItemData : ScriptableObject
     public GameObject prefab;
 
     public uint value = 0;
+
+    public int poolingSize;
 }
