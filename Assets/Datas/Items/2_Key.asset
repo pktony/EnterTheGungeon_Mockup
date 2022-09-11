@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 221c7c9906d834948ae6ef895218e360, type: 3}
-  m_Name: 2_GoldShell
+  m_Name: 2_Key
   m_EditorClassIdentifier: 
   itemID: 2
-  itemName: Gold Shell
-  prefab: {fileID: 6499618758759321763, guid: 2ef43552ef9060a448f954313254323a, type: 3}
-  value: 50
+  itemName: Key
+  prefab: {fileID: 5898112298337493423, guid: cee3958b31413da4290a4c944c1011ac, type: 3}
+  value: 0
+  poolingSize: 10

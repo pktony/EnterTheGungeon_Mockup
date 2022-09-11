@@ -7,9 +7,6 @@ public class CameraMove : MonoBehaviour
 {
     Player player;
 
-    private float RowLimit;
-    private float columnLimit;
-
     private Vector3 shake;
     private float shakeMagnitude = 3.0f;
 

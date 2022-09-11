@@ -4,16 +4,20 @@ using UnityEngine;
 using UnityEditor;
 using System;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class Enemy : MonoBehaviour, IHealth
 {
     protected Animator anim = null;
     protected SpriteRenderer weaponSprite = null;
     protected EnemyWeapon weapon = null;
-    protected Transform firePosition = null;
+    protected Transform[] firePosition = null;
+    Rigidbody2D rigid = null;
 
 
     //############################## VARIABLES #############################
     public EnemyState status = EnemyState.IDLE;
+    private bool isDead = false;
+
 
     // -------------- Track
     [Header("Ranges")]
@@ -21,7 +25,7 @@ public class Enemy : MonoBehaviour, IHealth
     [SerializeField] private float attackRange = 3.0f;
     private float detectCoolTime = 2.0f;
     private float detectTimer = 0.0f;
-
+    
     private GameObject target = null;
     private Vector2 trackDirection = Vector2.zero;
 
@@ -33,11 +37,6 @@ public class Enemy : MonoBehaviour, IHealth
     [SerializeField] private float moveSpeed = 3.0f;
     [SerializeField] private float attackInterval = 1.0f;
     private float attackTimer = 0.0f;
-
-    [Header("Bullets")]
-    [SerializeField] private uint bulletNumber = 5;
-    [SerializeField] private float fireAngle = 30.0f;
-
     // -------------- 
 
     // ############################### PROPERTIES #########################
@@ -59,13 +58,15 @@ public class Enemy : MonoBehaviour, IHealth
     public Vector2 TrackDirection { get => trackDirection; }
 
     // ############################### IHealth ###########################
-    public Action onTakeDamage { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public Action OnTakeDamage { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public Action OnHPUp { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
     protected virtual void Awake()
     {
         anim = GetComponent<Animator>();
         weapon = GetComponentInChildren<EnemyWeapon>();
         weaponSprite = weapon.GetComponentInChildren<SpriteRenderer>();
+        rigid = GetComponent<Rigidbody2D>();
     }
 
     private void OnEnable()
@@ -96,15 +97,14 @@ public class Enemy : MonoBehaviour, IHealth
                 IdleUpdate();
                 break;
             case EnemyState.PATROL:
-                PatrolUpdate();
                 break;
             case EnemyState.TRACK:
                 // FixedUpdate
                 break;
-            case EnemyState.DEAD:
-                break;
             case EnemyState.ATTACK:
                 AttackUpdate();
+                break;
+            case EnemyState.DEAD:
                 break;
             default:
                 break;
@@ -127,23 +127,18 @@ public class Enemy : MonoBehaviour, IHealth
 
     void IdleUpdate()
     {
-        if (Search())
+        if (!isDead && Search())
         {
             status = EnemyState.TRACK;
             return;
         }
     }
 
-    void PatrolUpdate()
-    {
-
-    }
-
     void TrackUpdate()
     {
-        if (!Search())
+        if (!isDead && !Search())
         {
-            status = EnemyState.IDLE;
+            ChangeStatus(EnemyState.IDLE);
             return;
         }
         else
@@ -191,15 +186,12 @@ public class Enemy : MonoBehaviour, IHealth
         }
     }
 
-    void Shoot()
+    protected virtual void Shoot()
     {
-        for (int i = 0; i < bulletNumber; i++)
-        {
-            GameObject bullet = BulletManager.Inst.GetPooledBullet(BulletManager.PooledBullets[BulletManager.Inst.EnemyBulletID]);
-            bullet.transform.position = weapon.transform.position;
-            bullet.transform.rotation = firePosition.rotation;
-            bullet.SetActive(true);
-        }
+         GameObject bullet = BulletManager.Inst.GetPooledBullet(BulletManager.PooledBullets[BulletManager.Inst.EnemyBulletID]);
+         bullet.transform.position = weapon.transform.position;
+         bullet.transform.rotation = firePosition[0].rotation;
+         bullet.SetActive(true);
     }
 
     bool InAttackRange()
@@ -227,19 +219,29 @@ public class Enemy : MonoBehaviour, IHealth
     {
         if (collision.gameObject.CompareTag("PlayerBullets"))
         {
-            HP -= 1;
-            anim.SetTrigger("onHit");
+            if (status != EnemyState.DEAD)
+            {
+                HP -= 1;
+                anim.SetTrigger("onHit");
+            }
         }
     }
 
     // ----------------- Die
-    private IEnumerator Die()
+    protected virtual IEnumerator Die()
     {
+        rigid.AddForce(-trackDirection, ForceMode2D.Impulse);
+
         anim.SetTrigger("onDie");
         float randDie = UnityEngine.Random.value;
         anim.SetFloat("RandDie", randDie);
         weaponSprite.color = Color.clear;
         yield return new WaitForSeconds(3.0f);
+
+        uint rand = (uint)UnityEngine.Random.Range(4, 6); // 4: Gold, 5 : silver, 6 : Bronze
+        GameObject shell = ItemManager.Inst.GetPooledItem(ItemManager.PooledItems[rand]);
+        shell.transform.position = this.transform.position;
+        shell.gameObject.SetActive(true);
         EnemyManager.Inst.ReturnEnemy(EnemyManager.Inst.PooledEnemy[(int)EnemyID.SHOTGUNKIN], this.gameObject);
     }
 
@@ -256,13 +258,15 @@ public class Enemy : MonoBehaviour, IHealth
                 break;
             case EnemyState.TRACK:
                 break;
-            case EnemyState.DEAD:
-                break;
             case EnemyState.ATTACK:
+                break;
+            case EnemyState.DEAD:
                 break;
             default:
                 break;
         }
+
+        status = newState;
 
         // On Status Enter
         switch (status)
@@ -277,13 +281,13 @@ public class Enemy : MonoBehaviour, IHealth
                 attackTimer = attackInterval - 0.5f;
                 break;
             case EnemyState.DEAD:
+                isDead = true;
                 StartCoroutine(Die());
                 break;
             default:
                 break;
         }
 
-        status = newState;
         anim.SetInteger("Status", (int)newState);
     }
 
