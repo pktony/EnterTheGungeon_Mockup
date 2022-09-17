@@ -32,6 +32,6 @@ public class EnemyBullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {// Layer Setting : Enemy - EnemyBullet
-        BulletManager.Inst.ReturnBullet(BulletManager.PooledBullets[(int)BulletID.ENEMY], this.gameObject);
+        BulletManager.Inst.ReturnBullet(BulletID.ENEMY, this.gameObject);
     }
 }

@@ -10,6 +10,7 @@ public class ShotgunKin : Enemy, IHealth
     [Header("Bullets")]
     [SerializeField] private uint bulletPerFire = 5;
     [SerializeField] private float fireAngle = 30.0f;
+
     protected override void Awake()
     {
         base.Awake();
@@ -32,7 +33,7 @@ public class ShotgunKin : Enemy, IHealth
     {
         for (int i = 0; i < bulletPerFire; i++)
         {
-            GameObject bullet = BulletManager.Inst.GetPooledBullet(BulletManager.PooledBullets[BulletManager.Inst.EnemyBulletID]);
+            GameObject bullet = BulletManager.Inst.GetPooledBullet(BulletID.ENEMY);
             bullet.transform.position = weapon.transform.position;
             bullet.transform.rotation = firePosition[i].rotation;
             bullet.SetActive(true);

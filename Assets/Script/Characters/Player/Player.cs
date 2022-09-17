@@ -56,7 +56,7 @@ public class Player : MonoBehaviour, IHealth
             healthPoint = Mathf.Clamp(value, 0, maxHealthPoint);
             if (value < healthPoint)
             {
-                 OnTakeDamage?.Invoke();     //  Heart_UI.cs
+                OnTakeDamage?.Invoke();     //  Heart_UI.cs
             }
             else
             {
@@ -129,8 +129,8 @@ public class Player : MonoBehaviour, IHealth
         inven_UI.InitializeInventory(inven);
 
         inven_item = new ItemInventory();
-        inven.AddItem((uint)ItemID.BlankShell);
         inven_item.InitializeItemInventory();
+        inven_item.Slots[(int)ItemID.BlankShell].IncreaseItem();
     }
 
     private void Update()
@@ -139,11 +139,6 @@ public class Player : MonoBehaviour, IHealth
         {
             blinkTimer += Time.deltaTime;
             render.color = new Color(1, 1, 1, 1 - Mathf.Cos(blinkTimer * 0.2f * Mathf.Rad2Deg));
-        }
-
-        if (isReloading)
-        {
-           
         }
     }
 
@@ -165,7 +160,7 @@ public class Player : MonoBehaviour, IHealth
         {
             GameManager.Inst.Control.FireDirection = GameManager.Inst.Control.LookDir.normalized;
 
-            GameObject bullet = BulletManager.Inst.GetPooledBullet(BulletManager.PooledBullets[BulletManager.Inst.PlayerBulletID]);
+            GameObject bullet = BulletManager.Inst.GetPooledBullet(BulletID.PLAYER);
             bullet.transform.position = firePosition.position;
             bullet.transform.rotation = firePosition.rotation
                 * Quaternion.Euler(0f, 0f, Random.Range(-currentWeapon.dispersion, currentWeapon.dispersion));
@@ -197,8 +192,8 @@ public class Player : MonoBehaviour, IHealth
         while (isReloading)
         { 
             reloadTimer += Time.deltaTime;
-            yield return null;
             ReplenishAmmo();
+            yield return null;
         }
     }
 

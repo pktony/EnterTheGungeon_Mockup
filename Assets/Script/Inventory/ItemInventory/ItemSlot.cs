@@ -6,6 +6,8 @@ public class ItemSlot
 {
     ItemData data;
 
+    public ItemData Data => data;
+
     uint stackCount = 0;
 
     public System.Action onItemLoot;
