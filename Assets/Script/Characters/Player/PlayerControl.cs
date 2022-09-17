@@ -14,6 +14,7 @@ public class PlayerControl : MonoBehaviour
     Animator anim = null;
     WeaponPocket weaponPocket;
     Player player = null;
+    BlankFX blankFX;
 
     [SerializeField] PlayerMove moveMode = PlayerMove.IDLE;
 
@@ -63,6 +64,7 @@ public class PlayerControl : MonoBehaviour
         player = GetComponent<Player>();
         weaponPocket = player.Weaponpocket;
         weaponSprite = weaponPocket.GetComponentInChildren<SpriteRenderer>();
+        blankFX = GetComponentInChildren<BlankFX>();
 
         anim.SetBool("hasWeapon", player.hasWeapon);
     }
@@ -119,7 +121,7 @@ public class PlayerControl : MonoBehaviour
             anim.SetFloat("Speed", 0f);
         }
 
-        RotateWeapon();     // Only when weapon is equipped
+        RotateWeapon();
     }
 
     void Move(float speed)
@@ -239,11 +241,12 @@ public class PlayerControl : MonoBehaviour
             GameObject[] bullets = GameObject.FindGameObjectsWithTag("EnemyBullets");
 
             player.Inven_Item.Slots[(int)ItemID.BlankShell].StackCount--;
-            StartCoroutine(BlankFX());
+
+            blankFX.PlayBlankFX();
 
             foreach (GameObject bullet in bullets)
             {
-                BulletManager.Inst.ReturnBullet(BulletManager.PooledBullets[(int)BulletID.ENEMY], bullet);
+                BulletManager.Inst.ReturnBullet(BulletID.ENEMY, bullet);
             }
         }
     }
@@ -254,25 +257,22 @@ public class PlayerControl : MonoBehaviour
         fx.transform.position = this.transform.position;
         fx.SetActive(true);
         float animTime = fx.GetComponent<Animator>().GetCurrentAnimatorClipInfo(0).Length - 0.2f;
-        float timer = 0f;
-        while (timer < animTime)
-        {
-            timer += Time.deltaTime;
-            yield return null;
-        }
+        yield return new WaitForSeconds(animTime);
         FXManager.Inst.ReturnFX(FXManager.Inst.PooledFx[(int)FxID.BLANKFX], fx);
     }
 
     private void OnInteraction(InputAction.CallbackContext _)
     {
-        Collider2D items = Physics2D.OverlapCircle(transform.position, interactRange, LayerMask.GetMask("Items"));
+        Collider2D[] items = Physics2D.OverlapCircleAll(transform.position, interactRange, LayerMask.GetMask("Items"));
+
+        Array.Sort(items);
 
         if (items != null)
         {
-            if (items.CompareTag("Weapons"))
-            { // 들고있는 무기와 떨어진 무기 구분을 위해.  플레이어가 들고있는 무기는 Player태그로 변경
+            if (items[0].CompareTag("Weapons"))
+            {
                 int sameCount = 0;
-                Weapon newWeapon = items.GetComponent<Weapon>();
+                Weapon newWeapon = items[0].GetComponent<Weapon>();
                 for (int i = 0; i < player.Inven.slotCount; i++)
                 {// Check if Weapon == in slot weapons
                     if (player.Inven.Slots[i].WeaponSlotData == newWeapon.weaponData)
@@ -285,7 +285,7 @@ public class PlayerControl : MonoBehaviour
                 {
                     player.Inven.AddItem(newWeapon.weaponData);
                     newWeapon.gameObject.tag = "Player";
-                    Destroy(items);
+                    Destroy(items[0]);
                     int index = player.CurrentWeaponIndex;
                     player.CurrentWeaponIndex++;
                     if (index == player.CurrentWeaponIndex)
@@ -295,29 +295,29 @@ public class PlayerControl : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("이 무기는 이미 가지고 있음");
+                    Debug.Log("");
                 }
             }
-            else if (items.CompareTag("BlankShell"))
+            else if (items[0].CompareTag("BlankShell"))
             {
                 player.Inven_Item.Slots[(int)ItemID.BlankShell].IncreaseItem();
-                ItemManager.Inst.ReturnItem(ItemManager.PooledItems[(int)ItemID.BlankShell], items.gameObject);
+                ItemManager.Inst.ReturnItem(ItemManager.PooledItems[(int)ItemID.BlankShell], items[0].gameObject);
             }
-            else if (items.CompareTag("Ammo"))
+            else if (items[0].CompareTag("Ammo"))
             {
                 player.CurrentWeapon.remainingBullet = player.CurrentWeapon.maxBulletNum;
                 player.W_InvenUI.BulletUI.RefreshBullet_UI();
-                ItemManager.Inst.ReturnItem(ItemManager.PooledItems[(int)ItemID.AmmoBox], items.gameObject);
+                ItemManager.Inst.ReturnItem(ItemManager.PooledItems[(int)ItemID.AmmoBox], items[0].gameObject);
             }
-            else if (items.CompareTag("Key"))
+            else if (items[0].CompareTag("Key"))
             {
                 player.Inven_Item.Slots[(int)ItemID.Key].IncreaseItem();
-                ItemManager.Inst.ReturnItem(ItemManager.PooledItems[(int)ItemID.Key], items.gameObject);
+                ItemManager.Inst.ReturnItem(ItemManager.PooledItems[(int)ItemID.Key], items[0].gameObject);
             }
-            else if (items.CompareTag("Heart"))
+            else if (items[0].CompareTag("Heart"))
             {
                 player.HP++;
-                ItemManager.Inst.ReturnItem(ItemManager.PooledItems[(int)ItemID.Heart], items.gameObject);
+                ItemManager.Inst.ReturnItem(ItemManager.PooledItems[(int)ItemID.Heart], items[0].gameObject);
             }
         }
     }

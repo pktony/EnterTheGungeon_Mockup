@@ -78,37 +78,23 @@ public class BulletManager : MonoBehaviour
     //    }
     //}
 
-    public GameObject GetPooledBullet(Stack<GameObject> poolingObject)
+    public GameObject GetPooledBullet(BulletID id)
     {
-        if (poolingObject.Count > 0)
+        if (pooledBullets[(uint)id].Count > 0)
         {
-            GameObject obj = poolingObject.Pop();
-            //obj.SetActive(true);
-            return obj;
+            return pooledBullets[(uint)id].Pop();
         }
-        return null;
+        else
+        {
+            return null;
+        }
     }
 
-    public void ReturnBullet(Stack<GameObject> returningStack , GameObject uselessBullet)
+    public void ReturnBullet(BulletID id, GameObject uselessBullet)
     {
-        returningStack.Push(uselessBullet);
+        PooledBullets[(uint)id].Push(uselessBullet);
+        uselessBullet.transform.rotation = Quaternion.identity;
+        uselessBullet.transform.position = Vector3.zero;
         uselessBullet.SetActive(false);
     }
-
-    //public GameObject GetEnemyBullet()
-    //{
-    //    if (enemyBullets.Count > 0)
-    //    {
-    //        GameObject obj = enemyBullets.Dequeue();
-    //        obj.SetActive(true);
-    //        return obj;
-    //    }
-    //    return null;
-    //}
-
-    //public void ReturnEnemyBullet(GameObject uselessBullet)
-    //{
-    //    uselessBullet.SetActive(false);
-    //    enemyBullets.Enqueue(uselessBullet);
-    //}
 }

@@ -63,7 +63,7 @@ public class Heart_UI : MonoBehaviour
     void OnTakeDamage()
     {
         for (int i = 0; i < heartImg.Length - player.HP; i++)
-        { //뒤에서부터 HP까지 Blank Image
+        {
             heartImg[heartImg.Length - 1 - i].sprite = heart_Blank;
         }
 
@@ -71,14 +71,14 @@ public class Heart_UI : MonoBehaviour
         {
             heartImg[player.HP].sprite = heart_Blank;
             heartImg[player.HP].color = Color.white;
-            heartImg[player.HP].transform.SetAsFirstSibling();  // 왼쪽 하트가 위로 올라오게 hierarchy 순서 조절
+            heartImg[player.HP].transform.SetAsFirstSibling();  // Set heart UI hierarchy order
         }
     }
 
     void IncreaseHeart()
     {
         for (int i = 0; i < heartImg.Length - player.HP; i++)
-        { //뒤에서부터 HP까지 Blank Image
+        { 
             heartImg[heartImg.Length - 1 - i].sprite = heart_Blank;
         }
 
@@ -94,5 +94,5 @@ public class Heart_UI : MonoBehaviour
         }
     }
 
-    bool IsEvenNumber() { return player.HP % 2 == 0; }
+    bool IsEvenNumber() => player.HP % 2 == 0;
 }

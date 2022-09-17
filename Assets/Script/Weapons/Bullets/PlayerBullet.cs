@@ -35,11 +35,11 @@ public class PlayerBullet : MonoBehaviour
 
         //collision.GetContacts();
         //collision.gameObject.GetComponent<collider>
-        BulletManager.Inst.ReturnBullet(BulletManager.PooledBullets[BulletManager.Inst.PlayerBulletID], this.gameObject);
+        BulletManager.Inst.ReturnBullet(BulletID.PLAYER, this.gameObject);
     }
 
     private Vector2 GetExplosionAngle(Vector2 contact)
-    {// bulletexplosion FX´Â ¿ø·¡ ¿À¸¥ÂÊÀ» ¹Ù¶óº¸°í ÀÖ´Ù.
+    {// bulletexplosion FXï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¶óº¸°ï¿½ ï¿½Ö´ï¿½.
         Vector2 ballVector = rigid.velocity;
 
         return Vector2.zero;

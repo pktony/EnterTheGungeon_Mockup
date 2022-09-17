@@ -64,7 +64,7 @@ public class Bullet_UI : MonoBehaviour
         }
         else
         {
-            bulletText.text = $"¡Ä";
+            bulletText.text = "Infinite";
         }
     }
 }

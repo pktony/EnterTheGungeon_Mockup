@@ -15,8 +15,9 @@ public class ItemInventoryUI : MonoBehaviour
 
     private void Awake()
     {
-        keyCountText = transform.Find("Keys").GetChild(0).GetComponent<TextMeshProUGUI>();
-        shellCountText = transform.Find("Shells").GetChild(0).GetComponent<TextMeshProUGUI>();
+        blankShell = transform.GetChild(0).GetComponentsInChildren<Image>();
+        keyCountText = transform.GetChild(1).GetComponentInChildren<TextMeshProUGUI>();
+        shellCountText = transform.GetChild(2).GetComponentInChildren<TextMeshProUGUI>();
     }
 
     private void Start()
@@ -35,7 +36,12 @@ public class ItemInventoryUI : MonoBehaviour
     {
         keyCountText.text = itemInven.Slots[(uint)ItemID.Key].StackCount.ToString();
         shellCountText.text = itemInven.Slots[(uint)ItemID.GoldShell].StackCount.ToString();
-        
+
+
+        foreach(var shell in blankShell)
+        {
+            shell.color = Color.clear;
+        }
         for (int i = 0; i < GameManager.Inst.Player.Inven_Item.Slots[(int)ItemID.BlankShell].StackCount; i++)
         {
             blankShell[i].color = Color.white;

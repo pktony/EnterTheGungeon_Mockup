@@ -188,7 +188,7 @@ public class Enemy : MonoBehaviour, IHealth
 
     protected virtual void Shoot()
     {
-         GameObject bullet = BulletManager.Inst.GetPooledBullet(BulletManager.PooledBullets[BulletManager.Inst.EnemyBulletID]);
+         GameObject bullet = BulletManager.Inst.GetPooledBullet(BulletID.ENEMY);
          bullet.transform.position = weapon.transform.position;
          bullet.transform.rotation = firePosition[0].rotation;
          bullet.SetActive(true);

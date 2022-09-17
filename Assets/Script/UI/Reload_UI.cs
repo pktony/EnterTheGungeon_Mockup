@@ -13,14 +13,18 @@ public class Reload_UI : MonoBehaviour
     float baseWidth;
     float speed;
 
+    Animator anim;
+
     private void Awake()
     {
         group = GetComponent<CanvasGroup>();
+        anim = GetComponent<Animator>();
 
         gauge = transform.GetChild(0).GetComponent<RectTransform>();
         bar = transform.GetChild(1).GetComponent<RectTransform>();
 
         baseWidth = gauge.sizeDelta.x;
+
     }
 
     private void Start()
@@ -30,17 +34,18 @@ public class Reload_UI : MonoBehaviour
 
     public IEnumerator ReloadUI()
     {
+        group.alpha = 1f;
+        speed = baseWidth / GameManager.Inst.Player.CurrentWeapon.reloadingTime;
+
         while (GameManager.Inst.Player.IsReloading)
         {
-            group.alpha = 1f;
-            speed = baseWidth / GameManager.Inst.Player.CurrentWeapon.reloadingTime;
             bar.position += speed * Time.deltaTime * transform.right;
-            yield return null;
             if (bar.localPosition.x > 0.74f)
             {
                 group.alpha = 0f;
                 bar.localPosition = new Vector2(-0.75f, 1f);
             }
+            yield return null;
         }
     }
 }
