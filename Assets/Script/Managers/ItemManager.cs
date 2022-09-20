@@ -70,7 +70,6 @@ public class ItemManager : MonoBehaviour
                 obj.SetActive(false);   
             }
         }
-
     }
 
     public GameObject GetPooledItem(Stack<GameObject> poolingObject)
@@ -83,9 +82,21 @@ public class ItemManager : MonoBehaviour
         return null;
     }
 
-    public void ReturnItem(Stack<GameObject> returningStack, GameObject uselessBullet)
+    public GameObject GetPooledItem(ItemID id)
     {
-        returningStack.Push(uselessBullet);
-        uselessBullet.SetActive(false);
+        return GetPooledItem(pooledItems[(uint)id]);
+    }
+
+    public void ReturnItem(Stack<GameObject> returningStack, GameObject uselessItem)
+    {
+        returningStack.Push(uselessItem);
+        uselessItem.transform.position = Vector3.zero;
+        uselessItem.transform.rotation = Quaternion.identity;
+        uselessItem.SetActive(false);
+    }
+
+    public void ReturnItem(ItemID id, GameObject uselessItem)
+    {
+        ReturnItem(pooledItems[(uint)id], uselessItem);
     }
 }

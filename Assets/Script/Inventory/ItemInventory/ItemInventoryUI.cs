@@ -35,10 +35,13 @@ public class ItemInventoryUI : MonoBehaviour
     public void RefreshUIs()
     {
         keyCountText.text = itemInven.Slots[(uint)ItemID.Key].StackCount.ToString();
-        shellCountText.text = itemInven.Slots[(uint)ItemID.GoldShell].StackCount.ToString();
+        shellCountText.text = (itemInven.Slots[(uint)ItemID.GoldShell].StackCount +
+            itemInven.Slots[(uint)ItemID.SilverShell].StackCount +
+            itemInven.Slots[(uint)ItemID.BronzeShell].StackCount).ToString();
 
 
-        foreach(var shell in blankShell)
+        // ------ Blank Shell
+        foreach (var shell in blankShell)
         {
             shell.color = Color.clear;
         }

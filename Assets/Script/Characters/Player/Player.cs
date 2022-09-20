@@ -252,8 +252,11 @@ public class Player : MonoBehaviour, IHealth
     {
         if (collision.CompareTag("EnemyBullets"))
         {
-            StartCoroutine(Blink());
-            HP -= 1;
+            if (!isHit)
+            {
+                StartCoroutine(Blink());
+                HP -= 1;
+            }
         }
     }
 }

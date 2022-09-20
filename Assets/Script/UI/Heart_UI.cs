@@ -84,13 +84,13 @@ public class Heart_UI : MonoBehaviour
 
         if (IsEvenNumber())
         {
-            heartImg[player.HP].sprite = heart_Red;
-            heartImg[player.HP].color = Color.white;
+            heartImg[player.HP - 1].sprite = heart_Red;
+            heartImg[player.HP - 1].color = Color.white;
         }
         else
         {
-            heartImg[player.HP].sprite = heart_Red;
-            heartImg[player.HP].transform.SetAsFirstSibling();
+            heartImg[player.HP - 1].sprite = heart_Red;
+            heartImg[player.HP - 1].color = Color.white;
         }
     }
 

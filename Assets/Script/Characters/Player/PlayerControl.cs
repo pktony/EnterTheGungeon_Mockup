@@ -214,6 +214,7 @@ public class PlayerControl : MonoBehaviour
             player.Reload();
         }
     }
+
     void OnShoot(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -265,10 +266,20 @@ public class PlayerControl : MonoBehaviour
     {
         Collider2D[] items = Physics2D.OverlapCircleAll(transform.position, interactRange, LayerMask.GetMask("Items"));
 
-        Array.Sort(items);
-
         if (items != null)
         {
+            float closest = float.MaxValue;
+            foreach(Collider2D item in items)
+            { 
+                float temp = (item.transform.position - transform.position).sqrMagnitude;
+                if (temp < closest)
+                {
+                    closest = temp;
+                    items[0] = item;
+                }
+            }    
+
+        
             if (items[0].CompareTag("Weapons"))
             {
                 int sameCount = 0;
@@ -301,23 +312,23 @@ public class PlayerControl : MonoBehaviour
             else if (items[0].CompareTag("BlankShell"))
             {
                 player.Inven_Item.Slots[(int)ItemID.BlankShell].IncreaseItem();
-                ItemManager.Inst.ReturnItem(ItemManager.PooledItems[(int)ItemID.BlankShell], items[0].gameObject);
+                ItemManager.Inst.ReturnItem(ItemID.BlankShell, items[0].gameObject);
             }
             else if (items[0].CompareTag("Ammo"))
             {
                 player.CurrentWeapon.remainingBullet = player.CurrentWeapon.maxBulletNum;
                 player.W_InvenUI.BulletUI.RefreshBullet_UI();
-                ItemManager.Inst.ReturnItem(ItemManager.PooledItems[(int)ItemID.AmmoBox], items[0].gameObject);
+                ItemManager.Inst.ReturnItem(ItemID.AmmoBox, items[0].gameObject);
             }
             else if (items[0].CompareTag("Key"))
             {
                 player.Inven_Item.Slots[(int)ItemID.Key].IncreaseItem();
-                ItemManager.Inst.ReturnItem(ItemManager.PooledItems[(int)ItemID.Key], items[0].gameObject);
+                ItemManager.Inst.ReturnItem(ItemID.Key, items[0].gameObject);
             }
             else if (items[0].CompareTag("Heart"))
             {
                 player.HP++;
-                ItemManager.Inst.ReturnItem(ItemManager.PooledItems[(int)ItemID.Heart], items[0].gameObject);
+                ItemManager.Inst.ReturnItem(ItemID.Heart, items[0].gameObject);
             }
         }
     }
