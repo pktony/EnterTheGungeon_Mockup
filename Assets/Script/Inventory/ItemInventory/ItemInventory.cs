@@ -6,7 +6,7 @@ public class ItemInventory
 {
     ItemSlot[] slots = null;
 
-    const int ITEMSLOT_SIZE = 5;
+    const int ITEMSLOT_SIZE = 7;
 
     public ItemSlot this[int index] => slots[index];
     public ItemSlot[] Slots => slots;

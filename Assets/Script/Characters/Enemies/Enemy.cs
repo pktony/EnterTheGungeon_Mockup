@@ -239,10 +239,10 @@ public class Enemy : MonoBehaviour, IHealth
         yield return new WaitForSeconds(3.0f);
 
         uint rand = (uint)UnityEngine.Random.Range(4, 6); // 4: Gold, 5 : silver, 6 : Bronze
-        GameObject shell = ItemManager.Inst.GetPooledItem(ItemManager.PooledItems[rand]);
+        GameObject shell = ItemManager.Inst.GetPooledItem((ItemID)rand);
         shell.transform.position = this.transform.position;
         shell.gameObject.SetActive(true);
-        EnemyManager.Inst.ReturnEnemy(EnemyManager.Inst.PooledEnemy[(int)EnemyID.SHOTGUNKIN], this.gameObject);
+        EnemyManager.Inst.ReturnEnemy(EnemyID.SHOTGUNKIN, this.gameObject);
     }
 
 

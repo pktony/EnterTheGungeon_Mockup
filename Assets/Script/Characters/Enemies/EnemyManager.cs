@@ -17,8 +17,6 @@ public class EnemyManager : MonoBehaviour
 
     private Stack<GameObject> shotgunKin;
     private Stack<GameObject> bulletKin;
-    public Stack<GameObject> ShotgunKin => shotgunKin;
-    public Stack<GameObject> BulletKin => bulletKin;
 
     private void Awake()
     {
@@ -76,5 +74,10 @@ public class EnemyManager : MonoBehaviour
         uselessEnemy.SetActive(false);
         uselessEnemy.transform.position = Vector3.zero;
         uselessEnemy.transform.rotation = Quaternion.identity;
+    }
+
+    public void ReturnEnemy(EnemyID id, GameObject uselessEnemy)
+    {
+        ReturnEnemy(pooledEnemy[(int)id], uselessEnemy);
     }
 }
