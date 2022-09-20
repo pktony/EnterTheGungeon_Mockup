@@ -55,3 +55,11 @@ public enum FxID
     BULLETEXPLOSION = 0,
     BLANKFX
 }
+
+public enum DoorDirection : byte
+{
+    All = 0, North, South, East, West,
+    UD, LR, UR, UL, DR, DL,
+    ULR, DLR, UDL, UDR,
+    Island
+}
