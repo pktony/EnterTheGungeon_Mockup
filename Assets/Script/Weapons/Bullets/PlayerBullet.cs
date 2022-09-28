@@ -29,12 +29,6 @@ public class PlayerBullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        //GameObject obj = FXManager.Inst.GetFX(FXManager.Inst.PooledFx[(int)FxID.BULLETEXPLOSION]);
-        //Vector2 contact = collision.ClosestPoint(transform.position);
-        //obj.transform.right = GetExplosionAngle(contact);
-
-        //collision.GetContacts();
-        //collision.gameObject.GetComponent<collider>
         BulletManager.Inst.ReturnBullet(BulletID.PLAYER, this.gameObject);
     }
 

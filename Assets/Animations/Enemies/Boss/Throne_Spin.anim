@@ -39,7 +39,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 1.6666666
+        time: 3.6666667
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -107,8 +107,68 @@ AnimationClip:
     - time: 1.6
       value: {fileID: 21300000, guid: 1210454329eb4ec4aa3800ff2fdf23ce, type: 3}
     - time: 1.6666666
-      value: {fileID: 21300000, guid: f579b366be911b34faa5bcd3ad2d8ca1, type: 3}
+      value: {fileID: 21300000, guid: c0c82ab1980b5b446997a262d9146d5b, type: 3}
     - time: 1.7333333
+      value: {fileID: 21300000, guid: 6343750dcc1da90458421a8dec958d17, type: 3}
+    - time: 1.8
+      value: {fileID: 21300000, guid: 1210454329eb4ec4aa3800ff2fdf23ce, type: 3}
+    - time: 1.8666667
+      value: {fileID: 21300000, guid: c0c82ab1980b5b446997a262d9146d5b, type: 3}
+    - time: 1.9333333
+      value: {fileID: 21300000, guid: 6343750dcc1da90458421a8dec958d17, type: 3}
+    - time: 2
+      value: {fileID: 21300000, guid: 1210454329eb4ec4aa3800ff2fdf23ce, type: 3}
+    - time: 2.0666666
+      value: {fileID: 21300000, guid: c0c82ab1980b5b446997a262d9146d5b, type: 3}
+    - time: 2.1333334
+      value: {fileID: 21300000, guid: 6343750dcc1da90458421a8dec958d17, type: 3}
+    - time: 2.2
+      value: {fileID: 21300000, guid: 1210454329eb4ec4aa3800ff2fdf23ce, type: 3}
+    - time: 2.2666667
+      value: {fileID: 21300000, guid: c0c82ab1980b5b446997a262d9146d5b, type: 3}
+    - time: 2.3333333
+      value: {fileID: 21300000, guid: 6343750dcc1da90458421a8dec958d17, type: 3}
+    - time: 2.4
+      value: {fileID: 21300000, guid: 1210454329eb4ec4aa3800ff2fdf23ce, type: 3}
+    - time: 2.4666667
+      value: {fileID: 21300000, guid: c0c82ab1980b5b446997a262d9146d5b, type: 3}
+    - time: 2.5333333
+      value: {fileID: 21300000, guid: 6343750dcc1da90458421a8dec958d17, type: 3}
+    - time: 2.6
+      value: {fileID: 21300000, guid: 1210454329eb4ec4aa3800ff2fdf23ce, type: 3}
+    - time: 2.6666667
+      value: {fileID: 21300000, guid: c0c82ab1980b5b446997a262d9146d5b, type: 3}
+    - time: 2.7333333
+      value: {fileID: 21300000, guid: 6343750dcc1da90458421a8dec958d17, type: 3}
+    - time: 2.8
+      value: {fileID: 21300000, guid: 1210454329eb4ec4aa3800ff2fdf23ce, type: 3}
+    - time: 2.8666666
+      value: {fileID: 21300000, guid: c0c82ab1980b5b446997a262d9146d5b, type: 3}
+    - time: 2.9333334
+      value: {fileID: 21300000, guid: 6343750dcc1da90458421a8dec958d17, type: 3}
+    - time: 3
+      value: {fileID: 21300000, guid: 1210454329eb4ec4aa3800ff2fdf23ce, type: 3}
+    - time: 3.0666666
+      value: {fileID: 21300000, guid: c0c82ab1980b5b446997a262d9146d5b, type: 3}
+    - time: 3.1333334
+      value: {fileID: 21300000, guid: 6343750dcc1da90458421a8dec958d17, type: 3}
+    - time: 3.2
+      value: {fileID: 21300000, guid: 1210454329eb4ec4aa3800ff2fdf23ce, type: 3}
+    - time: 3.2666667
+      value: {fileID: 21300000, guid: c0c82ab1980b5b446997a262d9146d5b, type: 3}
+    - time: 3.3333333
+      value: {fileID: 21300000, guid: 6343750dcc1da90458421a8dec958d17, type: 3}
+    - time: 3.4
+      value: {fileID: 21300000, guid: 1210454329eb4ec4aa3800ff2fdf23ce, type: 3}
+    - time: 3.4666667
+      value: {fileID: 21300000, guid: c0c82ab1980b5b446997a262d9146d5b, type: 3}
+    - time: 3.5333333
+      value: {fileID: 21300000, guid: 6343750dcc1da90458421a8dec958d17, type: 3}
+    - time: 3.6
+      value: {fileID: 21300000, guid: 1210454329eb4ec4aa3800ff2fdf23ce, type: 3}
+    - time: 3.6666667
+      value: {fileID: 21300000, guid: f579b366be911b34faa5bcd3ad2d8ca1, type: 3}
+    - time: 3.7333333
       value: {fileID: 21300000, guid: c2d00eea5824a31409d0465b2f842b41, type: 3}
     attribute: m_Sprite
     path: 
@@ -161,6 +221,36 @@ AnimationClip:
     - {fileID: 21300000, guid: c0c82ab1980b5b446997a262d9146d5b, type: 3}
     - {fileID: 21300000, guid: 6343750dcc1da90458421a8dec958d17, type: 3}
     - {fileID: 21300000, guid: 1210454329eb4ec4aa3800ff2fdf23ce, type: 3}
+    - {fileID: 21300000, guid: c0c82ab1980b5b446997a262d9146d5b, type: 3}
+    - {fileID: 21300000, guid: 6343750dcc1da90458421a8dec958d17, type: 3}
+    - {fileID: 21300000, guid: 1210454329eb4ec4aa3800ff2fdf23ce, type: 3}
+    - {fileID: 21300000, guid: c0c82ab1980b5b446997a262d9146d5b, type: 3}
+    - {fileID: 21300000, guid: 6343750dcc1da90458421a8dec958d17, type: 3}
+    - {fileID: 21300000, guid: 1210454329eb4ec4aa3800ff2fdf23ce, type: 3}
+    - {fileID: 21300000, guid: c0c82ab1980b5b446997a262d9146d5b, type: 3}
+    - {fileID: 21300000, guid: 6343750dcc1da90458421a8dec958d17, type: 3}
+    - {fileID: 21300000, guid: 1210454329eb4ec4aa3800ff2fdf23ce, type: 3}
+    - {fileID: 21300000, guid: c0c82ab1980b5b446997a262d9146d5b, type: 3}
+    - {fileID: 21300000, guid: 6343750dcc1da90458421a8dec958d17, type: 3}
+    - {fileID: 21300000, guid: 1210454329eb4ec4aa3800ff2fdf23ce, type: 3}
+    - {fileID: 21300000, guid: c0c82ab1980b5b446997a262d9146d5b, type: 3}
+    - {fileID: 21300000, guid: 6343750dcc1da90458421a8dec958d17, type: 3}
+    - {fileID: 21300000, guid: 1210454329eb4ec4aa3800ff2fdf23ce, type: 3}
+    - {fileID: 21300000, guid: c0c82ab1980b5b446997a262d9146d5b, type: 3}
+    - {fileID: 21300000, guid: 6343750dcc1da90458421a8dec958d17, type: 3}
+    - {fileID: 21300000, guid: 1210454329eb4ec4aa3800ff2fdf23ce, type: 3}
+    - {fileID: 21300000, guid: c0c82ab1980b5b446997a262d9146d5b, type: 3}
+    - {fileID: 21300000, guid: 6343750dcc1da90458421a8dec958d17, type: 3}
+    - {fileID: 21300000, guid: 1210454329eb4ec4aa3800ff2fdf23ce, type: 3}
+    - {fileID: 21300000, guid: c0c82ab1980b5b446997a262d9146d5b, type: 3}
+    - {fileID: 21300000, guid: 6343750dcc1da90458421a8dec958d17, type: 3}
+    - {fileID: 21300000, guid: 1210454329eb4ec4aa3800ff2fdf23ce, type: 3}
+    - {fileID: 21300000, guid: c0c82ab1980b5b446997a262d9146d5b, type: 3}
+    - {fileID: 21300000, guid: 6343750dcc1da90458421a8dec958d17, type: 3}
+    - {fileID: 21300000, guid: 1210454329eb4ec4aa3800ff2fdf23ce, type: 3}
+    - {fileID: 21300000, guid: c0c82ab1980b5b446997a262d9146d5b, type: 3}
+    - {fileID: 21300000, guid: 6343750dcc1da90458421a8dec958d17, type: 3}
+    - {fileID: 21300000, guid: 1210454329eb4ec4aa3800ff2fdf23ce, type: 3}
     - {fileID: 21300000, guid: f579b366be911b34faa5bcd3ad2d8ca1, type: 3}
     - {fileID: 21300000, guid: c2d00eea5824a31409d0465b2f842b41, type: 3}
   m_AnimationClipSettings:
@@ -168,7 +258,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.8000001
+    m_StopTime: 3.8
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -206,7 +296,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 1.6666666
+        time: 3.6666667
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -224,4 +314,130 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.26666668
+    functionName: SpinAttack_Even
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.46666667
+    functionName: SpinAttack_Odd
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.6666667
+    functionName: SpinAttack_Even
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.8666667
+    functionName: SpinAttack_Odd
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.0666667
+    functionName: SpinAttack_Even
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.2666667
+    functionName: SpinAttack_Odd
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.4666667
+    functionName: SpinAttack_Even
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.6666666
+    functionName: SpinAttack_Odd
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.8666667
+    functionName: SpinAttack_Even
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.0666666
+    functionName: SpinAttack_Odd
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.2666667
+    functionName: SpinAttack_Even
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.4666667
+    functionName: SpinAttack_Odd
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.6666667
+    functionName: SpinAttack_Even
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.8666666
+    functionName: SpinAttack_Odd
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3.0666666
+    functionName: SpinAttack_Even
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3.2666667
+    functionName: SpinAttack_Odd
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3.4666667
+    functionName: SpinAttack_Even
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3.6666667
+    functionName: SpinAttack_Odd
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

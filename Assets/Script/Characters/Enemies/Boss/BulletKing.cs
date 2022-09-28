@@ -3,28 +3,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Unity.Mathematics;
+using Unity.VisualScripting;
 
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class BulletKing : MonoBehaviour
+public class BulletKing : MonoBehaviour, IHealth
 {
     enum AttackSwitch : byte
-    { 
-        FireTell = 0,  // Throne À§·Î ÃÑ¾Ë ¹¶ÅÊÀÌ ¹ß»çÇÏ°í, 8°³·Î ³ª´¶°Ô ´Ù½Ã 8°³·Î ³ª´µ´Â ÃÑ¾Ë ¹ß»ç
-        FireTell_2,  // 360µµ ÀÏÁ¤ °¢µµ·Î ¿øÇü ÃÑ¾Ë ¹ß»ç
-        FireTell_3,  // 360µµ ÀÏÁ¤ °¢µµ·Î ½°Ç¥ ÃÑ¾Ë ¹ß»ç
-        Spin,       // 360µµ µ¹¶§¸¶´Ù °¢µµ°¡ º¯ÇÏ°í, ¸¶Áö¸·¿¡ 360µµ ÀüÃ¼¿¡ ¿øÇü ÃÑ¾Ë ¹ß»ç
-        GobletThrow // ÇÃ·¹ÀÌ¾î ±ÙÃ³¿¡ Æø¹ßÇÏ´Â µ¶¾à »Ñ¸®±â
+    {
+        FireTell = 0,  // Throne ìœ„ë¡œ ì´ì•Œ ë­‰íƒ±ì´ ë°œì‚¬í•˜ê³ , 8ê°œë¡œ ë‚˜ë‰œê²Œ ë‹¤ì‹œ 8ê°œë¡œ ë‚˜ë‰˜ëŠ” ì´ì•Œ ë°œì‚¬
+        FireTell_2,  // 360ë„ ì¼ì •í•œ ê°„ê²©ìœ¼ë¡œ ì›í˜• ì´ì•Œ ë°œì‚¬
+        FireTell_3,  // 360ë„ ì¼ì • ê°ë„ë¡œ ì‰¼í‘œ ì´ì•Œ ë°œì‚¬ (ì‰¼í‘œ ì´ì•Œì€ 
+        Spin,       // 360ë„ ëŒë•Œë§ˆë‹¤ ê°ë„ê°€ ë³€í•˜ê³ , ë§ˆì§€ë§‰ì— 360ë„ ì „ì²´ì— ì›í˜• ì´ì•Œ ë°œì‚¬
+        GobletThrow // í”Œë ˆì´ì–´ ê·¼ì²˜ì— í­ë°œí•˜ëŠ” ë…ì•½ ë¿Œë¦¬ê¸°
     }
 
+    #region COMPONENT
     Animator bossAnim;
     Animator throneAnim;
+    Transform canvas;
+    GameObject intro;
+    GameObject healthBar;
     Rigidbody2D rigid;
     Transform shootPositions;
+    #endregion
 
+    #region VARIABLE
     [Header("AI")]
     [SerializeField] EnemyState status = EnemyState.IDLE; //IDLE, TRACK, ATTACK, DEAD
     [SerializeField] float moveSpeed = 5.0f;
@@ -33,35 +41,82 @@ public class BulletKing : MonoBehaviour
 
     float currentSpeed = 0f;
     bool isDead = false;
+    bool isMove = false;
+    WaitForSeconds updateSeconds;
+    float updateInterval = 1.0f;
     // ######################### ATTACK #############################
     float attackTimer = 0f;
-    AttackSwitch switcher = AttackSwitch.FireTell;
+    BulletKing_AnimationHelper animHelp_King;
+    BulletKing_AnimationHelper_Throne animHelp_Throne;
+    Intro_AnimationHelper animHelp_Intro;
+
+    // ######################## Basic Stat ##########################
+    private int hp;
+    private const int maxHP = 100;
+
+    public Action OnTakeDamage { get; set; }
+    public Action OnHPUp { get; set; }
+    #endregion
+
+    #region Property
+    public int HP
+    {
+        get => hp;
+        set
+        {
+            hp = Mathf.Min(value, maxHP);
+            hp = Mathf.Max(0, value);
+            OnTakeDamage?.Invoke();
+        }
+    }
+
+    public int MaxHP => maxHP;
+    #endregion
 
     private void Awake()
     {
         bossAnim = transform.GetChild(0).GetComponent<Animator>();
         throneAnim = transform.GetChild(1).GetComponent<Animator>();
+        canvas = transform.GetChild(3);
+        healthBar = canvas.GetChild(0).gameObject;
+        intro = canvas.GetChild(1).gameObject;
         rigid = GetComponent<Rigidbody2D>();
+        animHelp_King = GetComponentInChildren<BulletKing_AnimationHelper>();
+        animHelp_Throne = GetComponentInChildren<BulletKing_AnimationHelper_Throne>();
+        animHelp_King.onTell1Attack = Shoot_Tell_1;
+        animHelp_King.onTell2Attack = Shoot_Tell_2;
+        animHelp_King.onGobletAttack = GobletThrow;
+        animHelp_Throne.onSpinAttack_Even = Spin_Even;
+        animHelp_Throne.onSpinAttack_Odd = Spin_Odd;
+
+        animHelp_Intro = GetComponentInChildren<Intro_AnimationHelper>();
+        animHelp_Intro.onIntroEnd += OnIntroEnd;
+        intro.SetActive(false);
+
+        updateSeconds = new WaitForSeconds(updateInterval);
 
         SceneManager.sceneLoaded += OnEntrance;
 
         InitializeShootPosition();
     }
 
+    private void Start()
+    {
+        
+    }
+
     void InitializeShootPosition()
     {
         shootPositions = transform.GetChild(4);
+
         float theta = 0;
-        Vector2 pos = Vector2.zero;
         for (int i = 0; i < shootPositions.childCount; i++)
         {
-            shootPositions.GetChild(i).position = 1.8f * new Vector2(Mathf.Cos(theta), Mathf.Sin(theta));
+            theta += 360 / (shootPositions.childCount - 1);
+            shootPositions.GetChild(i).position = 1f *
+                new Vector2(Mathf.Cos(Mathf.Deg2Rad * theta), Mathf.Sin(Mathf.Deg2Rad * theta));
             shootPositions.GetChild(i).rotation = Quaternion.Euler(0, 0, theta);
-            theta += 360 / (shootPositions.childCount);
         }
-        // shoot to the up
-        // shootPosition[0] is up
-
     }
 
     private void OnEntrance(Scene arg0, LoadSceneMode arg1)
@@ -71,10 +126,16 @@ public class BulletKing : MonoBehaviour
 
     IEnumerator EntranceIntro()
     {
-        // ½ÃÀÛ ¾Ö´Ï¸ŞÀÌ¼Ç 
-        yield return null;
         bossAnim.SetTrigger("Intro");
-        yield return new WaitForSeconds(bossAnim.GetCurrentAnimatorClipInfo(0).Length);
+        yield return new WaitForSeconds(bossAnim.GetCurrentAnimatorClipInfo(0).Length + 2.0f);
+        intro.SetActive(true);
+    }
+
+    void OnIntroEnd()
+    {
+        healthBar.SetActive(true);
+        HP = MaxHP;
+        intro.SetActive(false);
         ChangeStatus(EnemyState.TRACK);
         StartCoroutine(StatusUpdate());
     }
@@ -97,7 +158,15 @@ public class BulletKing : MonoBehaviour
                 case EnemyState.DEAD:
                     break;
             }
-            yield return null;
+            yield return updateSeconds;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if(isMove)
+        {
+            Move(currentSpeed);
         }
     }
 
@@ -105,7 +174,12 @@ public class BulletKing : MonoBehaviour
     {
         if (IsInAttackRange())
         {
-            ChangeStatus(EnemyState.ATTACK);
+            attackTimer += updateInterval;
+            if (attackTimer > attackCoolTime)
+            {
+                ChangeStatus(EnemyState.ATTACK);
+                return;
+            }
         }
         else
         {
@@ -115,19 +189,22 @@ public class BulletKing : MonoBehaviour
 
     void TrackUpdate()
     {
-        if (!IsInAttackRange())
+        if(!IsInAttackRange())
         {
-            Move(currentSpeed);
+            isMove = true;
+            attackTimer += updateInterval;
         }
         else
         {
-            ChangeStatus(EnemyState.IDLE);
+            ChangeStatus(EnemyState.ATTACK);
         }
     }
 
     void Move(float speed)
     {
-        rigid.MovePosition(Time.deltaTime * GameManager.Inst.Player.transform.position * speed);
+        Vector2 dir = GameManager.Inst.Player.transform.position - transform.position;
+        dir = dir.normalized;
+        rigid.MovePosition((Vector2)transform.position + Time.deltaTime * dir * speed);
     }
 
     bool IsInAttackRange()
@@ -143,58 +220,115 @@ public class BulletKing : MonoBehaviour
 
     void AttackUpdate()
     {
-        attackTimer += Time.deltaTime;
-
         if (attackTimer > attackCoolTime)
         {
-            int rand = UnityEngine.Random.Range(0, (int)AttackSwitch.GobletThrow);
+            int rand = UnityEngine.Random.Range(0, (int)AttackSwitch.GobletThrow + 1);
             Switcher_Attack(rand);
-            attackTimer = 0f;
+            if (rand == (int)AttackSwitch.Spin)
+                attackTimer = -7f;  // Spin animation duration + alpha
+            else
+                attackTimer = 0f;
         }
         else
         {
             ChangeStatus(EnemyState.IDLE);
         }
+
+        if (!IsInAttackRange())
+            ChangeStatus(EnemyState.TRACK);
     }
 
-    void Switcher_Attack(int rand)
+    void Switcher_Attack(int randNumber)
     {
-        //FireTell = 0,  // Throne À§·Î ÃÑ¾Ë ¹¶ÅÊÀÌ ¹ß»çÇÏ°í, 8°³·Î ³ª´¶°Ô ´Ù½Ã 8°³·Î ³ª´µ´Â ÃÑ¾Ë ¹ß»ç
-        //FireTell_2,  // 360µµ ÀÏÁ¤ °¢µµ·Î ¿øÇü ÃÑ¾Ë ¹ß»ç
-        //FireTell_3,  // 360µµ ÀÏÁ¤ °¢µµ·Î ½°Ç¥ ÃÑ¾Ë ¹ß»ç
-        //Spin,       // 360µµ µ¹¶§¸¶´Ù °¢µµ°¡ º¯ÇÏ°í, ¸¶Áö¸·¿¡ 360µµ ÀüÃ¼¿¡ ¿øÇü ÃÑ¾Ë ¹ß»ç
-        //GobletThrow // ÇÃ·¹ÀÌ¾î ±ÙÃ³¿¡ Æø¹ßÇÏ´Â µ¶¾à »Ñ¸®±â
-
-        bossAnim.SetFloat("switcher", rand);
-        throneAnim.SetFloat("switcher", rand);
+        //FireTell = 0,  // Throne ìœ„ë¡œ í° ì´ì•Œì„ ë°œì‚¬í•˜ê³ , 8ê°œë¡œ ë‚˜ë‰œê²Œ ë‹¤ì‹œ 8ê°œë¡œ ë‚˜ë‰˜ëŠ” ì´ì•Œ ë°œì‚¬
+        //FireTell_2,  // 360ë„ ì¼ì •í•œ ê°ë„ë¡œ ì›í˜• ì´ì•Œ ë°œì‚¬
+        //FireTell_3,  // í”Œë ˆì´ì–´ ë°©í–¥ìœ¼ë¡œ ë¯¸ì‹ì¶•êµ¬ê³µ ëª¨ì–‘ ì´ì•Œ ë°œì‚¬
+        //FireTell_4   // ì¼ì • ê°„ê²©ìœ¼ë¡œ 360ë„ ë°œì‚¬
+        //Spin,       // 360ë„ ëŒë•Œë§ˆë‹¤ ê°ë„ê°€ ë³€í•˜ê³ , ë§ˆì§€ë§‰ì— 360ë„ ì „ì²´ì— ì›í˜• ì´ì•Œ ë°œì‚¬
+        //GobletThrow // í”Œë ˆì´ì–´ ê·¼ì²˜ì— í­ë°œí•˜ëŠ” ë…ì•½ ë¿Œë¦¬ê¸°
+        bossAnim.SetTrigger("onAttack");
+        throneAnim.SetTrigger("onAttack");
+        bossAnim.SetInteger("Switcher", randNumber);
+        throneAnim.SetInteger("Switcher", randNumber);
     }
 
-    public void Shoot_Tell_1()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-
+        if(collision.CompareTag("PlayerBullets"))
+        {
+            HP -= 3;
+            bossAnim.SetTrigger("onHit"); 
+        }
     }
 
-    public void Shoot_Tell_2()
+
+    #region PROJECTILE METHOD
+    private void Shoot_Tell_1()
     {
-
+        GameObject bigBullet = BulletManager.Inst.GetPooledBullet(BulletID.BIG);
+        bigBullet.transform.position = shootPositions.GetChild(10).position;
+        bigBullet.transform.rotation = shootPositions.GetChild(10).rotation;
+        bigBullet.SetActive(true);
     }
 
-    public void Shoot_Tell_3()
+    private void Shoot_Tell_2()
     {
-
+        for (int i = 0; i < shootPositions.childCount; i++)
+        {
+            GameObject spearBullet = BulletManager.Inst.GetPooledBullet(BulletID.SPINNING);
+            spearBullet.transform.position = shootPositions.GetChild(i).position;
+            spearBullet.transform.rotation = shootPositions.GetChild(i).rotation;
+            spearBullet.SetActive(true);
+        }
     }
 
-    public void Spin()
+    private void Shoot_Tell_3()
     {
+        Vector2 dir = GameManager.Inst.Player.transform.position - transform.position;
 
+        GameObject obj = BulletManager.Inst.GetPooledBullet(BulletID.FOOTBALL);
+        obj.transform.position = dir.normalized;
+        //obj.transform.LookAt(GameManager.Inst.Player.transform.position);
+        obj.SetActive(true);
     }
 
+    private void Spin_Even()
+    {
+        for (int i = 0; i < shootPositions.childCount; i ++)
+        {
+            if(i%2==0)
+            {
+                GameObject circleBullet = BulletManager.Inst.GetPooledBullet(BulletID.CIRCLE);
+                circleBullet.transform.position = shootPositions.GetChild(i).position;
+                circleBullet.transform.rotation = shootPositions.GetChild(i).rotation;
+                circleBullet.SetActive(true);
+            }
+        }
+    }
+
+    private void Spin_Odd()
+    {
+        for (int i = 0; i < shootPositions.childCount; i++)
+        {
+            if (i % 2 != 0)
+            {
+                GameObject circleBullet = BulletManager.Inst.GetPooledBullet(BulletID.CIRCLE);
+                circleBullet.transform.position = shootPositions.GetChild(i).position;
+                circleBullet.transform.rotation = shootPositions.GetChild(i).rotation;
+                circleBullet.SetActive(true);
+            }
+        }
+    }
+
+    public GameObject goblet;
     public void GobletThrow()
     {
-
+        Instantiate(goblet, transform.position, quaternion.identity);
+        goblet.SetActive(true);
     }
+    #endregion
 
-    // ############################# Change Status ######################################
+    #region Status Change
     void ChangeStatus(EnemyState newStatus)
     {
         switch (status)
@@ -202,6 +336,7 @@ public class BulletKing : MonoBehaviour
             case EnemyState.IDLE:
                 break;
             case EnemyState.TRACK:
+                isMove = false;
                 break;
             case EnemyState.ATTACK:
                 break;
@@ -218,6 +353,7 @@ public class BulletKing : MonoBehaviour
                 break;
             case EnemyState.TRACK:
                 currentSpeed = moveSpeed;
+                isMove = true;
                 break;
             case EnemyState.ATTACK:
                 currentSpeed = 0f;
@@ -230,8 +366,7 @@ public class BulletKing : MonoBehaviour
         bossAnim.SetInteger("Status", (int)status);
         throneAnim.SetInteger("Status", (int)status);
     }
-
-
+    #endregion
 
 #if UNITY_EDITOR
     private void OnDrawGizmos()

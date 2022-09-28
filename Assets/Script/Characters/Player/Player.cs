@@ -8,7 +8,6 @@ public class Player : MonoBehaviour, IHealth
     SpriteRenderer render;
 
     // ########################### Variables ###############################
-    private Transform firePosition = null;
     WeaponInventory_UI inven_UI;
     WeaponInventory inven;
     ItemInventory inven_item;
@@ -21,7 +20,7 @@ public class Player : MonoBehaviour, IHealth
     // -- Hit
     private bool isHit = false;
     [SerializeField] private float invincibleTime = 2.0f;
-    [SerializeField] private float blinkTimer = 0.0f;
+    private float blinkTimer = 0.0f;
     WaitForSeconds blinkTime;
 
     // -- Dodge 
@@ -37,7 +36,6 @@ public class Player : MonoBehaviour, IHealth
     private WeaponPocket weaponPocket;
     private int currentWeaponIndex = 0;
     private uint weaponSlotNumber = 5;
-    private SpriteRenderer weaponSprite;
     private WaitForSeconds autoShootTime;
 
     private int bulletInMagazine;
@@ -47,6 +45,8 @@ public class Player : MonoBehaviour, IHealth
     public WeaponInventory Inven => inven;
     public WeaponInventory_UI W_InvenUI => inven_UI;
     public ItemInventory Inven_Item => inven_item;
+
+    public WeaponPocket WeaponPoc => weaponPocket;
     
     public int HP
     {
@@ -118,9 +118,7 @@ public class Player : MonoBehaviour, IHealth
         inven_UI = FindObjectOfType<WeaponInventory_UI>();
 
         weaponPocket = GetComponentInChildren<WeaponPocket>();
-        firePosition = weaponPocket.transform.GetChild(0).GetChild(0);
-        weaponSprite = weaponPocket.GetComponentInChildren<SpriteRenderer>();
-
+       
         reloadUI = transform.GetChild(1).GetComponentInChildren<Reload_UI>();
 
         inven = new WeaponInventory(weaponSlotNumber);
@@ -131,6 +129,11 @@ public class Player : MonoBehaviour, IHealth
         inven_item = new ItemInventory();
         inven_item.InitializeItemInventory();
         inven_item.Slots[(int)ItemID.BlankShell].IncreaseItem();
+    }
+
+    private void Start()
+    {
+        weaponPocket.InitializeWeaponAnimator(0);
     }
 
     private void Update()
@@ -147,8 +150,10 @@ public class Player : MonoBehaviour, IHealth
     {
         if (inven_UI.SlotUIs[weaponSlotNumber].Weapon_Slot.WeaponSlotData != null)
         {
+
             currentWeapon = inven_UI.SlotUIs[weaponSlotNumber].Weapon_Slot.WeaponSlotData;
-            weaponSprite.sprite = inven_UI.SlotUIs[weaponSlotNumber].Weapon_Slot.WeaponSlotData.weaponIcon;
+            weaponPocket.InitializeWeaponAnimator(weaponSlotNumber);
+            weaponPocket.PlayIdleAnimation();
             bulletInMagazine = currentWeapon.maxBulletMagazine;
             autoShootTime = new WaitForSeconds(currentWeapon.fireRate);
         }
@@ -161,13 +166,13 @@ public class Player : MonoBehaviour, IHealth
             GameManager.Inst.Control.FireDirection = GameManager.Inst.Control.LookDir.normalized;
 
             GameObject bullet = BulletManager.Inst.GetPooledBullet(BulletID.PLAYER);
-            bullet.transform.position = firePosition.position;
-            bullet.transform.rotation = firePosition.rotation
+            bullet.transform.position = weaponPocket.SetupFirePosition();
+            bullet.transform.rotation = weaponPocket.SetupFireRotation()
                 * Quaternion.Euler(0f, 0f, Random.Range(-currentWeapon.dispersion, currentWeapon.dispersion));
             bullet.SetActive(true);
-
-            //currentWeapon.remainingBullet -= currentWeapon.bulletPerFire;
+            
             bulletInMagazine -= currentWeapon.bulletPerFire;
+            CameraShake.ShakeCamera(0.1f, 0.5f);
             onFireReload?.Invoke();
 
             yield return autoShootTime;
@@ -178,6 +183,7 @@ public class Player : MonoBehaviour, IHealth
     {
         if (!isReloading)
         {
+            weaponPocket.PlayReloadAnimation();
             StartCoroutine(ReloadAmmo());
         }
     }

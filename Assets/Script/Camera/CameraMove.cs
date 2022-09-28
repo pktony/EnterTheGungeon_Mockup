@@ -7,9 +7,6 @@ public class CameraMove : MonoBehaviour
 {
     Player player;
 
-    private Vector3 shake;
-    private float shakeMagnitude = 3.0f;
-
     private void Start()
     {
         player = GameManager.Inst.Player;

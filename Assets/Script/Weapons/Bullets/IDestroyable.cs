@@ -4,5 +4,7 @@ using UnityEngine;
 
 public interface IDestroyable
 {
-    void InstantDestroy();
+    public const float blankExplosionTime = 0.5f;
+
+    public void BlankDestroy();
 }

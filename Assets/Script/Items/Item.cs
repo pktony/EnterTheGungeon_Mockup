@@ -8,7 +8,7 @@ public class Item : MonoBehaviour, ILootable
 
     private void Start()
     {
-        player = GameManager.Inst.Player;
+        //player = GameManager.Inst.Player;
     }
 
     public virtual void LootAction()

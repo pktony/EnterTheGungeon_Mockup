@@ -39,9 +39,13 @@ public enum ItemID
 public enum BulletID
 {
     PLAYER = 0,
-    ENEMY = 1,
-    CIRCLE,
-    SPEAR
+    ENEMY,
+    CIRCLE,  // unlit
+    BIG,
+    MID, // Lit
+    FOOTBALL,
+    SPINNING,
+    GOBLET
 }
 
 public enum EnemyID
@@ -52,8 +56,7 @@ public enum EnemyID
 
 public enum FxID
 {
-    BULLETEXPLOSION = 0,
-    BLANKFX
+    BLANKFX = 0
 }
 
 public enum DoorDirection : byte

@@ -8,7 +8,8 @@ public class WeaponData : ScriptableObject
     public uint id = 0;
     public string weaponName = "Weapon 1";
     public Sprite weaponIcon;
-    public GameObject weaponPrefab;
+    public GameObject weaponPrefab; //아이템 드랍, 루팅 용 
+    public RuntimeAnimatorController weaponAniamtor;
 
     public Sprite BulletIcon;
     public int maxBulletNum;
