@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class MapGenerator : MonoBehaviour
 {
@@ -11,18 +12,54 @@ public class MapGenerator : MonoBehaviour
 
     public const int MAP_HEIGHT = 5;
     public const int MAP_WIDTH = 5;
+    public const float hasRoomPossibility = 0.8f;
+    private int roomExistNumber = 0;
 
     private int room_Height = 18;
     private int room_Width = 22;
 
     private int room_Offset = 10;
 
+    private List<bool> rooms;
+
+    public Transform startPoint;
+    public Transform endPoint;
+
     private void Awake()
     {
         roomExists = new bool[MAP_HEIGHT, MAP_WIDTH];
         Room[,] room = new Room[MAP_HEIGHT, MAP_WIDTH];
-        RandomizeRooms();
 
+        rooms = new();
+
+        RandomizeRooms();
+        FindAdjacentRooms(room);
+        DecideRoomDirection(room);
+
+        MakeRooms(room);
+    }
+
+    private void Start()
+    {
+        //TEST
+        //A_Star.FindPath(grid, Mathf.RoundToInt(startPoint.position.x), endPoint.position);
+    }
+
+    private void RandomizeRooms()
+    {
+        for (int i = 0; i < MAP_HEIGHT; i++)
+        {
+            for (int j = 0; j < MAP_WIDTH; j++)
+            {
+                roomExists[i, j] = Random.Range(0f, 1f) < hasRoomPossibility;
+                if (roomExists[i,j])
+                    roomExistNumber++;
+            }
+        }
+    }
+
+    private void FindAdjacentRooms(Room[,] room)
+    {
         for (int i = 0; i < MAP_HEIGHT; i++)
         {
             for (int j = 0; j < MAP_WIDTH; j++)
@@ -41,12 +78,11 @@ public class MapGenerator : MonoBehaviour
                         for (int w = -1; w < 2; w++)
                         {
                             if (k == 0 && w == 0)
-                                continue;
+                                continue;   // 중앙 
                             else if (Mathf.Abs(k) == Mathf.Abs(w))
-                                continue;
+                                continue;   // 대각선
                             else if (i + k < 0 || i + k > MAP_HEIGHT - 1 || j + w < 0 || j + w > MAP_WIDTH - 1)
-                                continue;
-
+                                continue;   // 경계선 
                             if (roomExists[i + k, j + w])
                             { // 0 ~ 2 까지인데 k,w 는 -1 ~ 1 까지임
                                 room[i, j].hasAdjacentRoom[k + 1, w + 1] = true;
@@ -56,14 +92,9 @@ public class MapGenerator : MonoBehaviour
                 }
             }
         }
-
-
-        FindRoomDirection(room);
-        MakeRooms(room);
-
     }
 
-    private void FindRoomDirection(Room[,] room)
+    private void DecideRoomDirection(Room[,] room)
     {
         /// 2,0  2,1  2,2
         /// 1,0  1,1  1,2
@@ -155,7 +186,7 @@ public class MapGenerator : MonoBehaviour
                         room[i, j].doorDir = DoorDirection.South;
                     }
                     else
-                    {
+                    {// Island
                         room[i, j].doorDir = DoorDirection.Island;
                     }
                 }
@@ -165,6 +196,7 @@ public class MapGenerator : MonoBehaviour
 
     private void MakeRooms(Room[,] room)
     {
+        int roomCount = 0;
         for (int i = 0; i < MAP_HEIGHT; i++)
         {
             for (int j = 0; j < MAP_WIDTH; j++)
@@ -175,18 +207,13 @@ public class MapGenerator : MonoBehaviour
                         continue;
                     GameObject obj = Instantiate(maps[(int)room[i, j].doorDir], room[i, j].gridPosition, Quaternion.identity);
                     obj.name = $"{i}, {j}";
-                }
-            }
-        }
-    }
 
-    private void RandomizeRooms()
-    {
-        for (int i = 0; i < MAP_HEIGHT; i++)
-        {
-            for (int j = 0; j < MAP_WIDTH; j++)
-            {
-                roomExists[i, j] = Random.Range(0, 3) > 0;
+                    roomCount++;
+                    if (roomCount == 1)
+                        startPoint.position = room[i, j].gridPosition;
+                    else if (roomCount == roomExistNumber )
+                        endPoint.position = room[i, j].gridPosition;
+                }
             }
         }
     }

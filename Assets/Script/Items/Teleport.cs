@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Teleport : Item
+public class Teleport : MonoBehaviour, ILootable
 {
-    public override void LootAction()
+    public void LootAction()
     {
         SceneManager.LoadScene("Test_Boss");
     }
