@@ -12,7 +12,7 @@ public class ItemHighlighter : MonoBehaviour
     Material mat;
     CircleCollider2D coll;
 
-    bool findItems = true;
+    //bool findItems = true;
 
     private void Awake()
     {

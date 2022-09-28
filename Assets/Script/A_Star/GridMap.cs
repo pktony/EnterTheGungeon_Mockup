@@ -51,8 +51,13 @@ public class GridMap
     }
 
 
-    private Node GetNode(int y, int x)
+    public Node GetNode(int y, int x)
     {
         return nodes[height - y, x - width];
+    }
+
+    public Node GetNode(Vector2Int position)
+    {
+        return GetNode(position.x, position.y);
     }
 }

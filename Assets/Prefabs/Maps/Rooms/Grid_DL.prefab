@@ -31,6 +31,7 @@ Transform:
   m_Children:
   - {fileID: 5070828326412151508}
   - {fileID: 5070828327360111861}
+  - {fileID: 8390264338288683731}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3333,7 +3334,7 @@ Tilemap:
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 1}
   m_Origin: {x: -10, y: -8, z: 0}
   m_Size: {x: 20, y: 16, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -4294,3 +4295,65 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!1001 &7938107683705126294
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5070828326122919424}
+    m_Modifications:
+    - target: {fileID: 1898801705099319109, guid: 439d303af95174f24a4888a8372e9390, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898801705099319109, guid: 439d303af95174f24a4888a8372e9390, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898801705099319109, guid: 439d303af95174f24a4888a8372e9390, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898801705099319109, guid: 439d303af95174f24a4888a8372e9390, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898801705099319109, guid: 439d303af95174f24a4888a8372e9390, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898801705099319109, guid: 439d303af95174f24a4888a8372e9390, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898801705099319109, guid: 439d303af95174f24a4888a8372e9390, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898801705099319109, guid: 439d303af95174f24a4888a8372e9390, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898801705099319109, guid: 439d303af95174f24a4888a8372e9390, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898801705099319109, guid: 439d303af95174f24a4888a8372e9390, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898801705099319109, guid: 439d303af95174f24a4888a8372e9390, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898801705099319111, guid: 439d303af95174f24a4888a8372e9390, type: 3}
+      propertyPath: m_Name
+      value: MonsterSpawner
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 439d303af95174f24a4888a8372e9390, type: 3}
+--- !u!4 &8390264338288683731 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1898801705099319109, guid: 439d303af95174f24a4888a8372e9390, type: 3}
+  m_PrefabInstance: {fileID: 7938107683705126294}
+  m_PrefabAsset: {fileID: 0}

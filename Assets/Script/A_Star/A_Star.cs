@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ProjectWindowCallback;
 using UnityEngine;
 
 public class A_Star : MonoBehaviour
@@ -29,14 +30,69 @@ public class A_Star : MonoBehaviour
     /// 시작점 , 도착점
     ///
 
-    public static List<Vector2Int> FindPath(Grid gridMap, Vector2Int startPoint, Vector2Int endPoint)
+    public static List<Vector2Int> FindPath(GridMap gridMap, Vector2Int startPoint, Vector2Int endPoint)
     {
         List<Vector2Int> path = new List<Vector2Int>();
             
-        List<Vector2Int> openList = new();
-        List<Vector2Int> closeList = new();
+        List<Node> openList = new();
+        List<Node> closeList = new();
 
-        
+        Node current = gridMap.GetNode(startPoint);
+        current.G = 0;
+        current.H = (endPoint - startPoint).sqrMagnitude;
+
+        openList.Add(current);
+
+        while(openList.Count > 0)
+        {
+            openList.Sort();    // 
+            current = openList[0];
+            openList.RemoveAt(0);
+
+            if(current != endPoint)
+            {
+                closeList.Add(current);
+                for(int y = -1; y < 2; y++)
+                {
+                    for (int x = -1; x < 2; x++)
+                    {
+                        Node node = gridMap.GetNode(x + current.x, y + current.y);
+                        if (node == null)
+                            continue;
+                        if (node == current)
+                            continue;
+                        if (closeList.Exists(iter => iter == node))
+                            continue;
+                        if (Mathf.Abs(x) == Mathf.Abs(y))
+                            continue;
+
+
+                        if(node.G < current.G + 1)
+                        {
+                            node.G = current.G + 1;
+                            if(node.parent == null)
+                            {
+                                current.H = (endPoint - startPoint).sqrMagnitude;
+                                openList.Add(node);
+                            }
+                            node.parent = current;
+                        }
+                    }
+                }
+            }
+        }
+
+        // 도착지점 도착 
+        if(current == endPoint)
+        {
+            Node result = current;
+            while(result != null)
+            {
+                path.Add(new Vector2Int(result.x, result.y));
+                result = result.parent;
+                path.Reverse();
+            }
+        }
 
         return path;
     }
