@@ -13,15 +13,12 @@ public class Heart_UI : MonoBehaviour
 
     IHealth player = null;
 
-    private void Awake()
+    private void Start()
     {
         player = GameManager.Inst.Player.GetComponent<IHealth>();
         player.OnTakeDamage += OnTakeDamage;
         player.OnHPUp += IncreaseHeart;
-    }
 
-    private void Start()
-    {
         heartSet = new RectTransform[(int)(player.MaxHP * 0.5f)];
         heartImg = new Image[player.MaxHP];
 
@@ -86,6 +83,7 @@ public class Heart_UI : MonoBehaviour
         {
             heartImg[player.HP - 1].sprite = heart_Red;
             heartImg[player.HP - 1].color = Color.white;
+            heartImg[player.HP - 1].transform.SetAsFirstSibling();  // Set heart UI hierarchy order
         }
         else
         {

@@ -192,18 +192,10 @@ public class PlayerControl : MonoBehaviour
         if (scroll < 0)
         {// Previous weapon
             player.CurrentWeaponIndex--;
-            if (player.Inven.Slots[player.CurrentWeaponIndex].WeaponSlotData == null)
-            {
-                player.CurrentWeaponIndex++;
-            }
         }
         else
         {// Next weapon
             player.CurrentWeaponIndex++;
-            if (player.Inven.Slots[player.CurrentWeaponIndex].WeaponSlotData == null)
-            {
-                player.CurrentWeaponIndex--;
-            }
         }
     }
 
@@ -223,6 +215,7 @@ public class PlayerControl : MonoBehaviour
             {
                 autoFire = player.Fire();
                 StartCoroutine(autoFire);
+                player.WeaponPoc.PlayFireAnimation();
             }
             else
             {
@@ -232,6 +225,7 @@ public class PlayerControl : MonoBehaviour
         else if (context.canceled)
         {
             StopCoroutine(autoFire);
+            player.WeaponPoc.PlayIdleAnimation();
         }
     }
 
@@ -239,15 +233,20 @@ public class PlayerControl : MonoBehaviour
     {
         if (player.Inven_Item.Slots[(int)ItemID.BlankShell].StackCount > 0)
         {
-            GameObject[] bullets = GameObject.FindGameObjectsWithTag("EnemyBullets");
-
             player.Inven_Item.Slots[(int)ItemID.BlankShell].StackCount--;
-
             blankFX.PlayBlankFX();
 
-            foreach (GameObject bullet in bullets)
+            GameObject[] bullets = GameObject.FindGameObjectsWithTag("EnemyBullets");
+            if( bullets != null)
             {
-                BulletManager.Inst.ReturnBullet(BulletID.ENEMY, bullet);
+                foreach (GameObject bullet in bullets)
+                {
+                    IDestroyable destroyable = bullet.GetComponent<IDestroyable>();
+                    if(destroyable != null)
+                    {
+                        destroyable.BlankDestroy();
+                    }
+                }
             }
         }
     }
@@ -277,58 +276,12 @@ public class PlayerControl : MonoBehaviour
                     closest = temp;
                     items[0] = item;
                 }
-            }    
+            }
 
-        
-            if (items[0].CompareTag("Weapons"))
+            ILootable lootable = items[0].GetComponent<ILootable>();
+            if(lootable != null)
             {
-                int sameCount = 0;
-                Weapon newWeapon = items[0].GetComponent<Weapon>();
-                for (int i = 0; i < player.Inven.slotCount; i++)
-                {// Check if Weapon == in slot weapons
-                    if (player.Inven.Slots[i].WeaponSlotData == newWeapon.weaponData)
-                    {
-                        sameCount++;
-                    }
-                }
-
-                if (sameCount < 1)
-                {
-                    player.Inven.AddItem(newWeapon.weaponData);
-                    newWeapon.gameObject.tag = "Player";
-                    Destroy(items[0]);
-                    int index = player.CurrentWeaponIndex;
-                    player.CurrentWeaponIndex++;
-                    if (index == player.CurrentWeaponIndex)
-                    {
-                        player.CurrentWeaponIndex--;
-                    }
-                }
-                else
-                {
-                    Debug.Log("");
-                }
-            }
-            else if (items[0].CompareTag("BlankShell"))
-            {
-                player.Inven_Item.Slots[(int)ItemID.BlankShell].IncreaseItem();
-                ItemManager.Inst.ReturnItem(ItemID.BlankShell, items[0].gameObject);
-            }
-            else if (items[0].CompareTag("Ammo"))
-            {
-                player.CurrentWeapon.remainingBullet = player.CurrentWeapon.maxBulletNum;
-                player.W_InvenUI.BulletUI.RefreshBullet_UI();
-                ItemManager.Inst.ReturnItem(ItemID.AmmoBox, items[0].gameObject);
-            }
-            else if (items[0].CompareTag("Key"))
-            {
-                player.Inven_Item.Slots[(int)ItemID.Key].IncreaseItem();
-                ItemManager.Inst.ReturnItem(ItemID.Key, items[0].gameObject);
-            }
-            else if (items[0].CompareTag("Heart"))
-            {
-                player.HP++;
-                ItemManager.Inst.ReturnItem(ItemID.Heart, items[0].gameObject);
+                lootable.LootAction();
             }
         }
     }
