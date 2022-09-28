@@ -2,15 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletManager : MonoBehaviour
+public class BulletManager : Singleton<BulletManager>
 {
-    // ##################### Singleton #########################
-    private static BulletManager instance = null;
-    public static BulletManager Inst { get => instance; }
-
     // #################### Dictionary #########################
     private static Dictionary<uint, Stack<GameObject>> pooledBullets;
-    public static Dictionary<uint, Stack<GameObject>> PooledBullets => pooledBullets;
 
     //##################### Bullet Stack #######################
     [SerializeField] private BulletData[] poolingBullet;
@@ -20,39 +15,26 @@ public class BulletManager : MonoBehaviour
     private Stack<GameObject> player_Bullet = new();
     private Stack<GameObject> enemy_Bullet = new();
     private Stack<GameObject> bossBullet_Circle = new();
-    private Stack<GameObject> bossBullet_Spear = new();
+    private Stack<GameObject> bossBullet_Big = new();
+    private Stack<GameObject> bossBullet_Mid = new();
+    private Stack<GameObject> bossBullet_Football = new();
+    private Stack<GameObject> bossBullet_Spinning = new();
+    private Stack<GameObject> goblet = new();
 
 
-    private uint playerBulletID;
-    private uint enemyBulletID;
-    public uint PlayerBulletID => playerBulletID;
-    public uint EnemyBulletID => enemyBulletID;
-
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            instance.Initialize();
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            if (instance != this)
-            {
-                Destroy(this.gameObject);
-            }
-        }
-    }
-
-    void Initialize()
+    protected override void Initialize()
     {
         pooledBullets = new();
 
         pooledBullets.Add(poolingBullet[(int)BulletID.PLAYER].bulletId, player_Bullet);
         pooledBullets.Add(poolingBullet[(int)BulletID.ENEMY].bulletId, enemy_Bullet);
-        pooledBullets.Add(poolingBullet[(int)BulletID.CIRCLE].bulletId, enemy_Bullet);
-        pooledBullets.Add(poolingBullet[(int)BulletID.SPEAR].bulletId, enemy_Bullet);
+        pooledBullets.Add(poolingBullet[(int)BulletID.CIRCLE].bulletId, bossBullet_Circle);
+        pooledBullets.Add(poolingBullet[(int)BulletID.BIG].bulletId, bossBullet_Big);
+        pooledBullets.Add(poolingBullet[(int)BulletID.MID].bulletId, bossBullet_Mid);
+        pooledBullets.Add(poolingBullet[(int)BulletID.FOOTBALL].bulletId, bossBullet_Football);
+        pooledBullets.Add(poolingBullet[(int)BulletID.SPINNING].bulletId, bossBullet_Spinning);
+        pooledBullets.Add(poolingBullet[(int)BulletID.GOBLET].bulletId, goblet);
+
 
         for (int i = 0; i < poolingBullet.Length; i++)
         {
@@ -65,19 +47,6 @@ public class BulletManager : MonoBehaviour
         }
     }
 
-    //private void InitializeEnemyBullets()
-    //{
-    //    enemyBullets = new Queue<GameObject>();
-
-    //    GameObject obj;
-    //    for (int i = 0; i < EnemyBulletPoolNumber; i++)
-    //    {
-    //        obj = Instantiate(enemyBullet, this.transform);
-    //        obj.SetActive(false);
-    //        enemyBullets.Enqueue(obj);
-    //    }
-    //}
-
     public GameObject GetPooledBullet(BulletID id)
     {
         if (pooledBullets[(uint)id].Count > 0)
@@ -86,13 +55,16 @@ public class BulletManager : MonoBehaviour
         }
         else
         {
-            return null;
+            GameObject obj = Instantiate(poolingBullet[(int)id].prefab, this.transform);
+            pooledBullets[(uint)id].Push(obj);
+            obj.SetActive(false);
+            return obj;
         }
     }
 
     public void ReturnBullet(BulletID id, GameObject uselessBullet)
     {
-        PooledBullets[(uint)id].Push(uselessBullet);
+        pooledBullets[(uint)id].Push(uselessBullet);
         uselessBullet.transform.rotation = Quaternion.identity;
         uselessBullet.transform.position = Vector3.zero;
         uselessBullet.SetActive(false);

@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    private static GameManager instance = null;
-    public static GameManager Inst { get => instance; }
-
     private Player player = null;
     public Player Player { get => player; }
     
@@ -18,24 +15,9 @@ public class GameManager : MonoBehaviour
 
     private ItemDataManager itemDataManager;
     public ItemDataManager ItemDataManager => itemDataManager;
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            instance.Initialize();
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            if (instance != this)
-            {
-                Destroy(this.gameObject);
-            }
-        }
-    }
 
-    void Initialize()
+
+    protected override void Initialize()
     {
         player = FindObjectOfType<Player>();
         control = player.GetComponent<PlayerControl>();
