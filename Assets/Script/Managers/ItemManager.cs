@@ -2,12 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemManager : MonoBehaviour
+public class ItemManager : Singleton<ItemManager>
 {
-    // ##################### Singleton #########################
-    private static ItemManager instance = null;
-    public static ItemManager Inst { get => instance; }
-
     // #################### Dictionary #########################
     private static Dictionary<uint, Stack<GameObject>> pooledItems;
     public static Dictionary<uint, Stack<GameObject>> PooledItems => pooledItems;
@@ -24,24 +20,7 @@ public class ItemManager : MonoBehaviour
     private Stack<GameObject> silverShell;
     private Stack<GameObject> goldShell;
 
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            instance.Initialize();
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            if (instance != this)
-            {
-                Destroy(this.gameObject);
-            }
-        }
-    }
-
-    void Initialize()
+    protected override void Initialize()
     {
         pooledItems = new();
 
