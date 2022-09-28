@@ -44,8 +44,9 @@ GameObject:
   - component: {fileID: -6216456371361720365}
   - component: {fileID: 127408388005923304}
   - component: {fileID: -7271323321180902954}
+  - component: {fileID: -8058062294385576344}
   m_Layer: 9
-  m_Name: 0_BudgetRevolver
+  m_Name: 0_Revolver
   m_TagString: Weapons
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +60,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 758027800135795326}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.63, y: -0.068, z: 0}
+  m_LocalPosition: {x: 0.7, y: -0.068, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -108,7 +109,7 @@ SpriteRenderer:
   m_SortingLayerID: 294582783
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: 126439806, guid: 06124f0441b14f949b6ae899dec1c5f2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ab951a2f7fc254e2da6894769db50297, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -169,3 +170,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &-8058062294385576344
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758027800135795326}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 04512a9efca684a80ab29867e5199419, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

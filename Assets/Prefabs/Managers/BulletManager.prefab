@@ -56,12 +56,24 @@ MonoBehaviour:
     bulletSize: 100
   - bulletId: 2
     bulletName: BossBullet_Circle
-    prefab: {fileID: 7259074887757978825, guid: b52a0bf6bc3553740b78a001ef6db101, type: 3}
+    prefab: {fileID: 7259074887757978825, guid: 480620cd099e74cc2a528b06d45ba522, type: 3}
     bulletSize: 100
   - bulletId: 3
-    bulletName: BossBullet_Spear
-    prefab: {fileID: 7259074887757978825, guid: b52a0bf6bc3553740b78a001ef6db101, type: 3}
+    bulletName: BossBullet_Big
+    prefab: {fileID: 7259074887757978825, guid: f1e446b7bf6954e818838d9b73933ea2, type: 3}
+    bulletSize: 3
+  - bulletId: 4
+    bulletName: BossBullet_Mid
+    prefab: {fileID: 7259074887757978825, guid: d21b84a291e784903aa7f2af6bdac7a3, type: 3}
     bulletSize: 100
+  - bulletId: 5
+    bulletName: BossBullet_Football
+    prefab: {fileID: 7259074887757978825, guid: 0b868303bf11f4e1b944da0eb504b397, type: 3}
+    bulletSize: 10
+  - bulletId: 6
+    bulletName: BossBullet_Spinning
+    prefab: {fileID: 7259074887757978825, guid: acceac5d0ecf94c09a9abce6ca72e328, type: 3}
+    bulletSize: 80
 --- !u!114 &1857676715
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3328735774361471285}
   - component: {fileID: 224477572909422385}
   - component: {fileID: 6396695261848134288}
+  - component: {fileID: 6065926519402169208}
   m_Layer: 9
   m_Name: AmmoBox
   m_TagString: Ammo
@@ -101,3 +102,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.3
+--- !u!114 &6065926519402169208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8117504602125103565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0bc69e299edb4ab0a3ad06551e79ab7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
