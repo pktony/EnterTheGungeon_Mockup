@@ -46,10 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolingFx:
   - ID: 0
-    FxName: Bullet Explosion
-    prefab: {fileID: 6092947203352417887, guid: a407628b8df1eb140829e4638ac54d6d, type: 3}
-    poolSize: 1
-  - ID: 1
     FxName: BlankFX
     prefab: {fileID: 6085799696296703227, guid: 6b9225cdd8c83c0438d1af56033e4a9c, type: 3}
     poolSize: 3
