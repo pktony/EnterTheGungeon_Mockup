@@ -23,6 +23,7 @@ public class Teleport : MonoBehaviour, ILootable
     {
         GameManager.Inst.SoundManager.PlaySound_Item(Clips_Item.Teleport_Depart);
         yield return new WaitForSeconds(0.5f);
+        EnemyManager.Inst.ReturnAllEnemies();
         SceneManager.LoadScene("Test_Boss");
     }
 

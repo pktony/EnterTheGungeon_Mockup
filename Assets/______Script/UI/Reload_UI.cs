@@ -29,7 +29,8 @@ public class Reload_UI : MonoBehaviour
 
     private void Start()
     {
-        speed = baseWidth / GameManager.Inst.Player.CurrentWeapon.reloadingTime;
+        Player player = FindObjectOfType<Player>();
+        speed = baseWidth / player.CurrentWeapon.reloadingTime;
     }
 
     public IEnumerator ReloadUI()

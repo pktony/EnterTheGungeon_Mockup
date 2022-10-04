@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -30,6 +31,15 @@ public class GameManager : Singleton<GameManager>
     #endregion
 
     protected override void Initialize()
+    {
+        //player = FindObjectOfType<Player>();
+        //control = player.GetComponent<PlayerControl>();
+        //weaponData = GetComponent<WeaponDataManager>();
+        //itemDataManager = GetComponent<ItemDataManager>();
+        //soundManager = GetComponent<SoundManager>();
+    }
+
+    private void Awake()
     {
         player = FindObjectOfType<Player>();
         control = player.GetComponent<PlayerControl>();

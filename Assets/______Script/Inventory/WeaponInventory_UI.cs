@@ -49,7 +49,8 @@ public class WeaponInventory_UI : MonoBehaviour
         }
         RefreshAllSlots();
         GameManager.Inst.Player.InitializeCurrentWeapon(0);
-        GameManager.Inst.Player.onWeaponChange = ShowCurrentWeapon;
+        Player player = FindObjectOfType<Player>();
+        player.onWeaponChange = ShowCurrentWeapon;
 
         bulletUI = FindObjectOfType<Bullet_UI>();
         bulletUI.InitializeBullet_UI();

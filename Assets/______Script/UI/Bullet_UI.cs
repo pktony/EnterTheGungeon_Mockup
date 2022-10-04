@@ -6,6 +6,7 @@ using TMPro;
 
 public class Bullet_UI : MonoBehaviour
 {
+    Player player;
     // ##################### Components ########################
     TextMeshProUGUI bulletText;
     [SerializeField] private Transform parent;
@@ -23,13 +24,13 @@ public class Bullet_UI : MonoBehaviour
 
         bulletImg = GetComponentsInChildren<Image>();
         bulletText = GetComponentInChildren<TextMeshProUGUI>();
-
+        player = FindObjectOfType<Player>();
     }
 
     private void Start()
     {
         //InitializeBullet_UI();
-        GameManager.Inst.Player.onFireReload = RefreshBullet_UI;
+        player.onFireReload = RefreshBullet_UI;
     }
 
     public void InitializeBullet_UI()

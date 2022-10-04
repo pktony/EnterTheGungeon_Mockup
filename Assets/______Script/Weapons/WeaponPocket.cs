@@ -16,11 +16,6 @@ public class WeaponPocket : MonoBehaviour
         firePosition = transform.GetChild(0).GetChild(0);
     }
 
-    private void Start()
-    {
-        InitializeWeaponAnimator(0);
-    }
-
     public void InitializeWeaponAnimator(int slotNumber)
     {
         weaponSprite.sprite =

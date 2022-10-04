@@ -13,9 +13,9 @@ public class Heart_UI : MonoBehaviour
 
     IHealth player = null;
 
-    private void Start()
+    private void Awake()
     {
-        player = GameManager.Inst.Player.GetComponent<IHealth>();
+        player = FindObjectOfType<Player>().GetComponent<IHealth>();
         player.OnTakeDamage += OnTakeDamage;
         player.OnHPUp += IncreaseHeart;
 
@@ -28,10 +28,15 @@ public class Heart_UI : MonoBehaviour
             heartSet[i] = transform.GetChild(i).GetComponent<RectTransform>();
             for (int j = 0; j < 2; j++)
             {
-                heartImg[j+k] = heartSet[i].GetChild(j).GetComponent<Image>();
+                heartImg[j + k] = heartSet[i].GetChild(j).GetComponent<Image>();
             }
             k += 2;
         }
+    }
+
+    private void Start()
+    {
+        
 
         //Debug.Log(heartSet.Length);
         //for (int i = 0; i < heartImg.Length; i++)

@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BulletManager : Singleton<BulletManager>
 {
     // #################### Dictionary #########################
-    private static Dictionary<uint, Stack<GameObject>> pooledBullets;
+    private static Dictionary<uint, Stack<GameObject>> pooledBullets = new();
 
     //##################### Bullet Stack #######################
     [SerializeField] private BulletData[] poolingBullet;
@@ -22,27 +23,28 @@ public class BulletManager : Singleton<BulletManager>
     private Stack<GameObject> goblet = new();
 
 
-    protected override void Initialize()
+    protected override void OnSceneLoad(Scene arg0, LoadSceneMode arg1)
     {
-        pooledBullets = new();
-
-        pooledBullets.Add(poolingBullet[(int)BulletID.PLAYER].bulletId, player_Bullet);
-        pooledBullets.Add(poolingBullet[(int)BulletID.ENEMY].bulletId, enemy_Bullet);
-        pooledBullets.Add(poolingBullet[(int)BulletID.CIRCLE].bulletId, bossBullet_Circle);
-        pooledBullets.Add(poolingBullet[(int)BulletID.BIG].bulletId, bossBullet_Big);
-        pooledBullets.Add(poolingBullet[(int)BulletID.MID].bulletId, bossBullet_Mid);
-        pooledBullets.Add(poolingBullet[(int)BulletID.FOOTBALL].bulletId, bossBullet_Football);
-        pooledBullets.Add(poolingBullet[(int)BulletID.SPINNING].bulletId, bossBullet_Spinning);
-        pooledBullets.Add(poolingBullet[(int)BulletID.GOBLET].bulletId, goblet);
-
-
-        for (int i = 0; i < poolingBullet.Length; i++)
+        if (pooledBullets.Count < 1)
         {
-            for (int j = 0; j < poolingBullet[i].bulletSize; j++)
+            pooledBullets.Add(poolingBullet[(int)BulletID.PLAYER].bulletId, player_Bullet);
+            pooledBullets.Add(poolingBullet[(int)BulletID.ENEMY].bulletId, enemy_Bullet);
+            pooledBullets.Add(poolingBullet[(int)BulletID.CIRCLE].bulletId, bossBullet_Circle);
+            pooledBullets.Add(poolingBullet[(int)BulletID.BIG].bulletId, bossBullet_Big);
+            pooledBullets.Add(poolingBullet[(int)BulletID.MID].bulletId, bossBullet_Mid);
+            pooledBullets.Add(poolingBullet[(int)BulletID.FOOTBALL].bulletId, bossBullet_Football);
+            pooledBullets.Add(poolingBullet[(int)BulletID.SPINNING].bulletId, bossBullet_Spinning);
+            pooledBullets.Add(poolingBullet[(int)BulletID.GOBLET].bulletId, goblet);
+
+
+            for (int i = 0; i < poolingBullet.Length; i++)
             {
-                GameObject obj = Instantiate(poolingBullet[i].prefab, this.transform);
-                pooledBullets[(uint)i].Push(obj);
-                obj.SetActive(false);
+                for (int j = 0; j < poolingBullet[i].bulletSize; j++)
+                {
+                    GameObject obj = Instantiate(poolingBullet[i].prefab, this.transform);
+                    pooledBullets[(uint)i].Push(obj);
+                    obj.SetActive(false);
+                }
             }
         }
     }
