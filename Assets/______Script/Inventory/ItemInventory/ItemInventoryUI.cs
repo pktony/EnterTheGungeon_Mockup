@@ -25,10 +25,20 @@ public class ItemInventoryUI : MonoBehaviour
         //blankShell = transform.GetChild(0).GetComponentsInChildren<Image>();
         keyCountText = transform.GetChild(1).GetComponentInChildren<TextMeshProUGUI>();
         shellCountText = transform.GetChild(2).GetComponentInChildren<TextMeshProUGUI>();
+
+        //Player player = FindObjectOfType<Player>();
+        //itemInven = player.Inven_Item;
+
+        //foreach (ItemSlot slot in itemInven.Slots)
+        //{
+        //    slot.onItemLoot += RefreshUIs;
+        //}
+        
     }
 
     private void Start()
     {
+        //Player player = FindObjectOfType<Player>();
         itemInven = GameManager.Inst.Player.Inven_Item;
 
         foreach (ItemSlot slot in itemInven.Slots)

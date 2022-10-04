@@ -56,7 +56,6 @@ public class Player : MonoBehaviour, IHealth
         get => healthPoint;
         set
         {
-            healthPoint = Mathf.Clamp(value, 0, maxHealthPoint);
             if (value < healthPoint)
             {
                 OnTakeDamage?.Invoke();     //  Heart_UI.cs
@@ -65,16 +64,13 @@ public class Player : MonoBehaviour, IHealth
             {
                 OnHPUp?.Invoke();
             }
+            healthPoint = Mathf.Clamp(value, 0, maxHealthPoint);
         }
     }
     public int MaxHP => maxHealthPoint;
     public WeaponData CurrentWeapon 
     {
         get => currentWeapon;
-        set
-        { 
-            currentWeapon = value;
-        }
     }
     public int CurrentWeaponIndex
     {
@@ -113,15 +109,16 @@ public class Player : MonoBehaviour, IHealth
 
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
+
         render = GetComponent<SpriteRenderer>();
         source = GetComponent<AudioSource>();
         blinkTime = new WaitForSeconds(invincibleTime);
 
         inven_UI = FindObjectOfType<WeaponInventory_UI>();
+        reloadUI = transform.GetChild(1).GetComponentInChildren<Reload_UI>();
 
         weaponPocket = GetComponentInChildren<WeaponPocket>();
-       
-        reloadUI = transform.GetChild(1).GetComponentInChildren<Reload_UI>();
 
         inven = new WeaponInventory(weaponSlotNumber);
         inven.AddItem(WeaponType.PISTOL);

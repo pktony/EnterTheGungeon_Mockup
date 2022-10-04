@@ -60,3 +60,5 @@ MonoBehaviour:
   - {fileID: 6340477058424379405, guid: 2f25d129b800e454db9f00c755fe7802, type: 3}
   - {fileID: 6340477058424379405, guid: b174d568af8aa47ec8cde9229311992a, type: 3}
   - {fileID: 6340477058424379405, guid: 3473dd95df37e49d2a09f1984d4043c3, type: 3}
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 0}

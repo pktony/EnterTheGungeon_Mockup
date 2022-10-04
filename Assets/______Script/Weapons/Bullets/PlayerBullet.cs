@@ -31,11 +31,4 @@ public class PlayerBullet : MonoBehaviour
     {
         BulletManager.Inst.ReturnBullet(BulletID.PLAYER, this.gameObject);
     }
-
-    private Vector2 GetExplosionAngle(Vector2 contact)
-    {// bulletexplosion FX�� ���� �������� �ٶ󺸰� �ִ�.
-        Vector2 ballVector = rigid.velocity;
-
-        return Vector2.zero;
-    }
 }

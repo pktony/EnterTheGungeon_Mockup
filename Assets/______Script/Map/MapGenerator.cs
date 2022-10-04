@@ -8,11 +8,10 @@ public class MapGenerator : MonoBehaviour
 {
     public GameObject[] maps;
 
-    bool[,] roomExists;
+    private bool[,] roomExists;
 
-    public const int MAP_HEIGHT = 5;
-    public const int MAP_WIDTH = 5;
-    public const float hasRoomPossibility = 0.8f;
+    private const int MAP_HEIGHT = 5;
+    private const int MAP_WIDTH = 5;
     private int roomExistNumber = 0;
 
     private int room_Height = 18;
@@ -21,7 +20,9 @@ public class MapGenerator : MonoBehaviour
     private int room_Offset = 10;
 
     private List<bool> rooms;
+    private Transform player;
 
+    public const float hasRoomPossibility = 0.8f;
     public Transform startPoint;
     public Transform endPoint;
 
@@ -43,6 +44,7 @@ public class MapGenerator : MonoBehaviour
     {
         //TEST
         //A_Star.FindPath(grid, Mathf.RoundToInt(startPoint.position.x), endPoint.position);
+        //GameManager.Inst.Player.transform.position = startPoint.position;
     }
 
     private void RandomizeRooms()
@@ -210,9 +212,13 @@ public class MapGenerator : MonoBehaviour
 
                     roomCount++;
                     if (roomCount == 1)
+                    {
                         startPoint.position = room[i, j].gridPosition;
-                    else if (roomCount == roomExistNumber )
-                        endPoint.position = room[i, j].gridPosition;
+                        player = FindObjectOfType<Player>().transform;
+                        player.position = startPoint.position;
+                    }
+                    //else if (roomCount == roomExistNumber)
+                        //endPoint.position = room[i, j].gridPosition;
                 }
             }
         }

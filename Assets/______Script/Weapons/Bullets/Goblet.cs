@@ -30,7 +30,7 @@ public class Goblet : MonoBehaviour
     
     private void OnEnable()
     {
-        if(GameManager.Inst != null)
+        if(GameManager.Inst.Player != null)
         {
             throwPosition = GameManager.Inst.Player.transform.position;
             throwDir = throwPosition - (Vector2)transform.position;

@@ -36,7 +36,6 @@ public class Singleton<T> : MonoBehaviour where T : Component
             T obj = this as T;
             DontDestroyOnLoad(obj.gameObject);
             SceneManager.sceneLoaded += OnSceneLoad;
-            Initialize();
         }
         else
         {
@@ -52,7 +51,6 @@ public class Singleton<T> : MonoBehaviour where T : Component
     }
 
     protected virtual void Initialize()
-    {
-        
-    }
+    { }
+
 }
