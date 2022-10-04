@@ -6,15 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Test_Player.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/______Scenes/IntroScene.unity
+    guid: c862d69519d54431dadc0c636d4aa0c9
   - enabled: 1
-    path: Assets/Scenes/Map/Seamless_Normal.unity
-    guid: d111db9ebf7d74dab950db1d9b781d2d
-  - enabled: 1
-    path: Assets/Scenes/Map/Main_MapLoader.unity
+    path: Assets/______Scenes/Map/Main_MapLoader.unity
     guid: dfc6cedd84e394466a3f2a95e9884686
   - enabled: 1
-    path: Assets/Scenes/Test_Boss.unity
+    path: Assets/______Scenes/Test_Boss.unity
     guid: 393b27e576ddd074ba84f9d59fd0b69a
+  - enabled: 1
+    path: Assets/______Scenes/LoadingScreen.unity
+    guid: 7257e1182a31242129f0b34580563338
   m_configObjects: {}
