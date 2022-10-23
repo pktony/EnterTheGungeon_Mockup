@@ -8,7 +8,7 @@ public class GridMap
     // 씬마다 하나씩 있는 그리드
 
     /// 필요 정보
-    /// 가로 세로 크기 정
+    /// 가로 세로 크기 정보 
     /// 그리드에서 Node 입히기
 
     Node[,] nodes;
@@ -22,7 +22,7 @@ public class GridMap
         height = ground.size.y;
         width = ground.size.x;
 
-        // ground 왼쪽 아래 끝 지저
+        // ground 왼쪽 아래 끝 지점 
         offset = (Vector2Int)ground.cellBounds.min;
 
         nodes = new Node[height, width];
@@ -50,12 +50,17 @@ public class GridMap
         }
     }
 
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="y"></param>
+    /// <param name="x"></param>
+    /// <returns></returns>
     public Node GetNode(int y, int x)
     {
         return nodes[height - y, x - width];
     }
-
+    
     public Node GetNode(Vector2Int position)
     {
         return GetNode(position.x, position.y);

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 
 public class MapGenerator : MonoBehaviour
 {
@@ -10,61 +9,73 @@ public class MapGenerator : MonoBehaviour
 
     private bool[,] roomExists;
 
-    private const int MAP_HEIGHT = 5;
-    private const int MAP_WIDTH = 5;
-    private int roomExistNumber = 0;
+    // 전체 맵의 사이즈
+    private const int MAP_SIZE = 7;
 
-    private int room_Height = 18;
-    private int room_Width = 22;
+    // 방 한 칸의 사이즈 
+    private readonly int ROOM_HEIGHT = 18;
+    private readonly int ROOM_WIDTH = 22;
 
-    private int room_Offset = 10;
-
-    private List<bool> rooms;
     private Transform player;
 
-    public const float hasRoomPossibility = 0.8f;
     public Transform startPoint;
     public Transform endPoint;
+    public GameObject spawnerPrefab;
 
+    /// <summary>
+    /// C#에서 X,Y 좌표는 반대이다 
+    /// </summary>
     private void Awake()
     {
-        roomExists = new bool[MAP_HEIGHT, MAP_WIDTH];
-        Room[,] room = new Room[MAP_HEIGHT, MAP_WIDTH];
-
-        rooms = new();
-
+        roomExists = new bool[MAP_SIZE, MAP_SIZE];
+        Room[,] rooms = new Room[MAP_SIZE, MAP_SIZE];
         RandomizeRooms();
-        FindAdjacentRooms(room);
-        DecideRoomDirection(room);
-
-        MakeRooms(room);
+        FindAdjacentRooms(rooms);
+        DecideRoomDirection(rooms);
+        MakeRooms(rooms);
     }
 
-    private void Start()
-    {
-        //TEST
-        //A_Star.FindPath(grid, Mathf.RoundToInt(startPoint.position.x), endPoint.position);
-        //GameManager.Inst.Player.transform.position = startPoint.position;
-    }
-
+    /// <summary>
+    /// 랜덤으로 방 정보를 생성하는 함수
+    /// 첫 방에서 마지막 방까지 A star 알고리즘을 적용하기 떄문에 마지막 방만 지정해주면 된다
+    /// 랜덤으로 지정되면 경로가 없는 경우가 생기기 때문에 경로가 있을 때까지 랜덤으로 생성 
+    /// </summary>
     private void RandomizeRooms()
     {
-        for (int i = 0; i < MAP_HEIGHT; i++)
+        List<Vector2Int> path = new();
+
+        int failCount = 0;
+        do
         {
-            for (int j = 0; j < MAP_WIDTH; j++)
-            {
-                roomExists[i, j] = Random.Range(0f, 1f) < hasRoomPossibility;
-                if (roomExists[i,j])
-                    roomExistNumber++;
-            }
+            path.Clear();
+            Map map = new Map(MAP_SIZE, MAP_SIZE);
+
+            int randPoints_X = Random.Range(0, MAP_SIZE);
+            int randPoints_Y = Random.Range(MAP_SIZE - 3, MAP_SIZE);
+
+            path = A_Star.FindPath_Map(map, Vector2Int.zero, new Vector2Int(randPoints_X, randPoints_Y));
+            failCount++;
+        } while (path.Count < 1 && failCount < 100);
+
+        Vector2 roomPos;
+        for (int i = 0; i < path.Count; i++)
+        {
+            roomPos = path[i];
+            roomPos.x = roomPos.x * ROOM_WIDTH;
+            roomPos.y = roomPos.y * ROOM_HEIGHT;
+            roomExists[path[i].x, path[i].y] = true;
         }
     }
 
+    /// <summary>
+    /// 방 주위에 다른 방이 있는지 확인 
+    /// </summary>
+    /// <param name="room"></param>
     private void FindAdjacentRooms(Room[,] room)
     {
-        for (int i = 0; i < MAP_HEIGHT; i++)
+        for (int i = 0; i < MAP_SIZE; i++)
         {
-            for (int j = 0; j < MAP_WIDTH; j++)
+            for (int j = 0; j < MAP_SIZE; j++)
             {
                 if (roomExists[i, j])
                 {
@@ -74,7 +85,7 @@ public class MapGenerator : MonoBehaviour
                     /// i-1, j-1   i, j+1     i+1, j+1
                     /// i-1, j      i,j       i+1, j
                     /// i-1, j-1   i, j-1     i+1, j-1
-                    room[i, j] = new Room(new Vector2(j * room_Width + room_Offset, i * room_Height + room_Offset));
+                    room[i, j] = new Room(new Vector2(j * ROOM_WIDTH, i * ROOM_HEIGHT));
                     for (int k = -1; k < 2; k++)
                     {
                         for (int w = -1; w < 2; w++)
@@ -83,7 +94,7 @@ public class MapGenerator : MonoBehaviour
                                 continue;   // 중앙 
                             else if (Mathf.Abs(k) == Mathf.Abs(w))
                                 continue;   // 대각선
-                            else if (i + k < 0 || i + k > MAP_HEIGHT - 1 || j + w < 0 || j + w > MAP_WIDTH - 1)
+                            else if (i + k < 0 || i + k > MAP_SIZE - 1 || j + w < 0 || j + w > MAP_SIZE - 1)
                                 continue;   // 경계선 
                             if (roomExists[i + k, j + w])
                             { // 0 ~ 2 까지인데 k,w 는 -1 ~ 1 까지임
@@ -96,6 +107,10 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 주변에 방이 있다면 문 위치 결정 
+    /// </summary>
+    /// <param name="room"></param>
     private void DecideRoomDirection(Room[,] room)
     {
         /// 2,0  2,1  2,2
@@ -113,9 +128,9 @@ public class MapGenerator : MonoBehaviour
         /// => 0,1 | 1,0 : DL
         /// UD, LR, UR, UL, DR, DL, ULR, DLR, UDL, UDR
 
-        for (int i = 0; i < MAP_HEIGHT; i++)
+        for (int i = 0; i < MAP_SIZE; i++)
         {
-            for (int j = 0; j < MAP_WIDTH; j++)
+            for (int j = 0; j < MAP_SIZE; j++)
             {
                 if (roomExists[i, j])
                 {
@@ -196,31 +211,44 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 방 생성 
+    /// </summary>
+    /// <param name="room"></param>
     private void MakeRooms(Room[,] room)
     {
-        int roomCount = 0;
-        for (int i = 0; i < MAP_HEIGHT; i++)
+        Vector2 lastPos = Vector2.zero ;
+        for (int i = 0; i < MAP_SIZE; i++)
         {
-            for (int j = 0; j < MAP_WIDTH; j++)
+            for (int j = 0; j < MAP_SIZE; j++)
             {
                 if (roomExists[i, j])
                 {
-                    if (room[i, j].doorDir == DoorDirection.Island)
-                        continue;
-                    GameObject obj = Instantiate(maps[(int)room[i, j].doorDir], room[i, j].gridPosition, Quaternion.identity);
+                    // ------------------- 방 생성 
+                    GameObject obj = Instantiate(maps[(int)room[i, j].doorDir],
+                        room[i, j].gridPosition,
+                        Quaternion.identity);
                     obj.name = $"{i}, {j}";
 
-                    roomCount++;
-                    if (roomCount == 1)
-                    {
+
+                    // ------------------- 스포너 생성 
+                    if (i == 0 && j == 0)
+                    {// 시작 지점은 스포너가 없음 
                         startPoint.position = room[i, j].gridPosition;
-                        player = FindObjectOfType<Player>().transform;
-                        player.position = startPoint.position;
+                        continue;
                     }
-                    //else if (roomCount == roomExistNumber)
-                        //endPoint.position = room[i, j].gridPosition;
+                    GameObject spawner = Instantiate(spawnerPrefab,
+                        room[i, j].gridPosition,
+                        Quaternion.identity);
+                    spawner.transform.parent = obj.transform;
+
+                    // 마지막 방 설정 
+                    lastPos = room[i, j].gridPosition;
                 }
             }
         }
+
+        // 포탈 위치 설정 
+        endPoint.position = lastPos;
     }
 }
