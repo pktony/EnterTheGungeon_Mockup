@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.XR;
 using UnityEngine;
 
 public class Node : System.IComparable<Node>
@@ -10,8 +9,6 @@ public class Node : System.IComparable<Node>
     /// 2. 갈 수 있는 곳인지
     /// 3. F, G , H
     /// 4. 부모 정보
-    /// 5.
-    ///
 
     public int x;
     public int y;
@@ -31,6 +28,14 @@ public class Node : System.IComparable<Node>
         this.movable = canMove;
     }
 
+    public void ClearDatas()
+    {
+        G = float.MaxValue;
+        H = float.MaxValue;
+        parent = null;
+    }
+
+    #region Operator Overloading ##############################################
     public int CompareTo(Node other)
     {
         if (other == null)
@@ -38,7 +43,6 @@ public class Node : System.IComparable<Node>
 
         return F.CompareTo(other.F);
     }
-
     public override bool Equals(object obj)
     {
         return obj is Node node && x == node.x && y == node.y;
@@ -53,4 +57,5 @@ public class Node : System.IComparable<Node>
     {
         return op1.x != op2.x || op1.y != op2.y;
     }
+    #endregion
 }

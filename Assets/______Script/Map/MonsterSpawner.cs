@@ -8,16 +8,6 @@ public class MonsterSpawner : MonoBehaviour
 
     int monsterPopulation = 0;
 
-    private void Awake()
-    {
-        SceneManager.sceneLoaded += OnSceneLoad;
-    }
-
-    private void OnSceneLoad(Scene arg0, LoadSceneMode arg1)
-    {
-        
-    }
-
     private void Start()
     {
         monsterPopulation = Random.Range(2, 4);

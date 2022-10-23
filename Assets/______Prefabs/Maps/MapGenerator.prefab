@@ -62,3 +62,4 @@ MonoBehaviour:
   - {fileID: 6340477058424379405, guid: 3473dd95df37e49d2a09f1984d4043c3, type: 3}
   startPoint: {fileID: 0}
   endPoint: {fileID: 0}
+  spawnerPrefab: {fileID: 1898801705099319111, guid: 439d303af95174f24a4888a8372e9390, type: 3}

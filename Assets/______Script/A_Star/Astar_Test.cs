@@ -5,12 +5,20 @@ using UnityEngine.Tilemaps;
 
 public class Astar_Test : MonoBehaviour
 {
-    public Tilemap ground;
-    public Tilemap wall;
-
+    int mapHeight = 5;
+    int mapWidth = 5;
 
     private void Start()
     {
-        GridMap map = new GridMap(ground, wall);
+        Map map = new Map(mapHeight, mapWidth);
+        List<Vector2Int> test = new();
+        test = A_Star.FindPath_Map(map, Vector2Int.zero, new Vector2Int(mapHeight - 1, mapWidth - 1));
+
+        for (int i = 0; i < test.Count; i++)
+        {
+            Debug.Log(test[i]);
+        }
+
+        int j = 0;
     }
 }
