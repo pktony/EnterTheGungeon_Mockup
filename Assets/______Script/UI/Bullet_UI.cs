@@ -36,7 +36,7 @@ public class Bullet_UI : MonoBehaviour
     public void InitializeBullet_UI()
     {
         weapon = GameManager.Inst.Player.CurrentWeapon;
-        for (int i = 0; i < weapon.maxBulletMagazine; i++)
+        for (int i = 0; i < weapon.bulletPerMagazine; i++)
         {
             bulletImg[i].sprite = weapon.BulletIcon;
             bulletImg[i].color = Color.white;
@@ -61,7 +61,7 @@ public class Bullet_UI : MonoBehaviour
 
         if (weapon.id > 0)
         {
-            bulletText.text = $"{GameManager.Inst.Player.CurrentWeapon.remainingBullet} / {weapon.maxBulletNum}";
+            bulletText.text = $"{GameManager.Inst.Player.CurrentWeapon.bulletsInPocket} / {weapon.maxBulletNum}";
         }
         else
         {
