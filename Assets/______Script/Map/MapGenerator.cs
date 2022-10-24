@@ -16,6 +16,8 @@ public class MapGenerator : MonoBehaviour
     private int ROOM_HEIGHT = 18;
     private int ROOM_WIDTH = 22;
 
+    List<Vector2Int> path = new();
+
     private Transform player;
 
     public Transform startPoint;
@@ -35,6 +37,12 @@ public class MapGenerator : MonoBehaviour
         MakeRooms(rooms);
     }
 
+    private void Start()
+    {
+        player = GameManager.Inst.Player.transform;
+        player.position = startPoint.position;
+    }
+
     /// <summary>
     /// 랜덤으로 방 정보를 생성하는 함수
     /// 첫 방에서 마지막 방까지 A star 알고리즘을 적용하기 떄문에 마지막 방만 지정해주면 된다
@@ -42,7 +50,7 @@ public class MapGenerator : MonoBehaviour
     /// </summary>
     private void RandomizeRooms()
     {
-        List<Vector2Int> path = new();
+        
 
         int failCount = 0;
         do
@@ -50,13 +58,22 @@ public class MapGenerator : MonoBehaviour
             path.Clear();
             Map map = new Map(MAP_SIZE, MAP_SIZE);
 
-            int randPoints_X = Random.Range(0, MAP_SIZE);
-            int randPoints_Y = Random.Range(MAP_SIZE - 3, MAP_SIZE);
+            int randStart = Random.Range(0, MAP_SIZE);
+            int randEnd = Random.Range(0, MAP_SIZE);
 
-            path = A_Star.FindPath_Map(map, Vector2Int.zero, new Vector2Int(randPoints_X, randPoints_Y));
+            path = A_Star.FindPath_Map(map, new Vector2Int(0, randStart), new Vector2Int(MAP_SIZE - 1, randEnd));
             failCount++;
         } while (path.Count < 1 && failCount < 100);
 
+        // 스폰 지점 설정 
+        startPoint.position = new Vector2(
+            path[0].y * ROOM_WIDTH, path[0].x * ROOM_HEIGHT);
+        // 마지막 방 설정
+        Vector2 lastPos = new Vector2(
+            path[path.Count - 1].y * ROOM_WIDTH, path[path.Count - 1].x * ROOM_HEIGHT);
+        endPoint.position = lastPos;
+
+        // 방 세부 위치 조절  
         Vector2 roomPos;
         for (int i = 0; i < path.Count; i++)
         {
@@ -217,7 +234,6 @@ public class MapGenerator : MonoBehaviour
     /// <param name="room"></param>
     private void MakeRooms(Room[,] room)
     {
-        Vector2 lastPos = Vector2.zero ;
         for (int i = 0; i < MAP_SIZE; i++)
         {
             for (int j = 0; j < MAP_SIZE; j++)
@@ -231,24 +247,17 @@ public class MapGenerator : MonoBehaviour
                     obj.name = $"{i}, {j}";
 
 
-                    // ------------------- 스포너 생성 
-                    if (i == 0 && j == 0)
-                    {// 시작 지점은 스포너가 없음 
-                        startPoint.position = room[i, j].gridPosition;
+                    // ------------------- 스포너 생성
+                    if (i == 0)
                         continue;
-                    }
                     GameObject spawner = Instantiate(spawnerPrefab,
                         room[i, j].gridPosition,
                         Quaternion.identity);
-                    spawner.transform.parent = obj.transform;
-
-                    // 마지막 방 설정 
-                    lastPos = room[i, j].gridPosition;
+                    spawner.transform.parent = obj.transform;   
                 }
             }
         }
 
-        // 포탈 위치 설정 
-        endPoint.position = lastPos;
+        
     }
 }
