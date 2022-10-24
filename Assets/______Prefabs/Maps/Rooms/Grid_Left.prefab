@@ -3467,6 +3467,7 @@ GameObject:
   - component: {fileID: 472086084632009269}
   - component: {fileID: 472086084632009268}
   - component: {fileID: 589509854640160335}
+  - component: {fileID: 1110900026327107127}
   m_Layer: 4
   m_Name: Wall
   m_TagString: Untagged
@@ -4378,3 +4379,38 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!114 &1110900026327107127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472086084632009274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000f7361a5dfff98e11f9c7298f
+  m_ShapePath:
+  - {x: -11.033334, y: -9.033334, z: 0}
+  - {x: -11, y: -1, z: 0}
+  - {x: -10, y: -1, z: 0}
+  - {x: -10, y: -8, z: 0}
+  - {x: 10, y: -8, z: 0}
+  - {x: 10, y: 8, z: 0}
+  - {x: -10, y: 8, z: 0}
+  - {x: -10, y: 2, z: 0}
+  - {x: -11, y: 2, z: 0}
+  - {x: -11.033334, y: 9.033334, z: 0}
+  - {x: 11.033334, y: 9.033334, z: 0}
+  - {x: 11.033334, y: -9.033334, z: 0}
+  m_ShapePathHash: 1895126825
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -290636
