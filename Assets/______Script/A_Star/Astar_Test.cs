@@ -18,7 +18,5 @@ public class Astar_Test : MonoBehaviour
         {
             Debug.Log(test[i]);
         }
-
-        int j = 0;
     }
 }
