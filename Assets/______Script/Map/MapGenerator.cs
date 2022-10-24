@@ -13,8 +13,8 @@ public class MapGenerator : MonoBehaviour
     private const int MAP_SIZE = 7;
 
     // 방 한 칸의 사이즈 
-    private readonly int ROOM_HEIGHT = 18;
-    private readonly int ROOM_WIDTH = 22;
+    private int ROOM_HEIGHT = 18;
+    private int ROOM_WIDTH = 22;
 
     private Transform player;
 
