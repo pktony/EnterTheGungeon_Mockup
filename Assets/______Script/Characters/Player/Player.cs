@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IHealth
 {
-    // ########################### Components ##############################
+    #region 컴포넌트 #############################################################
     SpriteRenderer render;
     AudioSource source;
+    #endregion
 
-    // ########################### Variables ###############################
+    #region 변수 ###############################################################
     WeaponInventory_UI inven_UI;
     WeaponInventory inven;
     ItemInventory inven_item;
@@ -36,19 +37,19 @@ public class Player : MonoBehaviour, IHealth
     private WeaponData currentWeapon;
     private WeaponPocket weaponPocket;
     private int currentWeaponIndex = 0;
-    private uint weaponSlotNumber = 5;
+    private uint weaponSlotNumber = 3;
     private WaitForSeconds autoShootTime;
     private AudioClip weaponShootClip;
     private float shootVolume;
 
-    private int bulletInMagazine;
+    private int bulletInMag;
     private float reloadTimer = 0f;
+    #endregion
 
-    // ############################## Properties ###############################
+    #region 프로퍼티 #############################################################
     public WeaponInventory Inven => inven;
     public WeaponInventory_UI W_InvenUI => inven_UI;
     public ItemInventory Inven_Item => inven_item;
-
     public WeaponPocket WeaponPoc => weaponPocket;
     
     public int HP
@@ -56,15 +57,16 @@ public class Player : MonoBehaviour, IHealth
         get => healthPoint;
         set
         {
-            if (value < healthPoint)
+            int prevValue = value;
+            healthPoint = Mathf.Clamp(value, 0, maxHealthPoint);
+            if (value < prevValue)
             {
-                OnTakeDamage?.Invoke();     //  Heart_UI.cs
+                OnTakeDamage?.Invoke(healthPoint, maxHealthPoint);     //  Heart_UI.cs
             }
             else
             {
-                OnHPUp?.Invoke();
+                OnHPUp?.Invoke(healthPoint);
             }
-            healthPoint = Mathf.Clamp(value, 0, maxHealthPoint);
         }
     }
     public int MaxHP => maxHealthPoint;
@@ -88,25 +90,21 @@ public class Player : MonoBehaviour, IHealth
         }
     }
 
-    public int BulletinMag
-    {
-        get => bulletInMagazine;
-        set
-        {
-            bulletInMagazine = value;
-        }
-    }
+    public int BulletInMag => bulletInMag;
 
     public bool IsReloading => isReloading;
     public WeaponPocket Weaponpocket => weaponPocket;
+    #endregion
 
-    // ################################ Deligates #############################
-    public System.Action OnTakeDamage {get; set;}
-    public System.Action OnHPUp { get; set; }
+    #region 델리게이트 ###########################################################
+    public System.Action<int, int> OnTakeDamage {get; set;} // < hp, maxhp>
+    public System.Action<int> OnHPUp { get; set; }
     public System.Action onFireReload;
     public delegate IEnumerator onReloadStart();
     public System.Action onWeaponChange;
+    #endregion
 
+    #region UNITY EVENT 함수 ####################################################
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -143,16 +141,17 @@ public class Player : MonoBehaviour, IHealth
             render.color = new Color(1, 1, 1, 1 - Mathf.Cos(blinkTimer * 0.2f * Mathf.Rad2Deg));
         }
     }
+    #endregion
 
-    // ############################## Methods ####################################
+    #region PUBLIC 함수 #########################################################
     public void InitializeCurrentWeapon(int weaponSlotNumber)
     {
         if (inven_UI.SlotUIs[weaponSlotNumber].Weapon_Slot.WeaponSlotData != null)
         {
             currentWeapon = inven_UI.SlotUIs[weaponSlotNumber].Weapon_Slot.WeaponSlotData;
+            bulletInMag = currentWeapon.bulletPerMagazine;
             weaponPocket.InitializeWeaponAnimator(weaponSlotNumber);
             weaponPocket.PlayIdleAnimation();
-            bulletInMagazine = currentWeapon.maxBulletMagazine;
             autoShootTime = new WaitForSeconds(currentWeapon.fireRate);
             weaponShootClip = CurrentWeapon.fireSound;
             shootVolume = currentWeapon.fireVolume;
@@ -161,17 +160,15 @@ public class Player : MonoBehaviour, IHealth
 
     public IEnumerator Fire()
     {
-        while (bulletInMagazine > 0)
+        while (bulletInMag > 0)
         {
-            GameManager.Inst.Control.FireDirection = GameManager.Inst.Control.LookDir.normalized;
-
             GameObject bullet = BulletManager.Inst.GetPooledBullet(BulletID.PLAYER);
             bullet.transform.position = weaponPocket.SetupFirePosition();
             bullet.transform.rotation = weaponPocket.SetupFireRotation()
                 * Quaternion.Euler(0f, 0f, Random.Range(-currentWeapon.dispersion, currentWeapon.dispersion));
             bullet.SetActive(true);
             
-            bulletInMagazine -= currentWeapon.bulletPerFire;
+            bulletInMag -= currentWeapon.bulletPerFire;
             CameraShake.ShakeCamera(0.1f, 0.5f);
             source.PlayOneShot(weaponShootClip, shootVolume * GameManager.Inst.Volume_VFX);
             onFireReload?.Invoke();
@@ -179,16 +176,44 @@ public class Player : MonoBehaviour, IHealth
             yield return autoShootTime;
         }
     }
-  
+
+    /// <summary>
+    /// 장전 명령을 내리는 함수 
+    /// </summary>
     public void Reload()
     {
         if (!isReloading)
         {
             weaponPocket.PlayReloadAnimation();
             StartCoroutine(ReloadAmmo());
+            SoundManager.Inst.PlaySound_Weapon(Clips_Weapon.Deagle_Reload);
         }
     }
 
+    public void Dodge()
+    {
+        if (!canDodge)
+        {
+            this.gameObject.layer = LayerMask.NameToLayer("Invincible");
+            dodgeDuration -= Time.deltaTime;
+            transform.position = Vector2.Lerp(transform.position,
+                (Vector2)transform.position + dodgeDir, dodgeSpeed * Time.deltaTime);
+            //transform.Translate(dodgeSpeed * Time.deltaTime * dodgeDir);
+            if (dodgeDuration < 0f)
+            {
+                dodgeDuration = 0.7f;
+                this.gameObject.layer = LayerMask.NameToLayer("Player");
+                canDodge = true;
+            }
+        }
+    }
+    #endregion
+
+    #region PRIVATE 함수 ########################################################
+    /// <summary>
+    /// ReloadUI를 재생하는 함수 
+    /// </summary>
+    /// <returns></returns>
     IEnumerator ReloadAmmo()
     {
         reloadTimer = 0f;
@@ -204,44 +229,31 @@ public class Player : MonoBehaviour, IHealth
         }
     }
 
+    /// <summary>
+    /// 실제 총알 개수를 refresh하는 함수
+    /// </summary>
     void ReplenishAmmo()
     {
         if (reloadTimer > currentWeapon.reloadingTime)
         {
-            if (currentWeapon.remainingBullet > currentWeapon.maxBulletMagazine)
-            { // Enough bullets
-                bulletInMagazine = currentWeapon.maxBulletMagazine;
-                currentWeapon.remainingBullet -= bulletInMagazine;
+            // remainingBullet
+            if (currentWeapon.bulletsInPocket > currentWeapon.bulletPerMagazine)
+            { // 재장전할 총알이 충분하다 
+                currentWeapon.bulletsInPocket -= (currentWeapon.bulletPerMagazine);
+                bulletInMag = currentWeapon.bulletPerMagazine;
             }
             else
             { // Last magazine
                 if (currentWeapon.maxBulletNum < 0)
                 {// infinite bullets [MaxBulletNum = -1]
-                    currentWeapon.remainingBullet = currentWeapon.maxBulletMagazine;
+                    currentWeapon.bulletsInPocket = currentWeapon.bulletPerMagazine;
                 }
-                bulletInMagazine = currentWeapon.remainingBullet;
-                currentWeapon.remainingBullet = 0;
+                bulletInMag = currentWeapon.bulletsInPocket;
+                currentWeapon.bulletsInPocket = 0;
             }
             onFireReload?.Invoke();     // Refresh Bullet UIs (Bullet_UI.cs)
             reloadTimer = 0f;
             isReloading = false;
-        }
-    }
-
-    public void Dodge()
-    {
-        if (!canDodge)
-        {
-            this.gameObject.layer = LayerMask.NameToLayer("Invincible");
-            dodgeDuration -= Time.deltaTime;
-            transform.position = Vector2.Lerp(transform.position, (Vector2)transform.position + dodgeDir, dodgeSpeed * Time.deltaTime);
-                //transform.Translate(dodgeSpeed * Time.deltaTime * dodgeDir);
-            if (dodgeDuration < 0f)
-            {
-                dodgeDuration = 0.7f;
-                this.gameObject.layer = LayerMask.NameToLayer("Player");
-                canDodge = true;
-            }
         }
     }
 
@@ -267,4 +279,5 @@ public class Player : MonoBehaviour, IHealth
             }
         }
     }
+    #endregion
 }

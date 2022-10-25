@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class Singleton<T> : MonoBehaviour where T : Component
 {
     private static T instance = null;
+    public bool isDontDestroy = false;
+
     public static T Inst
     {
         get
@@ -29,12 +31,13 @@ public class Singleton<T> : MonoBehaviour where T : Component
         }
     }
 
-    private void Awake()
+    protected virtual void Awake()
     {
         if(instance == null)
         {
             T obj = this as T;
-            DontDestroyOnLoad(obj.gameObject);
+            if(isDontDestroy)
+                DontDestroyOnLoad(obj.gameObject);
             SceneManager.sceneLoaded += OnSceneLoad;
         }
         else

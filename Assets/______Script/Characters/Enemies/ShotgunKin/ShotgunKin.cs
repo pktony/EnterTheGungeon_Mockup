@@ -7,6 +7,8 @@ using System;
 [RequireComponent(typeof(Rigidbody2D))]
 public class ShotgunKin : Enemy
 {
+    SoundManager soundManager;
+
     [Header("Bullets")]
     [SerializeField] private uint bulletPerFire = 5;
     [SerializeField] private float fireAngle = 30.0f;
@@ -14,17 +16,29 @@ public class ShotgunKin : Enemy
     protected override void Awake()
     {
         base.Awake();
+        InitializeShootPositions();
+    }
 
+    private void Start()
+    {
+        soundManager = SoundManager.Inst;
+    }
+
+    /// <summary>
+    /// 일정한 각도로 발사 위치를 초기화 하는 함수
+    /// </summary>
+    private void InitializeShootPositions()
+    {
         firePosition = new Transform[bulletPerFire];
 
+        uint bulletNum = bulletPerFire;
+        if (bulletPerFire - 1 < 1)
+        {
+            bulletNum = 2;
+        }
         for (int i = 0; i < bulletPerFire; i++)
         {
-            firePosition[i] = weapon.transform.GetChild(0).GetChild(i);
-            uint bulletNum = bulletPerFire;
-            if (bulletPerFire - 1 < 1)
-            {
-                bulletNum = 2;
-            }
+            firePosition[i] = weapon.transform.GetChild(0).GetChild(i);   
             firePosition[i].rotation = Quaternion.Euler(0, 0, (fireAngle * 0.5f) - ((fireAngle / (bulletNum)) * i));
         }
     }
@@ -39,18 +53,18 @@ public class ShotgunKin : Enemy
             bullet.SetActive(true);
         }
 
-        GameManager.Inst.SoundManager.PlaySound_Weapon(Clips_Weapon.Shotgun_Shot1, source);
+        soundManager.PlaySound_Weapon(Clips_Weapon.Shotgun_Shot1, source);
     }
 
     protected override void PlayHitSound()
     {
-        GameManager.Inst.SoundManager.PlaySound_ShotgunKin(Clips_ShotgunKin.Shotgun_Hurt1, source);
+        soundManager.PlaySound_ShotgunKin(Clips_ShotgunKin.Shotgun_Hurt1, source);
     }
 
     protected override void DieAnimation()
     {
         base.DieAnimation();
-        GameManager.Inst.SoundManager.PlaySound_ShotgunKin(Clips_ShotgunKin.Shotgun_Death1, source);
+        soundManager.PlaySound_ShotgunKin(Clips_ShotgunKin.Shotgun_Death1, source);
     }
 
     // ----------------- Die

@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 방 한 칸에 대한 정보 
+/// </summary>
 public class Room
 {
     public DoorDirection doorDir;

@@ -6,12 +6,11 @@ using UnityEngine.SceneManagement;
 public class BulletManager : Singleton<BulletManager>
 {
     // #################### Dictionary #########################
-    private static Dictionary<uint, Stack<GameObject>> pooledBullets = new();
+    private static Dictionary<BulletID, Stack<GameObject>> pooledBullets = new();
+    private Dictionary<BulletID, List<GameObject>> bulletsInScene = new();
 
     //##################### Bullet Stack #######################
     [SerializeField] private BulletData[] poolingBullet;
-        // [0] : player Bullet
-        // [1] : Enemy Bullet
 
     private Stack<GameObject> player_Bullet = new();
     private Stack<GameObject> enemy_Bullet = new();
@@ -22,19 +21,30 @@ public class BulletManager : Singleton<BulletManager>
     private Stack<GameObject> bossBullet_Spinning = new();
     private Stack<GameObject> goblet = new();
 
+    protected override void Awake()
+    {
+        base.Awake();
+        // 모든 Bullet 회수용 딕셔너리/리스트 초기화 
+        for(int i = 0; i < poolingBullet.Length; i++)
+        {
+            bulletsInScene[(BulletID)i] = new List<GameObject>();
+        }
+    }
+
 
     protected override void OnSceneLoad(Scene arg0, LoadSceneMode arg1)
     {
+        ReturnAllBullets();
         if (pooledBullets.Count < 1)
         {
-            pooledBullets.Add(poolingBullet[(int)BulletID.PLAYER].bulletId, player_Bullet);
-            pooledBullets.Add(poolingBullet[(int)BulletID.ENEMY].bulletId, enemy_Bullet);
-            pooledBullets.Add(poolingBullet[(int)BulletID.CIRCLE].bulletId, bossBullet_Circle);
-            pooledBullets.Add(poolingBullet[(int)BulletID.BIG].bulletId, bossBullet_Big);
-            pooledBullets.Add(poolingBullet[(int)BulletID.MID].bulletId, bossBullet_Mid);
-            pooledBullets.Add(poolingBullet[(int)BulletID.FOOTBALL].bulletId, bossBullet_Football);
-            pooledBullets.Add(poolingBullet[(int)BulletID.SPINNING].bulletId, bossBullet_Spinning);
-            pooledBullets.Add(poolingBullet[(int)BulletID.GOBLET].bulletId, goblet);
+            pooledBullets.Add(BulletID.PLAYER, player_Bullet);
+            pooledBullets.Add(BulletID.ENEMY, enemy_Bullet);
+            pooledBullets.Add(BulletID.CIRCLE, bossBullet_Circle);
+            pooledBullets.Add(BulletID.BIG, bossBullet_Big);
+            pooledBullets.Add(BulletID.MID, bossBullet_Mid);
+            pooledBullets.Add(BulletID.FOOTBALL, bossBullet_Football);
+            pooledBullets.Add(BulletID.SPINNING, bossBullet_Spinning);
+            pooledBullets.Add(BulletID.GOBLET, goblet);
 
 
             for (int i = 0; i < poolingBullet.Length; i++)
@@ -42,7 +52,7 @@ public class BulletManager : Singleton<BulletManager>
                 for (int j = 0; j < poolingBullet[i].bulletSize; j++)
                 {
                     GameObject obj = Instantiate(poolingBullet[i].prefab, this.transform);
-                    pooledBullets[(uint)i].Push(obj);
+                    pooledBullets[(BulletID)i].Push(obj);
                     obj.SetActive(false);
                 }
             }
@@ -51,24 +61,44 @@ public class BulletManager : Singleton<BulletManager>
 
     public GameObject GetPooledBullet(BulletID id)
     {
-        if (pooledBullets[(uint)id].Count > 0)
+        GameObject obj;
+        if (pooledBullets[id].Count > 0)
         {
-            return pooledBullets[(uint)id].Pop();
+            obj = pooledBullets[id].Pop();
         }
         else
         {
-            GameObject obj = Instantiate(poolingBullet[(int)id].prefab, this.transform);
-            pooledBullets[(uint)id].Push(obj);
+            obj = Instantiate(poolingBullet[(int)id].prefab, this.transform);
+            pooledBullets[id].Push(obj);
             obj.SetActive(false);
-            return obj;
         }
+
+        bulletsInScene[id].Add(obj);
+        return obj;
     }
 
     public void ReturnBullet(BulletID id, GameObject uselessBullet)
     {
-        pooledBullets[(uint)id].Push(uselessBullet);
+        bulletsInScene[id].Remove(uselessBullet);
+        pooledBullets[id].Push(uselessBullet);
         uselessBullet.transform.rotation = Quaternion.identity;
         uselessBullet.transform.position = Vector3.zero;
         uselessBullet.SetActive(false);
+    }
+
+    /// <summary>
+    /// 씬 이동 시 모든 총알을 수거하는 함수 
+    /// </summary>
+    private void ReturnAllBullets()
+    {
+        for (int i = 0; i < bulletsInScene.Count; i++)
+        {
+            int bulletCount = bulletsInScene[(BulletID)i].Count;
+            for (int j = 0; j < bulletCount; j++)
+            {
+                Debug.Log($"{(BulletID)i}, {j}");
+                //ReturnBullet((BulletID)i, bulletsInScene[(BulletID)i][j]);
+            }
+        }
     }
 }

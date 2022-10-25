@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MonsterSpawner : MonoBehaviour
 {
@@ -38,6 +37,9 @@ public class MonsterSpawner : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 상자를 스폰하는 함수 
+    /// </summary>
     private void SpawnChest()
     {
         float rand = Random.value;

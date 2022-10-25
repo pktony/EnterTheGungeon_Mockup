@@ -6,32 +6,28 @@ using UnityEngine.InputSystem;
 public class CameraMove : MonoBehaviour
 {
     Player player;
-    bool isMoving = false;
+
+    Camera mainCam;
+    Mouse currentMouse;
+
+    /// <summary>
+    /// 가중치를 이용한 카메라와 플레이어 간 카메라 중심 설정 
+    /// </summary>
+    [SerializeField] private float camWeightFactor = 0.75f;
 
     private void Start()
     {
         player = GameManager.Inst.Player;
+        mainCam = Camera.main;
+        currentMouse = Mouse.current;
     }
 
     private void LateUpdate()
     {
-        if (!isMoving)
-        {
-            Vector3 mouseRead = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            mouseRead.z = -10f;
+        Vector3 mouseRead = mainCam.ScreenToWorldPoint(currentMouse.position.ReadValue());
+        mouseRead.z = -10f;
 
-            transform.position = (mouseRead * 0.25f + player.transform.position * 0.75f);
-        }
+        transform.position = (mouseRead * (1 - camWeightFactor)
+            + player.transform.position * camWeightFactor);
     }
-
-    //public IEnumerator MoveCam(Vector2 originalPosition, Vector2 destination, float speed)
-    //{
-    //    isMoving = true;
-    //    while ((destination - originalPosition).sqrMagnitude > 0.1f)
-    //    {
-    //        transform.position = Vector3.Lerp((Vector2)transform.position, destination, speed * Time.deltaTime);
-    //        yield return null;
-    //    }
-    //    isMoving = false;
-    //}
 }

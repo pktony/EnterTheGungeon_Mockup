@@ -26,7 +26,7 @@ public class AutoItems : MonoBehaviour
         {
             Debug.Log(value);
             player.Inven_Item[(int)data.itemID].IncreaseItem(value);
-            GameManager.Inst.SoundManager.PlaySound_Item((Clips_Item)(data.itemID - 3));
+            SoundManager.Inst.PlaySound_Item((Clips_Item)(data.itemID - 3));
             
             ItemManager.Inst.ReturnItem((ItemID)data.itemID, this.gameObject);
         }

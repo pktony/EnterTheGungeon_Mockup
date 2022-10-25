@@ -52,7 +52,7 @@ public class Goblet : MonoBehaviour
                 goblet_Broken.SetActive(true);
                 wine.SetActive(true);
                 isThrown = false;
-                GameManager.Inst.SoundManager.PlaySound_Boss(Clips_Boss.Boss_Wine);
+                SoundManager.Inst.PlaySound_Boss(Clips_Boss.Boss_Wine);
             }
         }
         else

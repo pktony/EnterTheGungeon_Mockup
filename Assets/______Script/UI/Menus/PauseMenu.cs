@@ -110,7 +110,7 @@ public class PauseMenu : MonoBehaviour
             }
         }
 
-        GameManager.Inst.SoundManager.PlaySound_UI(Clips_UI.Menu_Confirm);
+        SoundManager.Inst.PlaySound_UI(Clips_UI.Menu_Confirm);
     }
 
     private void ChangeMenu(CanvasGroup group, optionMode _mode, bool isShow = true)
@@ -157,7 +157,7 @@ public class PauseMenu : MonoBehaviour
         }
         texts[selectedOption].color = Color.white;
 
-        GameManager.Inst.SoundManager.PlaySound_UI(Clips_UI.Menu_Select);
+        SoundManager.Inst.PlaySound_UI(Clips_UI.Menu_Select);
     }
 
     private void OnValueChange(UnityEngine.InputSystem.InputAction.CallbackContext context)
@@ -193,7 +193,7 @@ public class PauseMenu : MonoBehaviour
         mode = optionMode.Main;
         Cursor.SetCursor(cursorTexture_Heart, Vector2.zero, CursorMode.Auto);
 
-        GameManager.Inst.SoundManager.PlaySound_UI(Clips_UI.Menu_Pause);
+        SoundManager.Inst.PlaySound_UI(Clips_UI.Menu_Pause);
     }
     private void TurnOffMenu()
     {
@@ -206,6 +206,6 @@ public class PauseMenu : MonoBehaviour
         GameManager.Inst.Player.gameObject.SetActive(true);
         Cursor.SetCursor(cursorTexture_Default, Vector2.zero, CursorMode.Auto);
 
-        GameManager.Inst.SoundManager.PlaySound_UI(Clips_UI.Menu_Cancel);
+        SoundManager.Inst.PlaySound_UI(Clips_UI.Menu_Cancel);
     }
 }

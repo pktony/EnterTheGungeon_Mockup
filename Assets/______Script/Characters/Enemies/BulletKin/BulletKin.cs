@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
-using UnityEditor;
-using TMPro.EditorUtilities;
 
 public class BulletKin : Enemy
 {
+    SoundManager soundManager;
+
     protected override void Awake()
     {
         base.Awake();
@@ -15,21 +14,26 @@ public class BulletKin : Enemy
         firePosition[0] = weapon.transform.GetChild(0).GetChild(0);
     }
 
+    private void Start()
+    {
+        soundManager = SoundManager.Inst;
+    }
+
     protected override void Shoot()
     {
         base.Shoot();
-        GameManager.Inst.SoundManager.PlaySound_Weapon(Clips_Weapon.Colt_Shot1, source);
+        soundManager.PlaySound_Weapon(Clips_Weapon.Colt_Shot1, source);
     }
 
     protected override void PlayHitSound()
     {
-        GameManager.Inst.SoundManager.PlaySound_BulletKin(Clips_BulletKin.BulletKin_Hurt1, source);
+        soundManager.PlaySound_BulletKin(Clips_BulletKin.BulletKin_Hurt1, source);
     }
 
     protected override void DieAnimation()
     {
         base.DieAnimation();
-        GameManager.Inst.SoundManager.PlaySound_BulletKin(Clips_BulletKin.BulletKin_Hurt1, source);
+        soundManager.PlaySound_BulletKin(Clips_BulletKin.BulletKin_Hurt1, source);
     }
 
     // ----------------- Die

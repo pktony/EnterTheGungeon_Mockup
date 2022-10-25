@@ -2,24 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 적 총알의 부모 클래스 
+/// </summary>
 public class EnemyBullet : MonoBehaviour, IDestroyable
 {
-    #region PROTECTED VAIRABLES
-    protected BulletID id;
-    #endregion
-
-    #region PRIVATE
+    #region 컴포넌트 ############################################################
     private Rigidbody2D rigid = null;
     private SpriteRenderer spriteRend;
     private WaitForSeconds blankWaitSeconds;
     private GameObject BlankExplosionFX;
     private Collider2D coll;
     #endregion
-
-
-    // ############################ Bullet Stats ############################
+    #region 변수 ################################################################
+    protected BulletID id;
     [SerializeField] private float bulletSpeed = 5.0f;
+    #endregion
 
+    #region UNITY EVENT 함수 ####################################################
     protected virtual void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -37,8 +37,9 @@ public class EnemyBullet : MonoBehaviour, IDestroyable
     {
         EnableBullet();
     }
+    #endregion
 
-    #region PROTECTED METHODS
+    #region PROTECTED 함수 ######################################################
     protected virtual void EnableBullet()
     {
         rigid.velocity = bulletSpeed * transform.right;

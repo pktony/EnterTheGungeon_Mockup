@@ -30,9 +30,5 @@ public class Weapon : Item
             }
             //GameManager.Inst.SoundManager.PlaySound_Item()
         }
-        else
-        {
-            Debug.Log("");
-        }
     }
 }

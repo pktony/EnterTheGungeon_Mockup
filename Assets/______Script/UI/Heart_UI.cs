@@ -32,17 +32,6 @@ public class Heart_UI : MonoBehaviour
             }
             k += 2;
         }
-    }
-
-    private void Start()
-    {
-        
-
-        //Debug.Log(heartSet.Length);
-        //for (int i = 0; i < heartImg.Length; i++)
-        //{
-        //    Debug.Log(heartImg[i].transform.parent.name);
-        //}
 
         Initialize();
     }
@@ -54,7 +43,7 @@ public class Heart_UI : MonoBehaviour
             heartImg[heartImg.Length - 1 - i].color = Color.clear;
         }
 
-        if (!IsEvenNumber())
+        if (!IsEvenNumber(player.HP))
         {
             heartImg[player.HP].sprite = heart_Blank;
             heartImg[player.HP].color = Color.white;
@@ -62,40 +51,40 @@ public class Heart_UI : MonoBehaviour
         }
     }
 
-    void OnTakeDamage()
+    void OnTakeDamage(int hp, int _)
     {
-        for (int i = 0; i < heartImg.Length - player.HP; i++)
+        for (int i = 0; i < heartImg.Length - hp; i++)
         {
             heartImg[heartImg.Length - 1 - i].sprite = heart_Blank;
         }
 
-        if (!IsEvenNumber())
+        if (!IsEvenNumber(hp))
         {
-            heartImg[player.HP].sprite = heart_Blank;
-            heartImg[player.HP].color = Color.white;
-            heartImg[player.HP].transform.SetAsFirstSibling();  // Set heart UI hierarchy order
+            heartImg[hp].sprite = heart_Blank;
+            heartImg[hp].color = Color.white;
+            heartImg[hp].transform.SetAsFirstSibling();  // Set heart UI hierarchy order
         }
     }
 
-    void IncreaseHeart()
+    void IncreaseHeart(int hp)
     {
-        for (int i = 0; i < heartImg.Length - player.HP; i++)
-        { 
+        for (int i = 0; i < heartImg.Length - hp; i++)
+        {   // 전부 빈 하트 처리 
             heartImg[heartImg.Length - 1 - i].sprite = heart_Blank;
         }
 
-        if (IsEvenNumber())
+        if (IsEvenNumber(hp))
         {
-            heartImg[player.HP - 1].sprite = heart_Red;
-            heartImg[player.HP - 1].color = Color.white;
-            heartImg[player.HP - 1].transform.SetAsFirstSibling();  // Set heart UI hierarchy order
+            heartImg[hp - 1].sprite = heart_Red;
+            heartImg[hp - 1].color = Color.white;
+            heartImg[hp - 1].transform.SetAsFirstSibling();  // Set heart UI hierarchy order
         }
         else
         {
-            heartImg[player.HP - 1].sprite = heart_Red;
-            heartImg[player.HP - 1].color = Color.white;
+            heartImg[hp - 1].sprite = heart_Red;
+            heartImg[hp - 1].color = Color.white;
         }
     }
 
-    bool IsEvenNumber() => player.HP % 2 == 0;
+    bool IsEvenNumber(int num) => num % 2 == 0;
 }

@@ -18,9 +18,9 @@ MonoBehaviour:
   weaponPrefab: {fileID: 758027800135795326, guid: 124586abc55e9c7488340d0215094d02, type: 3}
   weaponAniamtor: {fileID: 22100000, guid: 056f9e4a758784a249861b0db8c53023, type: 2}
   BulletIcon: {fileID: 21300000, guid: a31a3853c3634904cb7f13095c79e8db, type: 3}
-  maxBulletNum: 90
-  maxBulletMagazine: 15
-  remainingBullet: 30
+  maxBulletNum: 150
+  bulletPerMagazine: 15
+  bulletsInPocket: 150
   bulletPerFire: 1
   reloadingTime: 1
   fireRate: 0.1

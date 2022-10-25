@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
+/// <summary>
+/// 카메라 진동을 위한 클래스 
+/// </summary>
 public class CameraShake : MonoBehaviour
 {
     static Camera mainCam;
@@ -19,6 +19,11 @@ public class CameraShake : MonoBehaviour
         mainCam = GetComponent<Camera>();
     }
 
+    /// <summary>
+    /// 카메라 진동 실행 함수 
+    /// </summary>
+    /// <param name="_shakeTime"> 진동 시간 </param>
+    /// <param name="_shakePower"> 진동 세기 </param>
     public static void ShakeCamera(float _shakeTime, float _shakePower)
     {
         if (!isShake)
@@ -28,22 +33,7 @@ public class CameraShake : MonoBehaviour
             shakePower = _shakePower;
             initialPosition = mainCam.transform.position;
         }
-            //StartCoroutine(camShake(shakeTime, shakePower)) ;
     }
-
-    //private static IEnumerator camShake(float shakeTime, float shakePower)
-    //{
-    //    float timer = 0f;
-    //    initialPosition = mainCam.transform.position;
-    //    while (timer < shakeTime)
-    //    {
-    //        timer += Time.deltaTime;
-    //        mainCam.transform.position = Random.insideUnitCircle * shakePower + initialPosition ;
-    //        yield return null;
-    //    }
-
-    //    mainCam.transform.position = initialPosition;
-    //}
 
     private void Update()
     {
@@ -62,5 +52,4 @@ public class CameraShake : MonoBehaviour
             }
         }
     }
-
 }
