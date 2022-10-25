@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyWeapon : MonoBehaviour
-{
-}
+/// <summary>
+/// 단순 찾기용 클래스 
+/// </summary>
+public class EnemyWeapon : MonoBehaviour { }

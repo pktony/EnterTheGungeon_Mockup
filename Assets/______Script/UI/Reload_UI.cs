@@ -24,7 +24,6 @@ public class Reload_UI : MonoBehaviour
         bar = transform.GetChild(1).GetComponent<RectTransform>();
 
         baseWidth = gauge.sizeDelta.x;
-
     }
 
     private void Start()

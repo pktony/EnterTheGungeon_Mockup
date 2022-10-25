@@ -27,7 +27,7 @@ public class WeaponPocket : MonoBehaviour
 
     //########## Setup
     public Vector2 SetupFirePosition() => firePosition.position;
-    public Quaternion SetupFireRotation() => firePosition.rotation;
+    public Quaternion SetupFireRotation() => firePosition.rotation; 
 
     //########## Animation 
     public void PlayReloadAnimation()

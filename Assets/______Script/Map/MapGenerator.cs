@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MapGenerator : MonoBehaviour
 {
@@ -12,7 +10,7 @@ public class MapGenerator : MonoBehaviour
     // 전체 맵의 사이즈
     private const int MAP_SIZE = 7;
 
-    // 방 한 칸의 사이즈 
+    // 방 한 칸의 사이즈
     private int ROOM_HEIGHT = 18;
     private int ROOM_WIDTH = 22;
 
@@ -50,8 +48,6 @@ public class MapGenerator : MonoBehaviour
     /// </summary>
     private void RandomizeRooms()
     {
-        
-
         int failCount = 0;
         do
         {
@@ -248,7 +244,8 @@ public class MapGenerator : MonoBehaviour
 
 
                     // ------------------- 스포너 생성
-                    if (i == 0)
+                    // 첫 번째 방은 스포너를 생성하지 않음 
+                    if (i == path[0].x && j == path[0].y)
                         continue;
                     GameObject spawner = Instantiate(spawnerPrefab,
                         room[i, j].gridPosition,

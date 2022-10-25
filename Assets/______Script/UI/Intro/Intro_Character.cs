@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Intro_Character : MonoBehaviour
@@ -17,5 +15,4 @@ public class Intro_Character : MonoBehaviour
     {
         anim.SetTrigger("DodgeRoll");
     }
-
 }

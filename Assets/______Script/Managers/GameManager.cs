@@ -17,9 +17,6 @@ public class GameManager : Singleton<GameManager>
     private ItemDataManager itemDataManager;
     public ItemDataManager ItemDataManager => itemDataManager;
 
-    private SoundManager soundManager;
-    public SoundManager SoundManager => soundManager;
-
     #region Audio Variables
     private float volume_Master = 1f;
     private float volume_VFX = 1f;
@@ -39,12 +36,12 @@ public class GameManager : Singleton<GameManager>
         //soundManager = GetComponent<SoundManager>();
     }
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         player = FindObjectOfType<Player>();
         control = player.GetComponent<PlayerControl>();
         weaponData = GetComponent<WeaponDataManager>();
         itemDataManager = GetComponent<ItemDataManager>();
-        soundManager = GetComponent<SoundManager>();
     }
 }

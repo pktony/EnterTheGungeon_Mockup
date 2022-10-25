@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -30,7 +28,7 @@ public class Bullet_UI : MonoBehaviour
     private void Start()
     {
         //InitializeBullet_UI();
-        player.onFireReload = RefreshBullet_UI;
+        player.onFireReload += RefreshBullet_UI;
     }
 
     public void InitializeBullet_UI()
@@ -47,25 +45,21 @@ public class Bullet_UI : MonoBehaviour
     public void RefreshBullet_UI()
     {
         weapon = GameManager.Inst.Player.CurrentWeapon;
-        int bulletInMag = GameManager.Inst.Player.BulletinMag;
-        
-        for (int i = 0; i < bulletInMag ; i++)
+
+        int bulletsInMagazine = GameManager.Inst.Player.BulletInMag;
+
+        for (int i = 0; i < bulletsInMagazine ; i++)
         {
             bulletImg[i].color = Color.white;
         }
 
-        for (int i = bulletInMag; i < bulletImg.Length; i++)
+        for (int i = bulletsInMagazine; i < bulletImg.Length; i++)
         {
             bulletImg[i].color = Color.clear;
         }
 
-        if (weapon.id > 0)
-        {
-            bulletText.text = $"{GameManager.Inst.Player.CurrentWeapon.bulletsInPocket} / {weapon.maxBulletNum}";
-        }
-        else
-        {
-            bulletText.text = "Infinite";
-        }
+        bulletText.text = weapon.id > 0 ?
+            $"{GameManager.Inst.Player.CurrentWeapon.bulletsInPocket} / {weapon.maxBulletNum}"
+            : "Infinite";
     }
 }

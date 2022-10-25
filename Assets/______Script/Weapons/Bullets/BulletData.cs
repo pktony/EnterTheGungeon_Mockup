@@ -5,7 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class BulletData
 {
-    public uint bulletId = 0;
     public string bulletName = "Bullet Name";
     public GameObject prefab;
     public int bulletSize;

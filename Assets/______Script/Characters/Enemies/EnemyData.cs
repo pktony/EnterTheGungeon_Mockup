@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 적 정보를 담은 클래스 
+/// </summary>
 [System.Serializable]
 public class EnemyData
 {

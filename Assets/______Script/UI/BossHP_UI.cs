@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,13 +20,13 @@ public class BossHP_UI : MonoBehaviour
         waitSeconds = new WaitForSeconds(0.15f);
     }
 
-    private void RefreshUI()
+    private void RefreshUI(int hp, int maxHP)
     {
         if (!hpChangeImage.activeSelf)
         {
             StartCoroutine(HP_FX());
         }
-        slider.value = (float)king.HP / (float)king.MaxHP;
+        slider.value = (float)hp / (float)maxHP;
     }
 
     IEnumerator HP_FX()

@@ -20,8 +20,9 @@ public class ItemManager : Singleton<ItemManager>
     private Stack<GameObject> silverShell;
     private Stack<GameObject> goldShell;
 
-    protected override void Initialize()
+    protected override void Awake()
     {
+        base.Awake();
         pooledItems = new();
 
         blankShell = new();

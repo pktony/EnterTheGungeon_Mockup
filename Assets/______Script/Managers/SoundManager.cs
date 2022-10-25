@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundManager : MonoBehaviour
+public class SoundManager : Singleton<SoundManager>
 {
     public ClipData[] clips_UI;
 
@@ -16,13 +16,12 @@ public class SoundManager : MonoBehaviour
     private AudioSource source;
     private AudioSource itemSource;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         source = GetComponent<AudioSource>();
         itemSource = transform.GetChild(0).GetComponent<AudioSource>();
     }
-
-
 
     // DIZZY CODES
     public void PlaySound_UI(Clips_UI clipNum, AudioSource _source = null)

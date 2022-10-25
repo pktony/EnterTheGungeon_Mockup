@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.LowLevel;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -18,13 +17,12 @@ public class PlayerControl : MonoBehaviour
     Player player = null;
     BlankFX blankFX;
 
-    [SerializeField] PlayerMove moveMode = PlayerMove.IDLE;
+    [SerializeField] PlayerMove moveMode = PlayerMove.WALK;
 
     //################ Move ##############################
     [SerializeField] private float moveSpeed = 3.0f;
     Vector3 inputDir = Vector3.zero;
-    IEnumerator footstepCoroutine;
-    int footstepCounter = 0;
+    AudioClip footstepClip;
 
     //################ Look ##############################
     Vector2 lookDir = Vector2.zero;
@@ -34,30 +32,24 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private Vector2 weaponRight;
 
     //################ Fire ##############################
-    Vector2 fireDirection = Vector2.zero;
     IEnumerator autoFire;
 
     //################ Dodge #############################
     //################ Loot ##############################
     [SerializeField] private float interactRange = 2.0f;
+    private Collider2D[] lootColliders = new Collider2D[4];
     //################ Camera #############################
     private Vector3 camPosition = Vector3.zero;
 
-    // ################################## Properties ######################
-    public Vector2 FireDirection
-    {
-        get => fireDirection;
-        set
-        {
-            fireDirection = value;
-        }
-    }
-
+    #region 프로퍼티 #############################################################
     public Vector2 LookDir => lookDir;
+    #endregion
 
-    // ############################# Delegates ###########################
+    #region 델리게이트 ###########################################################
     public System.Action onLoot;
+    #endregion
 
+    #region UNITY EVENT 함수 ####################################################
     private void Awake()
     {
         input = new();
@@ -70,8 +62,6 @@ public class PlayerControl : MonoBehaviour
         blankFX = GetComponentInChildren<BlankFX>();
 
         anim.SetBool("hasWeapon", player.hasWeapon);
-
-        footstepCoroutine = Footstep();
     }
 
     private void OnEnable()
@@ -105,6 +95,11 @@ public class PlayerControl : MonoBehaviour
         input.Player.Disable();
     }
 
+    private void Start()
+    {
+        footstepClip = SoundManager.Inst.clips_Player[(int)Clips_Player.Footstep1].clip;
+    }
+
     private void Update()
     {
         if (inputDir.sqrMagnitude > 0)
@@ -118,9 +113,11 @@ public class PlayerControl : MonoBehaviour
                 }
                 return;
             }
-            moveMode = PlayerMove.WALK;
-            anim.SetFloat("Speed", 1.0f);
-            Move(moveSpeed);        // Leave parameter in case of RUN state
+            else if(moveMode == PlayerMove.WALK)
+            {
+                anim.SetFloat("Speed", 1.0f);
+                Move(moveSpeed);        // Leave parameter in case of RUN state
+            }
         }
         else
         {
@@ -130,12 +127,9 @@ public class PlayerControl : MonoBehaviour
 
         RotateWeapon();
     }
+    #endregion
 
-    void Move(float speed)
-    {
-        transform.position += Time.deltaTime * speed * inputDir;
-    }
-
+    #region PUBLIC 함수 ########################################################
     public void DisableInput()
     {
         input.Player.Disable();
@@ -147,6 +141,20 @@ public class PlayerControl : MonoBehaviour
         input.Player.Enable();
     }
 
+    /// <summary>
+    /// 애니메이션 이벤트 함수
+    /// </summary>
+    public void PlayFootstepSound()
+    {
+        source_Footstep.PlayOneShot(footstepClip,
+            GameManager.Inst.Volume_Master * GameManager.Inst.Volume_VFX);
+    }
+    #endregion
+
+    void Move(float speed)
+    {
+        transform.position += Time.deltaTime * speed * inputDir;
+    }
     void RotateWeapon()
     {
         weaponPocket.transform.right = lookDir;
@@ -186,34 +194,13 @@ public class PlayerControl : MonoBehaviour
         if (context.performed)
         {
             inputDir = context.ReadValue<Vector3>().normalized;
-            //if (footstepCounter < 1)
-            //{
-            //    StartCoroutine(footstepCoroutine);
-            //    footstepCounter++;
-            //}
-
+            moveMode = PlayerMove.WALK;
             anim.SetFloat("Keyboard_X", inputDir.x);
             anim.SetFloat("Keyboard_Y", inputDir.y);
         }
-        //else if(context.canceled)
-        //{
-        //    inputDir = Vector3.zero;
-        //    StopCoroutine(footstepCoroutine);
-        //    footstepCounter = 0;
-        //}
     }
 
-    IEnumerator Footstep()
-    {
-        AudioClip clip = GameManager.Inst.SoundManager.clips_Player[(int)Clips_Player.Footstep1].clip;
-        float volume = GameManager.Inst.SoundManager.clips_Player[(int)Clips_Player.Footstep1].clipVolume;
-        while (true)
-        {
-            source_Footstep.PlayOneShot(clip, volume * GameManager.Inst.Volume_Master * GameManager.Inst.Volume_VFX);
-            yield return new WaitForSeconds(0.5f);
-        }
-    }
-
+   
     void OnDodgeInput(InputAction.CallbackContext _)
     {
         if(moveMode == PlayerMove.WALK)
@@ -254,7 +241,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (context.performed)
         {
-            if (player.BulletinMag > 0)
+            if (player.BulletInMag > 0)
             {
                 autoFire = player.Fire();
                 StartCoroutine(autoFire);
@@ -278,16 +265,16 @@ public class PlayerControl : MonoBehaviour
         {
             player.Inven_Item.Slots[(int)ItemID.BlankShell].StackCount--;
             blankFX.PlayBlankFX();
-            GameManager.Inst.SoundManager.PlaySound_Player(Clips_Player.blank);
+            SoundManager.Inst.PlaySound_Player(Clips_Player.blank);
 
+            // EnemyBullets 태그로 게임오브젝트를 찾고 
             GameObject[] bullets = GameObject.FindGameObjectsWithTag("EnemyBullets");
-            if( bullets != null)
+            if (bullets != null)
             {
                 foreach (GameObject bullet in bullets)
                 {
-                    IDestroyable destroyable = bullet.GetComponent<IDestroyable>();
-                    if(destroyable != null)
-                    {
+                    if (bullet.TryGetComponent<IDestroyable>(out var destroyable))
+                    {// 즉시 제거 
                         destroyable.BlankDestroy();
                     }
                 }
@@ -297,26 +284,30 @@ public class PlayerControl : MonoBehaviour
 
     private void OnInteraction(InputAction.CallbackContext _)
     {
-        Collider2D[] items = Physics2D.OverlapCircleAll(transform.position, interactRange, LayerMask.GetMask("Items"));
-
-        if (items != null)
+        if(Physics2D.OverlapCircleNonAlloc(transform.position,
+            interactRange, lootColliders, LayerMask.GetMask("Items")) > 0)
         {
+            //가장 가까이 있는 아이템 찾기 
             float closest = float.MaxValue;
-            foreach(Collider2D item in items)
-            { 
-                float temp = (item.transform.position - transform.position).sqrMagnitude;
-                if (temp < closest)
+            foreach(Collider2D item in lootColliders)
+            {
+                if (item != null)
                 {
-                    closest = temp;
-                    items[0] = item;
+                    float temp = (item.transform.position - transform.position).sqrMagnitude;
+                    if (temp < closest)
+                    {
+                        closest = temp;
+                        lootColliders[0] = item;
+                    }
                 }
             }
 
-            ILootable lootable = items[0].GetComponent<ILootable>();
-            if(lootable != null)
+            // Lootable 이면 루팅
+            if(lootColliders[0].TryGetComponent<ILootable>(out var lootable))
             {
                 lootable.LootAction();
             }
+            Array.Clear(lootColliders, 0, lootColliders.Length); // 결과 초기화 
         }
     }
 

@@ -11,6 +11,8 @@ using UnityEditor;
 [RequireComponent(typeof(Rigidbody2D))]
 public class BulletKing : MonoBehaviour, IHealth
 {
+    GameManager gameManager;
+
     enum AttackSwitch : byte
     {
         FireTell = 0,  // Throne 위로 총알 뭉탱이 발사하고, 8개로 나뉜게 다시 8개로 나뉘는 총알 발사
@@ -20,32 +22,35 @@ public class BulletKing : MonoBehaviour, IHealth
         GobletThrow // 플레이어 근처에 폭발하는 독약 뿌리기
     }
 
-    #region COMPONENT
-    Animator bossAnim;
-    Animator throneAnim;
-    Transform canvas;
-    GameObject intro;
-    GameObject healthBar;
-    Door door;
-    Rigidbody2D rigid;
-    Transform shootPositions;
-    AudioSource source;
+    #region COMPONENT ##########################################################
+    private Animator bossAnim;
+    private Animator throneAnim;
+    private Transform canvas;
+    private GameObject intro;
+    private GameObject healthBar;
+    private Door door;
+    private Rigidbody2D rigid;
+    private Transform shootPositions;
+    private AudioSource source;
     #endregion
 
-    #region VARIABLE
+    #region VARIABLE ###########################################################
     [Header("AI")]
-    [SerializeField] EnemyState status = EnemyState.IDLE; //IDLE, TRACK, ATTACK, DEAD
+    [SerializeField] EnemyState status = EnemyState.IDLE;
     [SerializeField] float moveSpeed = 5.0f;
     [SerializeField] float attackCoolTime = 3f;
     [SerializeField] float attackRange = 10f;
 
-    float currentSpeed = 0f;
-    bool isDead = false;
-    bool isMove = false;
-    WaitForSeconds updateSeconds;
-    float updateInterval = 1.0f;
+    private float currentSpeed = 0f;
+    private bool isMove = false;
+    private WaitForSeconds updateSeconds;
+    private float updateInterval = 1.0f;
     // ######################### ATTACK #############################
-    float attackTimer = 0f;
+    private float attackTimer = 0f;
+    private Transform[] evenShootPos;
+    private Transform[] oddShootPos;
+    public GameObject goblet;
+
     BulletKing_AnimationHelper animHelp_King;
     BulletKing_AnimationHelper_Throne animHelp_Throne;
     Intro_AnimationHelper animHelp_Intro;
@@ -53,12 +58,14 @@ public class BulletKing : MonoBehaviour, IHealth
     // ######################## Basic Stat ##########################
     private int hp;
     private const int maxHP = 100;
-
-    public Action OnTakeDamage { get; set; }
-    public Action OnHPUp { get; set; }
     #endregion
 
-    #region Property
+    #region 델리게이트 ###########################################################
+    public Action<int, int> OnTakeDamage { get; set; } // < hp, maxHP>
+    public Action<int> OnHPUp { get; set; }
+    #endregion
+
+    #region 프로퍼티 #############################################################
     public int HP
     {
         get => hp;
@@ -69,13 +76,14 @@ public class BulletKing : MonoBehaviour, IHealth
             if(hp < 1)
                 ChangeStatus(EnemyState.DEAD);
             else
-                OnTakeDamage?.Invoke();
+                OnTakeDamage?.Invoke(hp, maxHP);    // UI 갱신 
         }
     }
 
     public int MaxHP => maxHP;
     #endregion
 
+    #region UNITY EVENT 함수 ####################################################
     private void Awake()
     {
         bossAnim = transform.GetChild(0).GetComponent<Animator>();
@@ -107,17 +115,54 @@ public class BulletKing : MonoBehaviour, IHealth
         InitializeShootPosition();
     }
 
+    private void Start()
+    {
+        gameManager = GameManager.Inst;
+    }
+    #endregion
+
+    #region PUBLIC 함수 #########################################################
+    public void GobletThrow()
+    {
+        Instantiate(goblet, transform.position, Quaternion.identity);
+        goblet.SetActive(true);
+        SoundManager.Inst.PlaySound_Boss(Clips_Boss.Boss_Throw, source);
+    }
+    #endregion
+
+    #region PRIVATE 함수 #######################################################
+    /// <summary>
+    /// 원 방정식으로 ShootPositions 일정 간격으로 배치 
+    /// </summary>
     void InitializeShootPosition()
     {
         shootPositions = transform.GetChild(4);
+        int halfCount = (int)(shootPositions.childCount * 0.5f);    //40개 
+        evenShootPos = new Transform[halfCount];
+        oddShootPos = new Transform[shootPositions.childCount - halfCount];
 
         float theta = 0;
+        int j = 0;
+        int k = 0;
         for (int i = 0; i < shootPositions.childCount; i++)
         {
             theta += 360 / (shootPositions.childCount - 1);
-            shootPositions.GetChild(i).localPosition = 1f *
+            Transform shootPos = shootPositions.GetChild(i);
+            shootPos.localPosition = 1f *
                 new Vector2(Mathf.Cos(Mathf.Deg2Rad * theta), Mathf.Sin(Mathf.Deg2Rad * theta));
-            shootPositions.GetChild(i).rotation = Quaternion.Euler(0, 0, theta);
+            shootPos.rotation = Quaternion.Euler(0, 0, theta);
+
+            // 짝수 홀수번째 발사위치 위치 캐싱
+            if(i%2 == 0)
+            {
+                evenShootPos[j] = shootPos;
+                j++;
+            }
+            else
+            {
+                oddShootPos[k] = shootPos;
+                k++;
+            }
         }
     }
 
@@ -126,7 +171,11 @@ public class BulletKing : MonoBehaviour, IHealth
         StartCoroutine(CheckDoorTrigger());
     }
 
-    IEnumerator CheckDoorTrigger()
+    /// <summary>
+    /// 문이 열렸는지 확인하는 함수 
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator CheckDoorTrigger()
     {
         while (true)
         {
@@ -139,25 +188,25 @@ public class BulletKing : MonoBehaviour, IHealth
         }
     }
 
-    IEnumerator EntranceIntro()
+    private IEnumerator EntranceIntro()
     {
         bossAnim.SetTrigger("Intro");
         yield return new WaitForSeconds(bossAnim.GetCurrentAnimatorClipInfo(0).Length + 4.0f);
         intro.SetActive(true);
-        GameManager.Inst.SoundManager.PlaySound_Boss(Clips_Boss.Boss_Intro, source);
+        SoundManager.Inst.PlaySound_Boss(Clips_Boss.Boss_Intro, source);
     }
 
-    void OnIntroEnd()
+    private void OnIntroEnd()
     {
         healthBar.SetActive(true);
         HP = MaxHP;
         intro.SetActive(false);
-        GameManager.Inst.Control.EnableInput();
+        gameManager.Control.EnableInput();
         ChangeStatus(EnemyState.TRACK);
         StartCoroutine(StatusUpdate());
     }
 
-    IEnumerator StatusUpdate()
+    private IEnumerator StatusUpdate()
     {
         while (true)
         {
@@ -187,7 +236,7 @@ public class BulletKing : MonoBehaviour, IHealth
         }
     }
 
-    void IdleUpdate()
+    private void IdleUpdate()
     {
         if (IsInAttackRange())
         {
@@ -204,7 +253,7 @@ public class BulletKing : MonoBehaviour, IHealth
         }
     }
 
-    void TrackUpdate()
+    private void TrackUpdate()
     {
         if(!IsInAttackRange())
         {
@@ -217,25 +266,20 @@ public class BulletKing : MonoBehaviour, IHealth
         }
     }
 
-    void Move(float speed)
+    private void Move(float speed)
     {
-        Vector2 dir = GameManager.Inst.Player.transform.position - transform.position;
+        Vector2 dir = gameManager.Player.transform.position - transform.position;
         dir = dir.normalized;
         rigid.MovePosition((Vector2)transform.position + Time.deltaTime * dir * speed);
     }
 
-    bool IsInAttackRange()
+    private bool IsInAttackRange()
     {
-        bool result = false;
-        if ((transform.position - GameManager.Inst.Player.transform.position).sqrMagnitude < attackRange * attackRange)
-        {
-            result = true;
-        }
-
-        return result;
+        return (transform.position - gameManager.Player.transform.position)
+            .sqrMagnitude < attackRange * attackRange;
     }
 
-    void AttackUpdate()
+    private void AttackUpdate()
     {
         if (attackTimer > attackCoolTime)
         {
@@ -244,7 +288,7 @@ public class BulletKing : MonoBehaviour, IHealth
             if (rand == (int)AttackSwitch.Spin)
             {
                 attackTimer = -7f;  // Spin animation duration + alpha
-                GameManager.Inst.SoundManager.PlaySound_Boss(Clips_Boss.Boss_Spin, source);
+                SoundManager.Inst.PlaySound_Boss(Clips_Boss.Boss_Spin, source);
             }
             else
                 attackTimer = 0f;
@@ -258,14 +302,12 @@ public class BulletKing : MonoBehaviour, IHealth
             ChangeStatus(EnemyState.TRACK);
     }
 
-    void Switcher_Attack(int randNumber)
+    /// <summary>
+    /// 랜덤 공격패턴 
+    /// </summary>
+    /// <param name="randNumber"></param>
+    private void Switcher_Attack(int randNumber)
     {
-        //FireTell = 0,  // Throne 위로 큰 총알을 발사하고, 8개로 나뉜게 다시 8개로 나뉘는 총알 발사
-        //FireTell_2,  // 360도 일정한 각도로 원형 총알 발사
-        //FireTell_3,  // 플레이어 방향으로 미식축구공 모양 총알 발사
-        //FireTell_4   // 일정 간격으로 360도 발사
-        //Spin,       // 360도 돌때마다 각도가 변하고, 마지막에 360도 전체에 원형 총알 발사
-        //GobletThrow // 플레이어 근처에 폭발하는 독약 뿌리기
         bossAnim.SetTrigger("onAttack");
         throneAnim.SetTrigger("onAttack");
         bossAnim.SetInteger("Switcher", randNumber);
@@ -281,30 +323,30 @@ public class BulletKing : MonoBehaviour, IHealth
         }
     }
 
-
-    #region PROJECTILE METHOD
+     // Throne 위로 큰 총알을 발사하고, 8개로 나뉜게 다시 8개로 나뉘는 총알 발사
     private void Shoot_Tell_1()
     {
         GameObject bigBullet = BulletManager.Inst.GetPooledBullet(BulletID.BIG);
-        bigBullet.transform.position = shootPositions.GetChild(10).position;
-        bigBullet.transform.rotation = shootPositions.GetChild(10).rotation;
+        bigBullet.transform.SetPositionAndRotation(
+            shootPositions.GetChild(10).position, shootPositions.GetChild(10).rotation);
         bigBullet.SetActive(true);
 
-        GameManager.Inst.SoundManager.PlaySound_Boss(Clips_Boss.Boss_Shot0, source);
+        SoundManager.Inst.PlaySound_Boss(Clips_Boss.Boss_Shot0, source);
     }
-
+    // 360도 일정한 각도로 원형 총알 발사
     private void Shoot_Tell_2()
     {
         for (int i = 0; i < shootPositions.childCount; i++)
         {
             GameObject spearBullet = BulletManager.Inst.GetPooledBullet(BulletID.SPINNING);
-            spearBullet.transform.position = shootPositions.GetChild(i).position;
-            spearBullet.transform.rotation = shootPositions.GetChild(i).rotation;
+            spearBullet.transform.SetPositionAndRotation(
+                shootPositions.GetChild(i).position, shootPositions.GetChild(i).rotation);
             spearBullet.SetActive(true);
         }
-        GameManager.Inst.SoundManager.PlaySound_Boss(Clips_Boss.Boss_Shot1, source);
+        SoundManager.Inst.PlaySound_Boss(Clips_Boss.Boss_Shot1, source);
     }
 
+    // 플레이어 방향으로 미식축구공 모양 총알 발사
     private void Shoot_Tell_3()
     {
         Vector2 dir = GameManager.Inst.Player.transform.position - transform.position;
@@ -315,45 +357,32 @@ public class BulletKing : MonoBehaviour, IHealth
         obj.SetActive(true);
     }
 
+    // 360도 돌때마다 각도가 변하고, 마지막에 360도 전체에 원형 총알 발사
     private void Spin_Even()
     {
-        for (int i = 0; i < shootPositions.childCount; i ++)
+        GameObject circleBullet;
+        for (int i = 0; i < evenShootPos.Length; i ++)
         {
-            if(i%2==0)
-            {
-                GameObject circleBullet = BulletManager.Inst.GetPooledBullet(BulletID.CIRCLE);
-                circleBullet.transform.position = shootPositions.GetChild(i).position;
-                circleBullet.transform.rotation = shootPositions.GetChild(i).rotation;
-                circleBullet.SetActive(true);
-            }
+            circleBullet = BulletManager.Inst.GetPooledBullet(BulletID.CIRCLE);
+            circleBullet.transform.SetPositionAndRotation(
+                evenShootPos[i].position, evenShootPos[i].rotation);
+            circleBullet.SetActive(true);
         }
     }
 
     private void Spin_Odd()
     {
-        for (int i = 0; i < shootPositions.childCount; i++)
+        GameObject circleBullet;
+        for (int i = 0; i < oddShootPos.Length; i++)
         {
-            if (i % 2 != 0)
-            {
-                GameObject circleBullet = BulletManager.Inst.GetPooledBullet(BulletID.CIRCLE);
-                circleBullet.transform.position = shootPositions.GetChild(i).position;
-                circleBullet.transform.rotation = shootPositions.GetChild(i).rotation;
-                circleBullet.SetActive(true);
-            }
+            circleBullet = BulletManager.Inst.GetPooledBullet(BulletID.CIRCLE);
+            circleBullet.transform.SetPositionAndRotation(
+                oddShootPos[i].position, oddShootPos[i].rotation);
+            circleBullet.SetActive(true);
         }
     }
 
-    public GameObject goblet;
-    public void GobletThrow()
-    {
-        Instantiate(goblet, transform.position, Quaternion.identity);
-        goblet.SetActive(true);
-        GameManager.Inst.SoundManager.PlaySound_Boss(Clips_Boss.Boss_Throw, source);
-    }
-    #endregion
-
-    #region Status Change
-    void ChangeStatus(EnemyState newStatus)
+    private void ChangeStatus(EnemyState newStatus)
     {
         switch (status)
         { // On Status Exit
@@ -383,8 +412,8 @@ public class BulletKing : MonoBehaviour, IHealth
                 currentSpeed = 0f;
                 break;
             case EnemyState.DEAD:
-                isDead = true;
-                GameManager.Inst.SoundManager.PlaySound_Boss(Clips_Boss.Boss_Explode);
+                SoundManager.Inst.PlaySound_Boss(Clips_Boss.Boss_Explode);
+                Destroy(this.gameObject, 5f);
                 break;
         }
 

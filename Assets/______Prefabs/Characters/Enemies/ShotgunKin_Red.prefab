@@ -104,7 +104,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 4c3f2ec138d014e88ad3fdd29bce73d7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -169,8 +169,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   status: 0
-  detectRadius: 7
-  attackRange: 6
+  detectRadius: 8
+  attackRange: 5
   healthPoint: 10
   maxHealthPoint: 10
   moveSpeed: 2
