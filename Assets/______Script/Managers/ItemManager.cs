@@ -33,13 +33,13 @@ public class ItemManager : Singleton<ItemManager>
         silverShell = new();
         goldShell = new();
 
-        pooledItems.Add((uint)ItemID.BlankShell, blankShell);
-        pooledItems.Add((uint)ItemID.AmmoBox, ammoBox);
-        pooledItems.Add((uint)ItemID.Key, key);
-        pooledItems.Add((uint)ItemID.Heart, heart);
-        pooledItems.Add((uint)ItemID.GoldShell, goldShell);
-        pooledItems.Add((uint)ItemID.SilverShell, silverShell);
-        pooledItems.Add((uint)ItemID.BronzeShell, bronzeShell);
+        pooledItems.Add((uint)ItemType.BlankShell, blankShell);
+        pooledItems.Add((uint)ItemType.AmmoBox, ammoBox);
+        pooledItems.Add((uint)ItemType.Key, key);
+        pooledItems.Add((uint)ItemType.Heart, heart);
+        pooledItems.Add((uint)ItemType.GoldShell, goldShell);
+        pooledItems.Add((uint)ItemType.SilverShell, silverShell);
+        pooledItems.Add((uint)ItemType.BronzeShell, bronzeShell);
 
         for (uint i = 0; i < poolingItems.Length; i++)
         {
@@ -62,7 +62,7 @@ public class ItemManager : Singleton<ItemManager>
         return null;
     }
 
-    public GameObject GetPooledItem(ItemID id)
+    public GameObject GetPooledItem(ItemType id)
     {
         return GetPooledItem(pooledItems[(uint)id]);
     }
@@ -75,7 +75,7 @@ public class ItemManager : Singleton<ItemManager>
         uselessItem.SetActive(false);
     }
 
-    public void ReturnItem(ItemID id, GameObject uselessItem)
+    public void ReturnItem(ItemType id, GameObject uselessItem)
     {
         ReturnItem(pooledItems[(uint)id], uselessItem);
     }

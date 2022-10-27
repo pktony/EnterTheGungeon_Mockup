@@ -29,6 +29,6 @@ public class PlayerBullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        BulletManager.Inst.ReturnBullet(BulletID.PLAYER, this.gameObject);
+        BulletManager.Inst.ReturnBullet(BulletType.PLAYER, this.gameObject);
     }
 }

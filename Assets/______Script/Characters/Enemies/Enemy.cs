@@ -310,7 +310,7 @@ public class Enemy : MonoBehaviour, IHealth
     #region PROTECTED 함수 ######################################################
     protected virtual void Shoot()
     {
-        GameObject bullet = BulletManager.Inst.GetPooledBullet(BulletID.ENEMY);
+        GameObject bullet = BulletManager.Inst.GetPooledBullet(BulletType.ENEMY);
         bullet.transform.position = weapon.transform.position;
         bullet.transform.rotation = firePosition[0].rotation;
         bullet.SetActive(true);
@@ -341,7 +341,7 @@ public class Enemy : MonoBehaviour, IHealth
             int rand = UnityEngine.Random.Range(2, 6);
             if (rand == 3)  //Heart는 드랍하지 않는다 
                 continue;
-            GameObject shell = ItemManager.Inst.GetPooledItem((ItemID)rand);
+            GameObject shell = ItemManager.Inst.GetPooledItem((ItemType)rand);
             shell.transform.position = (Vector2)transform.position + UnityEngine.Random.insideUnitCircle;
             shell.gameObject.SetActive(true);
         }

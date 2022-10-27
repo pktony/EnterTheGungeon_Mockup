@@ -8,11 +8,11 @@ public class BossBullet_Spinning : EnemyBullet
     {
         base.Awake();
 
-        id = BulletID.SPINNING;
+        id = BulletType.SPINNING;
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision)
     {// Layer Setting : Enemy - EnemyBullet
-        BulletManager.Inst.ReturnBullet(BulletID.SPINNING, this.gameObject);
+        BulletManager.Inst.ReturnBullet(BulletType.SPINNING, this.gameObject);
     }
 }

@@ -11,7 +11,7 @@ public class ItemDataManager : MonoBehaviour
         get => itemDatas[i];
     }
 
-    public ItemData this[ItemID id]
+    public ItemData this[ItemType id]
     {
         get=> itemDatas[(int)id];
     }

@@ -24,7 +24,7 @@ public enum WeaponType
     RIFLE
 }
 
-public enum ItemID
+public enum ItemType
 {
     BlankShell = 0,
     AmmoBox,
@@ -35,7 +35,7 @@ public enum ItemID
     BronzeShell
 }
 
-public enum BulletID
+public enum BulletType
 {
     PLAYER = 0,
     ENEMY,

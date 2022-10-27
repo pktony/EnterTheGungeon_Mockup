@@ -12,7 +12,7 @@ public class BossBullet_Big : EnemyBullet
     {
         base.Awake();
 
-        id = BulletID.BIG;
+        id = BulletType.BIG;
     }
 
     protected override void EnableBullet()
@@ -27,13 +27,13 @@ public class BossBullet_Big : EnemyBullet
         float theta = 0f;
         for (int i = 0; i < splitCount; i++)
         {
-            GameObject obj = BulletManager.Inst.GetPooledBullet(BulletID.MID);
+            GameObject obj = BulletManager.Inst.GetPooledBullet(BulletType.MID);
             obj.transform.position = this.transform.position;
             obj.transform.rotation = Quaternion.Euler(0f, 0f, theta);
             obj.SetActive(true);
             theta += 360 / splitCount;
         }
-        BulletManager.Inst.ReturnBullet(BulletID.BIG, this.gameObject);
+        BulletManager.Inst.ReturnBullet(BulletType.BIG, this.gameObject);
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision)

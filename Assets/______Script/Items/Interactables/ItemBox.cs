@@ -14,15 +14,15 @@ public class ItemBox : Item
 
     public override void LootAction()
     {
-        if (player.Inven_Item[(int)ItemID.Key].StackCount > 0)
+        if (player.Inven_Item[(int)ItemType.Key].StackCount > 0)
         {
             anim.SetTrigger("onLoot");
-            player.Inven_Item[(int)ItemID.Key].StackCount--;
+            player.Inven_Item[(int)ItemType.Key].StackCount--;
             // 50대 50확률로 아이템 드랍 
             float rand = Random.value;
             GameObject obj = rand < 0.5f ?
-                ItemManager.Inst.GetPooledItem(ItemID.AmmoBox) :
-                ItemManager.Inst.GetPooledItem(ItemID.Heart);
+                ItemManager.Inst.GetPooledItem(ItemType.AmmoBox) :
+                ItemManager.Inst.GetPooledItem(ItemType.Heart);
             obj.transform.position =
                 (Vector2)transform.position + Vector2.down;
             StartCoroutine(ThrowItem(obj));

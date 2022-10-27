@@ -8,7 +8,7 @@ public class BossBullet_Mid : BossBullet_Big
     {
         base.Awake();
 
-        id = BulletID.MID;
+        id = BulletType.MID;
     }
 
     protected override void EnableBullet()
@@ -23,12 +23,12 @@ public class BossBullet_Mid : BossBullet_Big
         float theta = 0f;
         for (int i = 0; i < splitCount; i++)
         {
-            GameObject obj = BulletManager.Inst.GetPooledBullet(BulletID.CIRCLE);
+            GameObject obj = BulletManager.Inst.GetPooledBullet(BulletType.CIRCLE);
             obj.transform.position = this.transform.position;
             obj.transform.rotation = Quaternion.Euler(0f, 0f, theta);
             obj.SetActive(true);
             theta += 360 / splitCount;
         }
-        BulletManager.Inst.ReturnBullet(BulletID.MID, this.gameObject);
+        BulletManager.Inst.ReturnBullet(BulletType.MID, this.gameObject);
     }
 }
