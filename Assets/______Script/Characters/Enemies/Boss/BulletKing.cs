@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -17,7 +18,7 @@ public class BulletKing : MonoBehaviour, IHealth
     {
         FireTell = 0,  // Throne 위로 총알 뭉탱이 발사하고, 8개로 나뉜게 다시 8개로 나뉘는 총알 발사
         FireTell_2,  // 360도 일정한 간격으로 원형 총알 발사
-        FireTell_3,  // 360도 일정 각도로 쉼표 총알 발사 (쉼표 총알은 
+        FireTell_3,  // 360도 일정 각도로 쉼표 총알 발사
         Spin,       // 360도 돌때마다 각도가 변하고, 마지막에 360도 전체에 원형 총알 발사
         GobletThrow // 플레이어 근처에 폭발하는 독약 뿌리기
     }
@@ -49,7 +50,10 @@ public class BulletKing : MonoBehaviour, IHealth
     private float attackTimer = 0f;
     private Transform[] evenShootPos;
     private Transform[] oddShootPos;
+    private Transform[] fireTellPos;
     public GameObject goblet;
+    private readonly int tellCount = 4;
+    private readonly int skipCount = 3;
 
     BulletKing_AnimationHelper animHelp_King;
     BulletKing_AnimationHelper_Throne animHelp_Throne;
@@ -98,6 +102,7 @@ public class BulletKing : MonoBehaviour, IHealth
         animHelp_Throne = GetComponentInChildren<BulletKing_AnimationHelper_Throne>();
         animHelp_King.onTell1Attack = Shoot_Tell_1;
         animHelp_King.onTell2Attack = Shoot_Tell_2;
+        animHelp_King.onTell3Attack = Shoot_Tell_3;
         animHelp_King.onGobletAttack = GobletThrow;
         animHelp_Throne.onSpinAttack_Even = Spin_Even;
         animHelp_Throne.onSpinAttack_Odd = Spin_Odd;
@@ -115,9 +120,44 @@ public class BulletKing : MonoBehaviour, IHealth
         InitializeShootPosition();
     }
 
+    private void OnEntrance(Scene arg0, LoadSceneMode arg1)
+    {
+        StartCoroutine(CheckDoorTrigger());
+    }
+
     private void Start()
     {
         gameManager = GameManager.Inst;
+    }
+
+    private void FixedUpdate()
+    {
+        if (isMove)
+        {
+            Move(currentSpeed);
+        }
+
+        //TEST
+        if (Keyboard.current.digit6Key.wasPressedThisFrame)
+        {
+            Switcher_Attack((int)AttackSwitch.Spin);
+        }
+        else if(Keyboard.current.digit7Key.wasPressedThisFrame)
+        {
+            Switcher_Attack((int)AttackSwitch.FireTell);
+        }
+        else if (Keyboard.current.digit8Key.wasPressedThisFrame)
+        {
+            Switcher_Attack((int)AttackSwitch.FireTell_2);
+        }
+        else if(Keyboard.current.digit9Key.wasPressedThisFrame)
+        {
+            Switcher_Attack((int)AttackSwitch.FireTell_3);
+        }
+        else if (Keyboard.current.digit0Key.wasPressedThisFrame)
+        {
+            Switcher_Attack((int)AttackSwitch.GobletThrow);
+        }
     }
     #endregion
 
@@ -134,25 +174,28 @@ public class BulletKing : MonoBehaviour, IHealth
     /// <summary>
     /// 원 방정식으로 ShootPositions 일정 간격으로 배치 
     /// </summary>
-    void InitializeShootPosition()
+    private void InitializeShootPosition()
     {
         shootPositions = transform.GetChild(4);
-        int halfCount = (int)(shootPositions.childCount * 0.5f);    //40개 
+        int halfCount = (int)(shootPositions.childCount * 0.5f);    //40 / 2 개
+        int tell3Count = shootPositions.childCount -
+            shootPositions.childCount / (tellCount + skipCount) * skipCount;
         evenShootPos = new Transform[halfCount];
         oddShootPos = new Transform[shootPositions.childCount - halfCount];
+        fireTellPos = new Transform[tell3Count];
 
         float theta = 0;
-        int j = 0;
-        int k = 0;
+        int j = 0, k = 0, w = 0, z = 0;
+        Transform shootPos;
         for (int i = 0; i < shootPositions.childCount; i++)
         {
             theta += 360 / (shootPositions.childCount - 1);
-            Transform shootPos = shootPositions.GetChild(i);
+            shootPos = shootPositions.GetChild(i);
             shootPos.localPosition = 1f *
                 new Vector2(Mathf.Cos(Mathf.Deg2Rad * theta), Mathf.Sin(Mathf.Deg2Rad * theta));
             shootPos.rotation = Quaternion.Euler(0, 0, theta);
 
-            // 짝수 홀수번째 발사위치 위치 캐싱
+            // 발사위치 위치 캐싱
             if(i%2 == 0)
             {
                 evenShootPos[j] = shootPos;
@@ -163,12 +206,16 @@ public class BulletKing : MonoBehaviour, IHealth
                 oddShootPos[k] = shootPos;
                 k++;
             }
+            
+            if(z < tellCount)
+            {// 발사 위치 4개
+                fireTellPos[w] = shootPos;
+                w++;
+            }
+            z++;
+            if (z == tellCount + skipCount) //3 개 건너뛰기
+                z = 0;
         }
-    }
-
-    private void OnEntrance(Scene arg0, LoadSceneMode arg1)
-    {
-        StartCoroutine(CheckDoorTrigger());
     }
 
     /// <summary>
@@ -225,14 +272,6 @@ public class BulletKing : MonoBehaviour, IHealth
                     break;
             }
             yield return updateSeconds;
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        if(isMove)
-        {
-            Move(currentSpeed);
         }
     }
 
@@ -326,19 +365,21 @@ public class BulletKing : MonoBehaviour, IHealth
      // Throne 위로 큰 총알을 발사하고, 8개로 나뉜게 다시 8개로 나뉘는 총알 발사
     private void Shoot_Tell_1()
     {
-        GameObject bigBullet = BulletManager.Inst.GetPooledBullet(BulletID.BIG);
+        GameObject bigBullet = BulletManager.Inst.GetPooledBullet(BulletType.BIG);
         bigBullet.transform.SetPositionAndRotation(
             shootPositions.GetChild(10).position, shootPositions.GetChild(10).rotation);
         bigBullet.SetActive(true);
 
         SoundManager.Inst.PlaySound_Boss(Clips_Boss.Boss_Shot0, source);
     }
+
     // 360도 일정한 각도로 원형 총알 발사
     private void Shoot_Tell_2()
     {
+        GameObject spearBullet;
         for (int i = 0; i < shootPositions.childCount; i++)
         {
-            GameObject spearBullet = BulletManager.Inst.GetPooledBullet(BulletID.SPINNING);
+            spearBullet = BulletManager.Inst.GetPooledBullet(BulletType.SPINNING);
             spearBullet.transform.SetPositionAndRotation(
                 shootPositions.GetChild(i).position, shootPositions.GetChild(i).rotation);
             spearBullet.SetActive(true);
@@ -346,15 +387,17 @@ public class BulletKing : MonoBehaviour, IHealth
         SoundManager.Inst.PlaySound_Boss(Clips_Boss.Boss_Shot1, source);
     }
 
-    // 플레이어 방향으로 미식축구공 모양 총알 발사
     private void Shoot_Tell_3()
     {
-        Vector2 dir = GameManager.Inst.Player.transform.position - transform.position;
-
-        GameObject obj = BulletManager.Inst.GetPooledBullet(BulletID.FOOTBALL);
-        obj.transform.position = dir.normalized;
-        //obj.transform.LookAt(GameManager.Inst.Player.transform.position);
-        obj.SetActive(true);
+        GameObject circleBullet;
+        for (int i = 0; i < fireTellPos.Length; i++)
+        {
+            circleBullet = BulletManager.Inst.GetPooledBullet(BulletType.CIRCLE);
+            circleBullet.transform.SetPositionAndRotation(
+                fireTellPos[i].position, fireTellPos[i].rotation);
+            circleBullet.SetActive(true);
+        }
+        SoundManager.Inst.PlaySound_Boss(Clips_Boss.Boss_Shot1, source);
     }
 
     // 360도 돌때마다 각도가 변하고, 마지막에 360도 전체에 원형 총알 발사
@@ -362,8 +405,8 @@ public class BulletKing : MonoBehaviour, IHealth
     {
         GameObject circleBullet;
         for (int i = 0; i < evenShootPos.Length; i ++)
-        {
-            circleBullet = BulletManager.Inst.GetPooledBullet(BulletID.CIRCLE);
+        {// 짝수번째 위치 공격 
+            circleBullet = BulletManager.Inst.GetPooledBullet(BulletType.CIRCLE);
             circleBullet.transform.SetPositionAndRotation(
                 evenShootPos[i].position, evenShootPos[i].rotation);
             circleBullet.SetActive(true);
@@ -371,11 +414,11 @@ public class BulletKing : MonoBehaviour, IHealth
     }
 
     private void Spin_Odd()
-    {
+    {// 홀수번째 위치 공격
         GameObject circleBullet;
         for (int i = 0; i < oddShootPos.Length; i++)
         {
-            circleBullet = BulletManager.Inst.GetPooledBullet(BulletID.CIRCLE);
+            circleBullet = BulletManager.Inst.GetPooledBullet(BulletType.CIRCLE);
             circleBullet.transform.SetPositionAndRotation(
                 oddShootPos[i].position, oddShootPos[i].rotation);
             circleBullet.SetActive(true);

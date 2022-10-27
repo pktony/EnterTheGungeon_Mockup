@@ -7,9 +7,11 @@ public class BulletKing_AnimationHelper : MonoBehaviour
 {
     public System.Action onTell2Attack;
     public System.Action onTell1Attack;
+    public System.Action onTell3Attack;
     public System.Action onGobletAttack;
 
     public void AttackTell1() => onTell1Attack?.Invoke();
     public void AttackTell2() => onTell2Attack?.Invoke();
+    public void AttackTell3() => onTell3Attack?.Invoke();
     public void ThrowGoblet() => onGobletAttack?.Invoke();
 }
