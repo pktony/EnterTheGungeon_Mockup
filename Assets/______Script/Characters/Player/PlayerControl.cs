@@ -29,7 +29,7 @@ public class PlayerControl : MonoBehaviour
 
     //################ Weapon ##############################
     private SpriteRenderer weaponSprite = null;
-    [SerializeField] private Vector2 weaponRight;
+    [SerializeField] private Vector2 weaponRightOffset;
 
     //################ Fire ##############################
     IEnumerator autoFire;
@@ -155,23 +155,23 @@ public class PlayerControl : MonoBehaviour
     {
         transform.position += Time.deltaTime * speed * inputDir;
     }
-    void RotateWeapon()
+    private void RotateWeapon()
     {
         weaponPocket.transform.right = lookDir;
 
         if (lookDir.x < 0)
         {// Left
             weaponSprite.flipY = true;
-            MirrorWeaponPosition(-weaponRight);
+            MirrorWeaponPosition(-weaponRightOffset);
         }
         else
         {// Right
             weaponSprite.flipY = false;
-            MirrorWeaponPosition(weaponRight);
+            MirrorWeaponPosition(weaponRightOffset);
         }
     }
 
-    void MirrorWeaponPosition(Vector3 pos)
+    private void MirrorWeaponPosition(Vector3 pos)
     {
         weaponPocket.transform.localPosition = pos;
     }
@@ -261,17 +261,17 @@ public class PlayerControl : MonoBehaviour
 
     private void OnBlankUse(InputAction.CallbackContext _)
     {
-        if (player.Inven_Item.Slots[(int)ItemID.BlankShell].StackCount > 0)
+        if (player.Inven_Item.Slots[(int)ItemType.BlankShell].StackCount > 0)
         {
-            player.Inven_Item.Slots[(int)ItemID.BlankShell].StackCount--;
+            player.Inven_Item.Slots[(int)ItemType.BlankShell].StackCount--;
             blankFX.PlayBlankFX();
             SoundManager.Inst.PlaySound_Player(Clips_Player.blank);
 
-            // EnemyBullets 태그로 게임오브젝트를 찾고 
-            GameObject[] bullets = GameObject.FindGameObjectsWithTag("EnemyBullets");
+            // 모든 적의 총알은 EnemyBullet을 상속받음
+            EnemyBullet[] bullets = FindObjectsOfType<EnemyBullet>();
             if (bullets != null)
             {
-                foreach (GameObject bullet in bullets)
+                foreach (var bullet in bullets)
                 {
                     if (bullet.TryGetComponent<IDestroyable>(out var destroyable))
                     {// 즉시 제거 

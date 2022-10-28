@@ -15,7 +15,7 @@ public class EnemyBullet : MonoBehaviour, IDestroyable
     private Collider2D coll;
     #endregion
     #region 변수 ################################################################
-    protected BulletID id;
+    protected BulletType id;
     [SerializeField] private float bulletSpeed = 5.0f;
     #endregion
 
@@ -30,7 +30,7 @@ public class EnemyBullet : MonoBehaviour, IDestroyable
         blankWaitSeconds = new WaitForSeconds(IDestroyable.blankExplosionTime);
         BlankExplosionFX = transform.GetChild(0).gameObject;
 
-        id = BulletID.ENEMY;
+        id = BulletType.ENEMY;
     }
 
     private void OnEnable()

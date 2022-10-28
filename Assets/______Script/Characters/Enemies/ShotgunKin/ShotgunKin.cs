@@ -47,9 +47,9 @@ public class ShotgunKin : Enemy
     {
         for (int i = 0; i < bulletPerFire; i++)
         {
-            GameObject bullet = BulletManager.Inst.GetPooledBullet(BulletID.ENEMY);
-            bullet.transform.position = weapon.transform.position;
-            bullet.transform.rotation = firePosition[i].rotation;
+            GameObject bullet = BulletManager.Inst.GetPooledBullet(BulletType.ENEMY);
+            bullet.transform.SetPositionAndRotation(
+                weapon.transform.position, firePosition[i].rotation);
             bullet.SetActive(true);
         }
 

@@ -213,6 +213,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 686575114549618935, guid: dbbffaedf104862468cd9b832bf2e078, type: 3}
+      propertyPath: dodgeSpeed
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbbffaedf104862468cd9b832bf2e078, type: 3}
 --- !u!4 &700838007 stripped

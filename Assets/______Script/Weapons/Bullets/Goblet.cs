@@ -8,7 +8,6 @@ public class Goblet : MonoBehaviour
     private GameObject goblet;
     private GameObject goblet_Broken;
     private GameObject wine;
-    private GameObject flame;
 
     private Vector2 throwPosition;
     private Vector2 throwDir;
@@ -25,7 +24,6 @@ public class Goblet : MonoBehaviour
         goblet = transform.GetChild(0).gameObject;
         goblet_Broken = transform.GetChild(1).gameObject;
         wine = transform.GetChild(2).gameObject;
-        flame = transform.GetChild(3).gameObject;
     }
     
     private void OnEnable()
@@ -61,7 +59,7 @@ public class Goblet : MonoBehaviour
             if(timer > splashDuration)
             {
                 wine.SetActive(false);
-                BulletManager.Inst.ReturnBullet(BulletID.GOBLET, this.gameObject);
+                BulletManager.Inst.ReturnBullet(BulletType.GOBLET, this.gameObject);
             }
         }
     }

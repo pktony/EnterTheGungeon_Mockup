@@ -8,6 +8,6 @@ public class Heart : Item
     {
         player.HP++;
         SoundManager.Inst.PlaySound_Item(Clips_Item.Heart);
-        ItemManager.Inst.ReturnItem(ItemID.Heart, this.gameObject);
+        ItemManager.Inst.ReturnItem(ItemType.Heart, this.gameObject);
     }
 }

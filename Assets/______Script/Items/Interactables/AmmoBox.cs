@@ -32,6 +32,6 @@ public class AmmoBox : Item
     {
         float time = anim.GetCurrentAnimatorClipInfo(0).Length;
         yield return new WaitForSeconds(time);
-        ItemManager.Inst.ReturnItem(ItemID.AmmoBox, this.gameObject);
+        ItemManager.Inst.ReturnItem(ItemType.AmmoBox, this.gameObject);
     }
 }

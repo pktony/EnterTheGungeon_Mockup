@@ -51,10 +51,10 @@ public class ItemInventoryUI : MonoBehaviour
 
     public void RefreshUIs()
     {
-        keyCountText.text = itemInven.Slots[(uint)ItemID.Key].StackCount.ToString();
-        shellCountText.text = (itemInven.Slots[(uint)ItemID.GoldShell].StackCount +
-            itemInven.Slots[(uint)ItemID.SilverShell].StackCount +
-            itemInven.Slots[(uint)ItemID.BronzeShell].StackCount).ToString();
+        keyCountText.text = itemInven.Slots[(uint)ItemType.Key].StackCount.ToString();
+        shellCountText.text = (itemInven.Slots[(uint)ItemType.GoldShell].StackCount +
+            itemInven.Slots[(uint)ItemType.SilverShell].StackCount +
+            itemInven.Slots[(uint)ItemType.BronzeShell].StackCount).ToString();
 
 
         // ------ Blank Shell
@@ -62,7 +62,7 @@ public class ItemInventoryUI : MonoBehaviour
         {
             shell.color = Color.clear;
         }
-        for (int i = 0; i < GameManager.Inst.Player.Inven_Item.Slots[(int)ItemID.BlankShell].StackCount; i++)
+        for (int i = 0; i < GameManager.Inst.Player.Inven_Item.Slots[(int)ItemType.BlankShell].StackCount; i++)
         {
             blankShellImg[i].color = Color.white;
         }

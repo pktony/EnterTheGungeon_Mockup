@@ -28,6 +28,7 @@ public class Player : MonoBehaviour, IHealth
     // -- Dodge 
     [SerializeField] private float dodgeSpeed = 5.0f;
     private float dodgeDuration = 0.7f;
+    private float dodgeTimer;
     public bool canDodge = true;
     public Vector2 dodgeDir = Vector2.zero;
 
@@ -125,7 +126,7 @@ public class Player : MonoBehaviour, IHealth
 
         inven_item = new ItemInventory();
         inven_item.InitializeItemInventory();
-        inven_item.Slots[(int)ItemID.BlankShell].IncreaseItem(3);
+        inven_item.Slots[(int)ItemType.BlankShell].IncreaseItem(3);
     }
 
     private void Start()
@@ -162,7 +163,7 @@ public class Player : MonoBehaviour, IHealth
     {
         while (bulletInMag > 0)
         {
-            GameObject bullet = BulletManager.Inst.GetPooledBullet(BulletID.PLAYER);
+            GameObject bullet = BulletManager.Inst.GetPooledBullet(BulletType.PLAYER);
             bullet.transform.position = weaponPocket.SetupFirePosition();
             bullet.transform.rotation = weaponPocket.SetupFireRotation()
                 * Quaternion.Euler(0f, 0f, Random.Range(-currentWeapon.dispersion, currentWeapon.dispersion));
@@ -195,13 +196,12 @@ public class Player : MonoBehaviour, IHealth
         if (!canDodge)
         {
             this.gameObject.layer = LayerMask.NameToLayer("Invincible");
-            dodgeDuration -= Time.deltaTime;
+            dodgeTimer += Time.deltaTime;
             transform.position = Vector2.Lerp(transform.position,
                 (Vector2)transform.position + dodgeDir, dodgeSpeed * Time.deltaTime);
-            //transform.Translate(dodgeSpeed * Time.deltaTime * dodgeDir);
-            if (dodgeDuration < 0f)
+            if (dodgeTimer > dodgeDuration)
             {
-                dodgeDuration = 0.7f;
+                dodgeTimer = 0;
                 this.gameObject.layer = LayerMask.NameToLayer("Player");
                 canDodge = true;
             }

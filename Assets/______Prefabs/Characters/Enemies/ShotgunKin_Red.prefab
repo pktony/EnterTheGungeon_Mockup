@@ -170,7 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status: 0
   detectRadius: 8
-  attackRange: 5
+  attackRange: 7
   healthPoint: 10
   maxHealthPoint: 10
   moveSpeed: 2

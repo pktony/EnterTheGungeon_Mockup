@@ -39,7 +39,7 @@ public class ItemInventory
         return result;
     }
 
-    public bool AddItem(ItemID id)
+    public bool AddItem(ItemType id)
     {
         return AddItem(slots[(int)id].Data);
     }
