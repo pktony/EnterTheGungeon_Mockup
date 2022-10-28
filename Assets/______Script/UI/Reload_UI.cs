@@ -28,7 +28,7 @@ public class Reload_UI : MonoBehaviour
 
     private void Start()
     {
-        Player player = FindObjectOfType<Player>();
+        Player player = GetComponentInParent<Player>();
         speed = baseWidth / player.CurrentWeapon.reloadingTime;
     }
 

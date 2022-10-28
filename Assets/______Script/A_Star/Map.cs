@@ -9,7 +9,7 @@ using UnityEngine;
 /// 가로 세로 크기 정보 
 /// 맵 그리드에서 Node 입히기
 /// </summary>
-public class Map : MonoBehaviour
+public class Map
 {
     Node[,] nodes;
     private int mapHeight;

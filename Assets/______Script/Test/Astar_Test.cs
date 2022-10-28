@@ -10,6 +10,7 @@ public class Astar_Test : MonoBehaviour
 
     private void Start()
     {
+#if UNITY_EDITOR
         Map map = new Map(mapHeight, mapWidth);
         List<Vector2Int> test = new();
         test = A_Star.FindPath_Map(map, Vector2Int.zero, new Vector2Int(mapHeight - 1, mapWidth - 1));
@@ -18,5 +19,6 @@ public class Astar_Test : MonoBehaviour
         {
             Debug.Log(test[i]);
         }
+#endif
     }
 }
