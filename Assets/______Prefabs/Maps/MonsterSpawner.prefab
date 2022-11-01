@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5b1f7dffa7ff4434b93292365dd8710, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnOffset: 5
+  spawnOffset: 6.52
   minSpawn: 2
   maxSpawn: 4
   chestPrefab: {fileID: 8957673115480075417, guid: e67849a4f353b4e4f84f05509f31082b, type: 3}

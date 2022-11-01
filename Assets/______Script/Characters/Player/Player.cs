@@ -203,7 +203,7 @@ public class Player : MonoBehaviour, IHealth
             {
                 dodgeTimer = 0;
                 this.gameObject.layer = LayerMask.NameToLayer("Player");
-                canDodge = true;
+                GameManager.Inst.Control.MoveMode = PlayerMove.WALK;
             }
         }
     }

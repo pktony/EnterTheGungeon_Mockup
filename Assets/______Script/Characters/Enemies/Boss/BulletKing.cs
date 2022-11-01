@@ -390,6 +390,7 @@ public class BulletKing : MonoBehaviour, IHealth
     private void Shoot_Tell_3()
     {
         GameObject circleBullet;
+        SoundManager.Inst.PlaySound_Boss(Clips_Boss.Boss_Shot1, source);
         for (int i = 0; i < fireTellPos.Length; i++)
         {
             circleBullet = BulletManager.Inst.GetPooledBullet(BulletType.CIRCLE);
@@ -397,7 +398,6 @@ public class BulletKing : MonoBehaviour, IHealth
                 fireTellPos[i].position, fireTellPos[i].rotation);
             circleBullet.SetActive(true);
         }
-        SoundManager.Inst.PlaySound_Boss(Clips_Boss.Boss_Shot1, source);
     }
 
     // 360도 돌때마다 각도가 변하고, 마지막에 360도 전체에 원형 총알 발사

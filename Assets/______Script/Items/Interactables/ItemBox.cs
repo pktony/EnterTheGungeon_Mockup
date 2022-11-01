@@ -6,6 +6,7 @@ public class ItemBox : Item
 {
     Animator anim;
     private float throwDuration = 0.5f;
+    private bool isOpen = false;
 
     private void Awake()
     {
@@ -14,7 +15,7 @@ public class ItemBox : Item
 
     public override void LootAction()
     {
-        if (player.Inven_Item[(int)ItemType.Key].StackCount > 0)
+        if (!isOpen && player.Inven_Item[(int)ItemType.Key].StackCount > 0)
         {
             anim.SetTrigger("onLoot");
             player.Inven_Item[(int)ItemType.Key].StackCount--;
@@ -23,6 +24,7 @@ public class ItemBox : Item
             GameObject obj = rand < 0.5f ?
                 ItemManager.Inst.GetPooledItem(ItemType.AmmoBox) :
                 ItemManager.Inst.GetPooledItem(ItemType.Heart);
+            isOpen = true;
             obj.transform.position =
                 (Vector2)transform.position + Vector2.down;
             StartCoroutine(ThrowItem(obj));

@@ -728,8 +728,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status: 0
   moveSpeed: 2
-  attackCoolTime: 3
-  attackRange: 7
+  attackCoolTime: 1.5
+  attackRange: 10
   goblet: {fileID: 1857596756367850445, guid: 2e3862a075e12403b87eb56239820542, type: 3}
 --- !u!58 &3965349702804722252
 CircleCollider2D:

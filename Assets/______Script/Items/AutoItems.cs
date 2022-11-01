@@ -24,7 +24,6 @@ public class AutoItems : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log(value);
             player.Inven_Item[(int)data.itemID].IncreaseItem(value);
             SoundManager.Inst.PlaySound_Item((Clips_Item)(data.itemID - 3));
             

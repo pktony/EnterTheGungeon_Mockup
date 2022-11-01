@@ -5,7 +5,6 @@ public enum PlayerMove
 {
     IDLE = 0,
     WALK,
-    RUN,
     DODGE
 }
 

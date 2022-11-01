@@ -31,7 +31,6 @@ public class BulletManager : Singleton<BulletManager>
         }
     }
 
-
     protected override void OnSceneLoad(Scene arg0, LoadSceneMode arg1)
     {
         ReturnAllBullets();
@@ -87,18 +86,23 @@ public class BulletManager : Singleton<BulletManager>
     }
 
     /// <summary>
-    /// 씬 이동 시 모든 총알을 수거하는 함수 
+    /// 씬 이동 시 모든 총알을 수거하는 함수
+    /// 또는 Blank 사용
     /// </summary>
-    private void ReturnAllBullets()
+    public void ReturnAllBullets()
     {
         for (int i = 0; i < bulletsInScene.Count; i++)
         {
             int bulletCount = bulletsInScene[(BulletType)i].Count;
             for (int j = 0; j < bulletCount; j++)
             {
-                Debug.Log($"{(BulletType)i}, {j}");
-                //ReturnBullet((BulletType)i, bulletsInScene[(BulletType)i][j]);
+                 if(bulletsInScene[(BulletType)i][j].
+                    TryGetComponent<IDestroyable>(out IDestroyable bullet))
+                {
+                    bullet.BlankDestroy();
+                }
             }
+            bulletsInScene[(BulletType)i].Clear();
         }
     }
 }

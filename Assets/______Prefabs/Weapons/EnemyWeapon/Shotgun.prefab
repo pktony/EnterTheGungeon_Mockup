@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1469541780344633733}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: BulletPosition (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1469541780670005555}
   - component: {fileID: 1469541780670005516}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1469541780670005554}
-  m_LocalRotation: {x: -0, y: 0.0033829154, z: -0, w: 0.9999943}
+  m_LocalRotation: {x: 0, y: 0.0033859115, z: 0, w: 0.9999943}
   m_LocalPosition: {x: 0.61, y: -0.05, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -67,7 +67,7 @@ Transform:
   - {fileID: 1469541781229630905}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0.388, z: 0}
 --- !u!212 &1469541780670005516
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -107,7 +107,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 294582783
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: -152602610, guid: 3ad1e0eff7e0c87429017f80784e6f23, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -129,7 +129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1469541781076741737}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: BulletPosition (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1469541781229630905}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: BulletPosition (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +191,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1469541781507276938}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: BulletPosition (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1469541781691487273}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: BulletPosition (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

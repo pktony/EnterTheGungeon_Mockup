@@ -17,7 +17,7 @@ public class PlayerControl : MonoBehaviour
     Player player = null;
     BlankFX blankFX;
 
-    [SerializeField] PlayerMove moveMode = PlayerMove.WALK;
+    PlayerMove moveMode = PlayerMove.WALK;
 
     //################ Move ##############################
     [SerializeField] private float moveSpeed = 3.0f;
@@ -43,6 +43,15 @@ public class PlayerControl : MonoBehaviour
 
     #region 프로퍼티 #############################################################
     public Vector2 LookDir => lookDir;
+
+    public PlayerMove MoveMode
+    {
+        get => moveMode;
+        set
+        {
+            moveMode = value;
+        }
+    }
     #endregion
 
     #region 델리게이트 ###########################################################
@@ -107,10 +116,6 @@ public class PlayerControl : MonoBehaviour
             if (moveMode == PlayerMove.DODGE)
             {
                 player.Dodge();
-                if (player.canDodge)
-                {
-                    moveMode = PlayerMove.WALK;
-                }
                 return;
             }
             else if(moveMode == PlayerMove.WALK)
@@ -266,19 +271,7 @@ public class PlayerControl : MonoBehaviour
             player.Inven_Item.Slots[(int)ItemType.BlankShell].StackCount--;
             blankFX.PlayBlankFX();
             SoundManager.Inst.PlaySound_Player(Clips_Player.blank);
-
-            // 모든 적의 총알은 EnemyBullet을 상속받음
-            EnemyBullet[] bullets = FindObjectsOfType<EnemyBullet>();
-            if (bullets != null)
-            {
-                foreach (var bullet in bullets)
-                {
-                    if (bullet.TryGetComponent<IDestroyable>(out var destroyable))
-                    {// 즉시 제거 
-                        destroyable.BlankDestroy();
-                    }
-                }
-            }
+            BulletManager.Inst.ReturnAllBullets();
         }
     }
 

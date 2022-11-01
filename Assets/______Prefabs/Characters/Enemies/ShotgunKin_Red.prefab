@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4786809176740595982}
   - component: {fileID: 4786809176740595983}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,7 +130,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.13, y: 0.3}
+  m_Size: {x: 0.52, y: 1.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   status: 0
-  detectRadius: 8
+  detectRadius: 9
   attackRange: 7
   healthPoint: 10
   maxHealthPoint: 10
@@ -232,7 +232,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.52, y: 1.2}
-    newSize: {x: 0.13, y: 0.3}
+    newSize: {x: 0.52, y: 1.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0

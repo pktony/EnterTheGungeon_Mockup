@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
 {
-    [Range(2f, 5f)]
-    [Header("몬스터 간 스폰 간격 ")]
+    [Range(2f, 7f)]
+    [Header("몬스터 간 스폰 넓이 ")]
     public float spawnOffset;
     [Range(1, 3)]
     public int minSpawn = 2;
