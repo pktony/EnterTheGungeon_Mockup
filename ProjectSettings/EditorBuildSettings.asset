@@ -6,15 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/______Scenes/IntroScene.unity
+    path: Assets/Scenes/IntroScene.unity
     guid: c862d69519d54431dadc0c636d4aa0c9
   - enabled: 1
-    path: Assets/______Scenes/Map/Main_MapLoader.unity
+    path: Assets/Scenes/Map/Main_MapLoader.unity
     guid: dfc6cedd84e394466a3f2a95e9884686
   - enabled: 1
-    path: Assets/______Scenes/Map/Boss.unity
+    path: Assets/Scenes/Map/Boss.unity
     guid: 78e8f1ce10c3843e99b5b5479ceed4ad
   - enabled: 1
-    path: Assets/______Scenes/LoadingScreen.unity
+    path: Assets/Scenes/LoadingScreen.unity
     guid: 7257e1182a31242129f0b34580563338
   m_configObjects: {}
